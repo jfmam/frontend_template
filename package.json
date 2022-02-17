@@ -1,0 +1,18 @@
+{
+  "name": "frontend_template",
+  "packageManager": "yarn@3.1.1",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "yosm-front:dev": "yarn workspace yosm-front dev",
+    "yosm-front:start": "yarn workspace yosm-front start",
+    "yosm-front:build": "yarn workspace yosm-front build"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "color-no-invalid-hex": true,
+    "block-no-empty": true,
+    "comment-no-empty": true,
+    "selector-type-case": "lower",
+    "selector-class-pattern": "^([a-z0-9]*)((-|__|--)[a-z0-9]+)*$",
+    "unit-no-unknown": true,
+    "no-duplicate-selectors": true,
+    "no-duplicate-at-import-rules": true
+  }
+}

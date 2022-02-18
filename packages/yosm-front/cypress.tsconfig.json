@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6", 
+    "lib": ["es6", "dom"],
+    "types": ["cypress"], 
+    "isolatedModules": false, 
+    "strict": false 
+  },
+  "include": [
+    "./**/*.test.ts"
+  ]
+}

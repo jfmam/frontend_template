@@ -1,8 +1,10 @@
 # frontend_template
-## Tech
-### env
+> 새롭게 공부한 내용들에 대해 코드로 정리하는 공간 입니다.
+# Tech
+## env
 - yarn berry
 - eslint, prettier, stylelint
-### front
+### frontend
 - nextjs
-- jest, cypress
+- jest, react-testing-library
+- typescipt

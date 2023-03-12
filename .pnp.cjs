@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@commitlint/config-conventional", "npm:17.4.4"],\
             ["@types/eslint", "npm:8.21.1"],\
             ["@types/prettier", "npm:2.7.2"],\
             ["eslint", "npm:8.36.0"],\
@@ -50,6 +51,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@babel/runtime", "npm:7.21.0"],\
             ["regenerator-runtime", "npm:0.13.11"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@commitlint/config-conventional", [\
+        ["npm:17.4.4", {\
+          "packageLocation": "./.yarn/cache/@commitlint-config-conventional-npm-17.4.4-d7a5e82d69-679d92509f.zip/node_modules/@commitlint/config-conventional/",\
+          "packageDependencies": [\
+            ["@commitlint/config-conventional", "npm:17.4.4"],\
+            ["conventional-changelog-conventionalcommits", "npm:5.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -647,6 +658,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["array-ify", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/array-ify-npm-1.0.0-e09a371977-c0502015b3.zip/node_modules/array-ify/",\
+          "packageDependencies": [\
+            ["array-ify", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["array-includes", [\
         ["npm:3.1.6", {\
           "packageLocation": "./.yarn/cache/array-includes-npm-3.1.6-d0ff9d248b-f22f8cd8ba.zip/node_modules/array-includes/",\
@@ -918,11 +938,34 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["compare-func", [\
+        ["npm:2.0.0", {\
+          "packageLocation": "./.yarn/cache/compare-func-npm-2.0.0-9cd7852f23-fb71d70632.zip/node_modules/compare-func/",\
+          "packageDependencies": [\
+            ["compare-func", "npm:2.0.0"],\
+            ["array-ify", "npm:1.0.0"],\
+            ["dot-prop", "npm:5.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["concat-map", [\
         ["npm:0.0.1", {\
           "packageLocation": "./.yarn/cache/concat-map-npm-0.0.1-85a921b7ee-902a9f5d89.zip/node_modules/concat-map/",\
           "packageDependencies": [\
             ["concat-map", "npm:0.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["conventional-changelog-conventionalcommits", [\
+        ["npm:5.0.0", {\
+          "packageLocation": "./.yarn/cache/conventional-changelog-conventionalcommits-npm-5.0.0-a270202fe8-b67d12e4e0.zip/node_modules/conventional-changelog-conventionalcommits/",\
+          "packageDependencies": [\
+            ["conventional-changelog-conventionalcommits", "npm:5.0.0"],\
+            ["compare-func", "npm:2.0.0"],\
+            ["lodash", "npm:4.17.21"],\
+            ["q", "npm:1.5.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1080,6 +1123,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["doctrine", "npm:3.0.0"],\
             ["esutils", "npm:2.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dot-prop", [\
+        ["npm:5.3.0", {\
+          "packageLocation": "./.yarn/cache/dot-prop-npm-5.3.0-7bf6ee1eb8-d577579009.zip/node_modules/dot-prop/",\
+          "packageDependencies": [\
+            ["dot-prop", "npm:5.3.0"],\
+            ["is-obj", "npm:2.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1734,6 +1787,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["frontend_template", "workspace:."],\
+            ["@commitlint/config-conventional", "npm:17.4.4"],\
             ["@types/eslint", "npm:8.21.1"],\
             ["@types/prettier", "npm:2.7.2"],\
             ["eslint", "npm:8.36.0"],\
@@ -2273,6 +2327,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["is-obj", [\
+        ["npm:2.0.0", {\
+          "packageLocation": "./.yarn/cache/is-obj-npm-2.0.0-3d95e053f4-c9916ac8f4.zip/node_modules/is-obj/",\
+          "packageDependencies": [\
+            ["is-obj", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["is-path-inside", [\
         ["npm:3.0.3", {\
           "packageLocation": "./.yarn/cache/is-path-inside-npm-3.0.3-2ea0ef44fd-abd50f0618.zip/node_modules/is-path-inside/",\
@@ -2577,6 +2640,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["locate-path", "npm:6.0.0"],\
             ["p-locate", "npm:5.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["lodash", [\
+        ["npm:4.17.21", {\
+          "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/",\
+          "packageDependencies": [\
+            ["lodash", "npm:4.17.21"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3137,6 +3209,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/punycode-npm-2.3.0-df4bdce06b-39f760e09a.zip/node_modules/punycode/",\
           "packageDependencies": [\
             ["punycode", "npm:2.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["q", [\
+        ["npm:1.5.1", {\
+          "packageLocation": "./.yarn/cache/q-npm-1.5.1-a28b3cfeaf-147baa93c8.zip/node_modules/q/",\
+          "packageDependencies": [\
+            ["q", "npm:1.5.1"]\
           ],\
           "linkType": "HARD"\
         }]\

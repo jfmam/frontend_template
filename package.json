@@ -1,0 +1,13 @@
+{
+  "name": "frontend_template",
+  "packageManager": "yarn@3.4.1",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "wesave:dev": "yarn workspace practice-wesave:dev"
+  },
+  "workspaces": [
+    "apps/*"
+  ]
+}

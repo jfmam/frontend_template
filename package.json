@@ -18,20 +18,17 @@
   "scripts": {
     "yosm-front:dev": "yarn workspace yosm-front dev",
     "yosm-front:start": "yarn workspace yosm-front start",
-    "yosm-front:build": "yarn workspace yosm-front build"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "yosm-front:build": "yarn workspace yosm-front build",
+    "postinstall": "husky install"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "**/*.{ts,tsx}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "*.scss": [
+    "**/*.scss": [
       "stylelint --fix --syntax scss"
-    ]
+    ],
+    "**/*.{js,css,md}": "prettier --write"
   }
 }

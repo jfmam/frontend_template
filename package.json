@@ -2,6 +2,12 @@
   "name": "frontend_template",
   "packageManager": "yarn@3.4.1",
   "devDependencies": {
+    "@types/eslint": "^8",
+    "@types/prettier": "^2",
+    "eslint": "^8.36.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.4",
     "typescript": "^4.9.5"
   },
   "scripts": {
@@ -9,5 +15,11 @@
   },
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "lint-staged": {
+    "*.{tsx,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
 }

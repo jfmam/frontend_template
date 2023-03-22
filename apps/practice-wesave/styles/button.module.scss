@@ -1,0 +1,71 @@
+@import url('./variables.module.scss');
+
+.primary {
+  background-color: $primary-blue;
+  width: 16.5rem;
+  height: 4.625rem;
+  border-radius: 40.5px;
+  border: none;
+
+  &:hover {
+    background-color: $primary-blue20;
+  }
+}
+
+.disalbed {
+  background-color: $bg40;
+}
+
+.text {
+  color: $bg60;
+  width: auto;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+}
+
+.selector {
+  background-color: $bg20;
+  border-radius: 25px;
+  width: auto;
+  height: 2.25rem;
+  border: none;
+
+  &:hover {
+    background-color: $bg40;
+  }
+
+  &--selected {
+    background-color: $primary-purple40;
+  }
+}
+
+.tab-selector {
+  color: $bg40;
+  border: none;
+  background-color: transparent;
+
+  &-circle {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: $bg40;
+    display: inline-block;
+
+    &:hover {
+      background-color: $bg50;
+    }
+
+    &--selected {
+      background-color: $primary-purple100;
+    }
+  }
+
+  &:hover {
+    color: $bg50;
+  }
+
+  &--selected {
+    color: $bg100;
+  }
+}

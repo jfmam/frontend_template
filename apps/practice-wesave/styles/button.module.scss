@@ -1,4 +1,4 @@
-@import url('./variables.module.scss');
+@import './variables.module.scss';
 
 .primary {
   background-color: $primary-blue;
@@ -44,28 +44,42 @@
   color: $bg40;
   border: none;
   background-color: transparent;
+  font-size: 1.5rem;
+
+  &:hover {
+    color: $bg50;
+
+    & > span {
+      background-color: $bg50;
+    }
+  }
+
+  &--selected {
+    color: $bg100;
+  }
 
   &-circle {
-    width: 1rem;
-    height: 1rem;
+    width: 0.625rem;
+    height: 0.625rem;
     border-radius: 50%;
     background-color: $bg40;
     display: inline-block;
-
-    &:hover {
-      background-color: $bg50;
-    }
+    margin-left: 2px;
 
     &--selected {
       background-color: $primary-purple100;
     }
   }
+}
 
-  &:hover {
-    color: $bg50;
-  }
+.check-selector {
+  width: 4.5625rem;
+  height: 4.5625rem;
+  background-color: $bg0;
+  border-radius: 50%;
+  border: 1.5px solid $bg50;
 
   &--selected {
-    color: $bg100;
+    background-color: $primary-blue40;
   }
 }

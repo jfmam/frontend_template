@@ -1,13 +1,13 @@
-@import url('./variables.module.scss');
+@import './variables.module.scss';
 
 .checkmark {
   display: inline-block;
   transform: rotate(45deg);
-  height: 21.9px;
-  width: 35.69px;
-  margin-left: 60%;
+  height: 35.69px;
+  width: 21.9px;
   border-bottom: 1.5px solid $bg50;
   border-right: 1.5px solid $bg50;
+  margin-bottom: 15px;
 
   &--selcted {
     border-bottom: 1.5px solid $bg0;

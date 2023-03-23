@@ -1,4 +1,14 @@
 {
   "extends": ["next/core-web-vitals", "prettier"],
-  "ignorePatterns": ["/**/*.stories.@(tsx|jsx|js|ts)"]
+  "ignorePatterns": ["/**/*.stories.@(tsx|jsx|js|ts)"],
+  "overrides": [
+    {
+      "files": [
+        "./**/*.stories.@(jsx|tsx)"
+      ],
+      "rules": {
+        "import/no-anonymous-default-export": "off"
+      }
+    }
+  ]
 }

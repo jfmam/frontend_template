@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import React, { ButtonHTMLAttributes } from 'react';
 import cn from 'classnames/bind';
 

@@ -1,0 +1,70 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  overflow-wrap: break-word;
+}
+
+body:lang(ko) {
+  word-break: keep-all;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  padding: 0;
+  margin: 0;
+}
+
+button:focus,
+button:active,
+textarea:focus,
+textarea:active,
+input:focus,
+input:active {
+  box-shadow: none;
+  outline: none;
+}
+
+[class] {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+[class]::before,
+[class]::after {
+  box-sizing: border-box;
+}
+
+[class]:where(ol, ul) {
+  list-style: none;
+}
+
+[class]:where(button, fieldset, iframe, input, select, textarea) {
+  border: 0;
+}
+
+[class]:where(button, dialog, input, mark, meter, progress) {
+  background-color: transparent;
+}
+
+[class]:where(button, input, meter, progress, select, textarea) {
+  appearance: none;
+  appearance: none;
+}

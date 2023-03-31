@@ -11,9 +11,9 @@ export function ModalContext({ children }: ModalContextProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
-    <ModalStateContext.Provider value={isOpenModal}>
-      <ModalDispatchContext.Provider value={setIsOpenModal}>{children}</ModalDispatchContext.Provider>
-    </ModalStateContext.Provider>
+    <ModalDispatchContext.Provider value={setIsOpenModal}>
+      <ModalStateContext.Provider value={isOpenModal}>{children}</ModalStateContext.Provider>
+    </ModalDispatchContext.Provider>
   );
 }
 

@@ -6,12 +6,14 @@ import MenuModal from '@/components/Modal';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ModalContext>
-      <Header />
+    <>
+      <ModalContext>
+        <MenuModal />
+        <Header />
+      </ModalContext>
       <main id="main">
         <Component {...pageProps} />
       </main>
-      <MenuModal />
-    </ModalContext>
+    </>
   );
 }

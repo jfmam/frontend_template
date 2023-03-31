@@ -1,0 +1,35 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.modal {
+  inset: 0;
+  margin-right: -50%;
+  width: 100%;
+  height: 100%;
+  background-color: $bg100;
+  overflow: hidden;
+  padding: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}
+
+.navigation-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: min(18.7rem, 17.4148vh);
+  align-items: center;
+  height: 100%;
+}
+
+.navigation-item {
+  color: $bg0;
+  font-size: $heading1;
+
+  &:hover {
+    color: $secondary-green;
+  }
+}

@@ -3,10 +3,11 @@ import type { AppProps } from 'next/app';
 import Header from '@/components/header';
 import { ModalContext } from '@/components/Modal/ModalContext';
 import MenuModal from '@/components/Modal';
+import { pretendard } from '@/config/fonts';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <div className={pretendard.className}>
       <ModalContext>
         <MenuModal />
         <Header />
@@ -14,6 +15,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <main id="main">
         <Component {...pageProps} />
       </main>
-    </>
+    </div>
   );
 }

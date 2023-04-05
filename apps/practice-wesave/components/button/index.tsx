@@ -12,9 +12,9 @@ export function PrimaryBtn({ children, className, ...props }: ButtonHTMLAttribut
   );
 }
 
-export function TextBtn({ children, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
+export function TextBtn({ children, className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button className={styles['btn--text']} {...props}>
+    <button className={cn(styles['btn--text'], className)} {...props}>
       {children}
     </button>
   );

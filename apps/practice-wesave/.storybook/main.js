@@ -1,5 +1,4 @@
 const TsconfigPathsPlugin  = require('tsconfig-paths-webpack-plugin');
-const path = require('path')
 
 module.exports = {
   "stories": [
@@ -31,7 +30,6 @@ module.exports = {
           util: require.resolve('util/'),
           ...config.resolve.fallback
         }
-
       }
     }
   }

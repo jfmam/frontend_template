@@ -16,7 +16,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-modal": "^3.16.1",
-    "sass": "^1.59.3"
+    "react-slick": "^0.29.0",
+    "sass": "^1.59.3",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
@@ -36,6 +38,8 @@
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "@types/react-modal": "^3",
+    "@types/react-slick": "^0",
+    "@types/slick-carousel": "^1",
     "babel-loader": "^8.3.0",
     "css-loader": "^6.7.3",
     "eslint": "8.36.0",

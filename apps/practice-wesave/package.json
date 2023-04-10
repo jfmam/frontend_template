@@ -47,7 +47,6 @@
     "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-prettier": "^4.2.1",
     "sass-loader": "^13.2.1",
-    "storybook-addon-next": "^1.7.3",
     "style-loader": "^3.3.2",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
     "tslib": "^2.5.0",

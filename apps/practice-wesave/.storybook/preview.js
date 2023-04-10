@@ -1,3 +1,4 @@
+import React from 'react';
 import '@/styles/globals.scss';
 import * as NextImage from "next/image";
 

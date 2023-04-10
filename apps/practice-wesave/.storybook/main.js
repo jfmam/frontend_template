@@ -1,4 +1,5 @@
 const TsconfigPathsPlugin  = require('tsconfig-paths-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   "stories": [
@@ -10,7 +11,11 @@ module.exports = {
     "@storybook/addon-interactions",
     "@storybook/preset-scss"
   ],
-  "framework": "@storybook/react",
+  "framework": {
+    name: "@storybook/nextjs",
+    options: {
+      nextConfigPath: path.resolve(__dirname, '../next.config.js'),
+    },},
   "core": {
     "builder": "@storybook/builder-webpack5"
   },
@@ -32,5 +37,9 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  // "babel": async (options) => {
+  //   options.presets.push(['next/babel'])
+  //   return options
+  // },
 }

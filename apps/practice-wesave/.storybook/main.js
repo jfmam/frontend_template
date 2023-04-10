@@ -11,11 +11,7 @@ module.exports = {
     "@storybook/addon-interactions",
     "@storybook/preset-scss"
   ],
-  "framework": {
-    name: "@storybook/nextjs",
-    options: {
-      nextConfigPath: path.resolve(__dirname, '../next.config.js'),
-    },},
+  "framework":  "@storybook/react",
   "core": {
     "builder": "@storybook/builder-webpack5"
   },
@@ -37,9 +33,5 @@ module.exports = {
         }
       }
     }
-  },
-  // "babel": async (options) => {
-  //   options.presets.push(['next/babel'])
-  //   return options
-  // },
+  }
 }

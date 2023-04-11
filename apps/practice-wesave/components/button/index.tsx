@@ -1,12 +1,14 @@
 import { ButtonHTMLAttributes } from 'react';
-import cn from 'classnames';
+import cn from 'classnames/bind';
 import styles from '@/styles/button.module.scss';
 
 import TabSelector from './TabSelector';
 
+const btnStyles = cn.bind(styles);
+
 export function PrimaryBtn({ children, className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button className={cn(styles['btn--primary'], className?.split(' '))} {...props}>
+    <button className={btnStyles('primary', className)} {...props}>
       {children}
     </button>
   );
@@ -14,7 +16,7 @@ export function PrimaryBtn({ children, className, ...props }: ButtonHTMLAttribut
 
 export function TextBtn({ children, className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button className={cn(styles['btn--text'], className)} {...props}>
+    <button className={btnStyles('text', className)} {...props}>
       {children}
     </button>
   );

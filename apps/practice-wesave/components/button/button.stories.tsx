@@ -12,14 +12,14 @@ export default {
   title: 'Components/Button',
 };
 
-export const PrimaryButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
-  <button className={btnStyles('primary')} {...props}>
+export const PrimaryButton = ({ className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) => (
+  <button className={btnStyles('primary', className)} {...props}>
     primary button
   </button>
 );
 
-export const TextButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
-  <button className={btnStyles('text')} {...props}>
+export const TextButton = ({ className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) => (
+  <button className={btnStyles('text', className)} {...props}>
     Text button
   </button>
 );

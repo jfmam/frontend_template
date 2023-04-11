@@ -1450,7 +1450,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-react@npm:^7.12.10":
+"@babel/preset-react@npm:^7.12.10, @babel/preset-react@npm:^7.18.6":
   version: 7.18.6
   resolution: "@babel/preset-react@npm:7.18.6"
   dependencies:
@@ -13208,6 +13208,7 @@ __metadata:
   resolution: "practice-wesave@workspace:apps/practice-wesave"
   dependencies:
     "@babel/core": ^7.21.3
+    "@babel/preset-react": ^7.18.6
     "@mdx-js/react": ^1.6.22
     "@storybook/addon-actions": ^6.5.16
     "@storybook/addon-docs": ^6.5.16

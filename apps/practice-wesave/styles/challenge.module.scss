@@ -1,7 +1,12 @@
 @import './font.module.scss';
+@import './variables.module.scss';
 
 .description {
   font-size: $body1;
+}
+
+.confirm-container {
+  margin-top: 48px;
 }
 
 .confirm {

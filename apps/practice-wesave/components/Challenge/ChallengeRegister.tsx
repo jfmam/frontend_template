@@ -20,7 +20,7 @@ export default function ChallengeRegister() {
           챌린지를 추가해 보세요!
         </p>
       </div>
-      <div>
+      <div className={cx('confirm-container')}>
         <PrimaryBtn className={cx('confirm')}>챌린지 만들기</PrimaryBtn>
       </div>
     </div>

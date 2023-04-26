@@ -1,38 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# WE SAVE
+![image](https://user-images.githubusercontent.com/49827304/222907052-905b2290-7070-4ebf-8752-51b749bf4673.png)
+## 서비스 소개
+위세이브는 사회초년생과 직장인을 위한 금융 리추얼 애플리케이션입니다. 많은 파이낸셜 애플리케이션들이 소비 점검에 초점을 맞추어 콘텐츠를 제공합니다. 자연스럽게 자기점검에서 끝나고 동기부여와 같이 개선에 대한 솔루션은 부족하다는 문제점이 있었습니다.
+돈을 버는 일과 절약하는 일에 대해 동기부여를 주며, 금융에 대한 긍정적인 방향성을 제시합니다.
+실시간으로 벌고 있는 돈을 보여주고 절약 챌린지를 리추얼 형식으로 재미있게 제공합니다.
 
-## Getting Started
+## 프론트엔드 멤버
+| 이승헌  | 김승미  | 
+|---|---|
+| ![image](https://user-images.githubusercontent.com/49827304/232250140-daa21996-1df9-4cc8-a433-b48f47d22e7a.png) | ![image](https://user-images.githubusercontent.com/49827304/232250154-a3405bbc-9d67-4ca1-a20d-f53111032869.png)
 
-First, run the development server:
+## 개발스택
+- nextjs, typescript, scss
+- react-query
+- aws amplify
+- storybook
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 담당 및 기능
+| 기능                   | 담당 | 진행 중 |
+| --------------------------- | ------------ | ------------ |
+| SignIn / SignUp             | 김승미 | 완료           |
+| 소득 입력            | 이승헌     | 완료           |
+| 타이머 기능  | 이승헌     | 완료           |
+| 오늘의 챌린지      | 이승헌      | ⭕️                                                        |
+| 달성현황 | 이승헌 | ⭕️                                                         |
+| 나의 성취 | 이승헌      | ⭕️                                                         |
+| 마이페이지 |  김승미     | 완료                                                         |
+## 참고
+기존 코드 repo: https://github.com/DDD-Community/warren-burffett-web

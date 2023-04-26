@@ -1,10 +1,10 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import cn from 'classnames/bind';
-
 import styles from '@/styles/button.module.scss';
 
 import TabSelector from './TabSelector';
 import CheckSelector from './CheckSelector';
+import Badge, { BadgeType } from './Badge';
 
 const btnStyles = cn.bind(styles);
 
@@ -35,3 +35,15 @@ export const TabSelectorButton = (props: ButtonHTMLAttributes<HTMLButtonElement>
 );
 
 export const CheckSelectorButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => <CheckSelector />;
+
+export const BadgeButton = () => {
+  const badges: BadgeType[] = ['art', 'award', 'game', 'health', 'money', 'pig', 'present', 'rocket', 'target'];
+
+  return (
+    <>
+      {badges.map(v => (
+        <Badge key={v} type={v} onClick={() => {}} />
+      ))}
+    </>
+  );
+};

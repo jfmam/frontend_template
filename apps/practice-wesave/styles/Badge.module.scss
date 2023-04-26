@@ -1,0 +1,84 @@
+@import './variables.module.scss';
+
+.badge {
+  width: 84px;
+  height: 84px;
+  background-color: $bg20;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: $bg40;
+  }
+}
+
+.pig-bg {
+  background-color: #fca3b6;
+
+  &:hover {
+    background-color: #e58296;
+  }
+}
+
+.game-bg {
+  background-color: #dab4ff;
+
+  &:hover {
+    background-color: #b594e2;
+  }
+}
+
+.present-bg {
+  background-color: #d13346;
+
+  &:hover {
+    background-color: #b32739;
+  }
+}
+
+.health-bg {
+  background-color: #8995ed;
+
+  &:hover {
+    background-color: #6878c6;
+  }
+}
+
+.money-bg {
+  background-color: #ecb21b;
+
+  &:hover {
+    background-color: #cf9618;
+  }
+}
+
+.art-bg {
+  background-color: #d7991e;
+
+  &:hover {
+    background-color: #b77c1a;
+  }
+}
+
+.rocket-bg {
+  background-color: #bb2a3a;
+
+  &:hover {
+    background-color: #a32330;
+  }
+}
+
+.target-bg {
+  background-color: #ff7995;
+
+  &:hover {
+    background-color: #e86b85;
+  }
+}
+
+.award-bg {
+  background-color: #f7d820;
+
+  &:hover {
+    background-color: #d1b31c;
+  }
+}

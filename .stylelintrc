@@ -4,5 +4,6 @@
   "rules": {
     "prettier/prettier": true,
     "import-notation": "string"
-  }
+  },
+  "customSyntax": "postcss-scss"
 }

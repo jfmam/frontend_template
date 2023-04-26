@@ -8,6 +8,10 @@
   background-color: $bg20;
   padding: 24px 32px 22px;
 
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
+
   &:hover {
     background-color: $bg40;
   }

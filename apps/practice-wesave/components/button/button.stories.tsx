@@ -1,10 +1,11 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, useState } from 'react';
 import cn from 'classnames/bind';
 import styles from '@/styles/button.module.scss';
 
 import TabSelector from './TabSelector';
 import CheckSelector from './CheckSelector';
 import Badge, { BadgeType } from './Badge';
+import DaySelector from './DaySelector';
 
 const btnStyles = cn.bind(styles);
 
@@ -30,9 +31,14 @@ export const SelectorButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) =
   </button>
 );
 
-export const TabSelectorButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
-  <TabSelector {...props}>tab selector</TabSelector>
-);
+export const TabSelectorButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
+  const [isSelecetd, setIsSelecetd] = useState(false);
+  return (
+    <TabSelector onClick={() => setIsSelecetd(origin => !origin)} isSelected={isSelecetd} {...props}>
+      tab selector
+    </TabSelector>
+  );
+};
 
 export const CheckSelectorButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => <CheckSelector />;
 
@@ -46,4 +52,8 @@ export const BadgeButton = () => {
       ))}
     </>
   );
+};
+
+export const DaySelectorButton = () => {
+  return <DaySelector day="월" />;
 };

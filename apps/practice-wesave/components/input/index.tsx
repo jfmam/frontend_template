@@ -5,6 +5,6 @@ import styles from '@/styles/input.module.scss';
 
 const inputStyles = cn.bind(styles);
 
-export default function Input(props: InputHTMLAttributes<HTMLInputElement>) {
-  return <input className={inputStyles('input')} {...props} />;
+export default function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
+  return <input className={inputStyles('input', className)} {...props} />;
 }

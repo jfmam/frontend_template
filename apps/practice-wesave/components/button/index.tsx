@@ -30,10 +30,6 @@ export function SelectorBtn({ children, ...props }: ButtonHTMLAttributes<HTMLBut
   );
 }
 
-export function TabSelectorBtn({ children, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
-  return <TabSelector {...props}>tab selector</TabSelector>;
-}
-
 export function checkSelectorBtn({ children, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button className={styles['btn--check-selector']} {...props}>

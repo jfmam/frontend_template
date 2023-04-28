@@ -7,7 +7,7 @@ export type BadgeType = 'pig' | 'game' | 'present' | 'health' | 'money' | 'art' 
 
 interface BadgeProps {
   type: BadgeType;
-  onClick: (e?: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
+  onClick?: (e?: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
 }
 
 const cx = cn.bind(styles);

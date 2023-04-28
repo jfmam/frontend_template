@@ -57,6 +57,14 @@
 
   &--selected {
     color: $bg100;
+
+    &:hover {
+      color: $bg60;
+
+      & > span {
+        background-color: $primary-purple60;
+      }
+    }
   }
 
   &-circle {

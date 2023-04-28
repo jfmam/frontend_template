@@ -1,0 +1,22 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.day-btn {
+  width: 3.125rem;
+  height: 3.125rem;
+  background-color: $bg20;
+  border-radius: 20px;
+  font-size: $body3;
+
+  &:hover {
+    background-color: $bg40;
+  }
+}
+
+.selected {
+  background-color: $primary-purple40;
+
+  &:hover {
+    background-color: $primary-purple60;
+  }
+}

@@ -3,8 +3,8 @@ import type { AppProps } from 'next/app';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Header from '@/components/header';
-import { ModalContext } from '@/components/Modal/ModalContext';
-import MenuModal from '@/components/Modal';
+import { ModalContext } from '@/components/Modal/NavigationModalContext';
+import MenuModal from '@/components/Modal/NavigationModal';
 import { pretendard } from '@/config/fonts';
 
 export default function App({ Component, pageProps }: AppProps) {

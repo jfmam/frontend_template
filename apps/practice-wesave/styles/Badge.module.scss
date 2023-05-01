@@ -1,13 +1,28 @@
 @import './variables.module.scss';
 
 .badge {
-  width: 84px;
-  height: 84px;
+  width: 5.25rem;
+  height: 5.25rem;
   background-color: $bg20;
   border-radius: 20px;
 
   &:hover {
     background-color: $bg40;
+  }
+
+  &-small {
+    width: 4.8125rem;
+    height: 4.8125rem;
+  }
+
+  &-medium {
+    width: 7.375rem;
+    height: 7.375rem;
+  }
+
+  &-large {
+    width: 9.375rem;
+    height: 9.375rem;
   }
 }
 

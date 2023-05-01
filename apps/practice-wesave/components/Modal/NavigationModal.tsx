@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import cn from 'classnames/bind';
 import styles from '@/styles/modal.module.scss';
 
-import { useModalDispatch, useModalState } from './ModalContext';
+import { useModalDispatch, useModalState } from './NavigationModalContext';
 
 Modal.setAppElement('main');
 const modalStyles = cn.bind(styles);

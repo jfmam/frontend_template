@@ -6,14 +6,6 @@ import TabSelector from './TabSelector';
 
 const btnStyles = cn.bind(styles);
 
-export function PrimaryBtn({ children, className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button className={btnStyles('primary', className)} {...props}>
-      {children}
-    </button>
-  );
-}
-
 export function TextBtn({ children, className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button className={btnStyles('text', className)} {...props}>

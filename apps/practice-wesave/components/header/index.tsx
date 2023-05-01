@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles from '@/styles/header.module.scss';
 import cn from 'classnames/bind';
 
-import { useModalDispatch, useModalState } from '../Modal/ModalContext';
+import { useModalDispatch, useModalState } from '../Modal/NavigationModalContext';
 
 import MenuIcon from './MenuIcon';
 

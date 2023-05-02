@@ -15,9 +15,10 @@ export default function MenuIcon({ isOpen, ...props }: MenuIconProps & ButtonHTM
   return (
     <button className={btnStyles('menu')} {...props}>
       <Image
+        sizes="(max-width: 425px) 36px, 45px"
         width={isLarge ? 45 : 36}
         height={isLarge ? 43 : 36}
-        src={isOpen ? 'menuclose.svg' : 'menu.svg'}
+        src={isOpen ? '/menuclose.svg' : '/menu.svg'}
         alt="menu"
       />
     </button>

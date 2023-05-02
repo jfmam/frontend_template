@@ -17,7 +17,13 @@ export default function Header() {
   return (
     <header className={headerStyle('header', { 'menu-open': state })}>
       <div>
-        <Image src="/logo.svg" alt="logo" width={isLarge ? 152 : 115} height={isLarge ? 40 : 30} />
+        <Image
+          sizes="(max-width: 425px) 115px, 152px"
+          src="/logo.svg"
+          alt="logo"
+          width={isLarge ? 152 : 115}
+          height={isLarge ? 40 : 30}
+        />
         <MenuIcon
           isOpen={state}
           onClick={() => {

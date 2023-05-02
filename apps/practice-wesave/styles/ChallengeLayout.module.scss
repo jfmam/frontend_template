@@ -3,9 +3,12 @@
 
 .challenge-layout {
   width: 100%;
-  height: $content-height;
   overflow: hidden;
   display: flex;
+
+  @media (max-width: 425px) {
+    height: $content-height-mobile;
+  }
 }
 
 .today-challenge {
@@ -25,57 +28,49 @@
 }
 
 .challenge-menu {
-  width: 50vw;
+  height: $content-height;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 1024px) {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.challenge-content {
-  width: 50vw;
-
-  @media (max-width: 1024px) {
-    width: 100%;
+  @media (max-width: 425px) {
+    height: $content-height-mobile;
   }
 }
 
 .menu-item {
   width: fit-content;
-  margin-top: 24px;
-
-  & > button {
-    font-size: $heading3;
-    color: $bg100;
-  }
-
-  &:nth-child(1) {
-    margin-right: 48px;
-  }
-
-  &:nth-child(3) {
-    margin-right: 64px;
-  }
-
-  &:nth-child(4) {
-    margin-left: 128px;
-  }
-
-  @media (max-width: 1024px) {
-    font-size: $heading4;
-  }
+  height: 5.25rem;
 
   @media (max-width: 425px) {
-    font-size: $heading5;
+    height: 4.375rem;
+  }
+
+  & > button {
+    font-size: $heading4;
+    color: $bg100;
+
+    @media (max-width: 425px) {
+      font-size: $heading5;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    &:nth-child(1) {
+      margin-right: min(48px, 10.6%);
+    }
+
+    &:nth-child(3) {
+      margin-right: min(64px, 20.7%);
+    }
+
+    &:nth-child(4) {
+      margin-left: min(128px, 14.15%);
+    }
   }
 }
 
 .selected {
-  width: fit-content;
   border-bottom: 4px solid $bg100;
 }

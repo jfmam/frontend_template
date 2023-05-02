@@ -1,3 +1,5 @@
+@import './variables.module.scss';
+
 html,
 body {
   padding: 0;
@@ -9,6 +11,14 @@ body {
 
 body:lang(ko) {
   word-break: keep-all;
+}
+
+#main {
+  height: $content-height;
+
+  @media (max-width: 425px) {
+    height: $content-height-mobile;
+  }
 }
 
 img {

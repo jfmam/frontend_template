@@ -100,4 +100,9 @@
   height: 46px;
   background-color: none;
   border: none;
+
+  @media (max-width: 425px) {
+    width: 36px;
+    height: 36px;
+  }
 }

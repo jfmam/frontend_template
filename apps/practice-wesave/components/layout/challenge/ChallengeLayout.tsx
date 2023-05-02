@@ -4,6 +4,7 @@ import cn from 'classnames/bind';
 import styles from '@/styles/ChallengeLayout.module.scss';
 
 import ChallengeMenu from './ChallengeMenu';
+import { ChallengeMenuContext } from './ChallengeMenuContext';
 
 interface ChallengeLayoutProps {
   children: ReactNode;
@@ -29,9 +30,11 @@ export default function ChallengeLayout({ children }: ChallengeLayoutProps) {
   };
 
   return (
-    <Slider {...settings}>
-      <ChallengeMenu />
-      <div>{children}</div>
-    </Slider>
+    <ChallengeMenuContext>
+      <Slider {...settings}>
+        <ChallengeMenu />
+        <div>{children}</div>
+      </Slider>
+    </ChallengeMenuContext>
   );
 }

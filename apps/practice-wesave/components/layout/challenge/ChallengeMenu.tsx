@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { TextBtn } from '@/components/button';
-import styles from '@/styles/ChallengeLayout.module.scss';
+import styles from '@/styles/ChallengeNavigation.module.scss';
 import cn from 'classnames/bind';
-import { ChallengeMenuType, useChallengeMenuDispatch, useChallengeMenuState } from './ChallengeMenuContext';
+import { ChallengeMenuType, useChallengeMenuDispatch } from './ChallengeMenuContext';
 
-const menuStyles = cn.bind(styles);
+const cx = cn.bind(styles);
 
 const challengeMenu = ['오늘의 챌린지', '달성 현황', '나의 성취', '챌린지 만들기'];
 const backgroundStyle = ['today-challenge', 'achievement-status', 'my-achievement', 'make-challenge'];
@@ -27,10 +26,17 @@ export default function ChallengeMenu() {
   };
 
   const menuItem = challengeMenu.map((v: string, idx: number) => (
-    <li className={menuStyles('menu-item', { selected: idx === selectedNum })} key={v}>
-      <TextBtn onClick={() => onClickMenu(v, idx)}>{v}</TextBtn>
+    <li className={cx('navigation-item', { selected: idx === selectedNum })} key={v}>
+      <Link
+        className={cx('link')}
+        key={v}
+        href={`${selectChallengeMenuMapLink[v]}`}
+        onClick={() => onClickMenu(v, idx)}
+      >
+        {v}
+      </Link>
     </li>
   ));
 
-  return <ul className={menuStyles('challenge-menu', backgroundStyle[selectedNum])}>{menuItem}</ul>;
+  return <ul className={cx('challenge-naviation', backgroundStyle[selectedNum])}>{menuItem}</ul>;
 }

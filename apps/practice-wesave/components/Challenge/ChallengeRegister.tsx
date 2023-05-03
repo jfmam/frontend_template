@@ -11,7 +11,7 @@ export default function ChallengeRegister() {
   return (
     <div>
       <div>
-        <Image width={95} height={95} alt="" src="empty.svg" />
+        <Image width={95} height={95} alt="" src="/empty.svg" />
       </div>
       <div>
         <p className={cx('description')}>

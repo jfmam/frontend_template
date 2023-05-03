@@ -1,49 +1,26 @@
 @import './variables.module.scss';
 @import './font.module.scss';
+@import './List.module.scss';
 
 .list-item {
+  @include listitem-default;
+
   width: 28.5rem;
   height: 6.625rem;
   border-radius: 27px;
-  background-color: $bg20;
   padding: 24px 32px 22px;
 
   &:not(:last-child) {
     margin-bottom: 24px;
   }
-
-  &:hover {
-    background-color: $bg40;
-  }
 }
 
 .name {
   font-size: $body2;
+  color: $bg100;
 }
 
-.detail {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.amount {
+.goal {
+  font-size: $callout;
   color: $bg60;
-}
-
-.period {
-  color: $bg60;
-  margin-left: 26px;
-}
-
-.percentage {
-  font-size: $body2;
-}
-
-.complete {
-  background-color: $primary-blue40;
-
-  &:hover {
-    background-color: $primary-blue100;
-  }
 }

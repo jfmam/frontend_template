@@ -5,7 +5,7 @@ import styles from '@/styles/modal.module.scss';
 
 import { useModalDispatch, useModalState } from './NavigationModalContext';
 
-Modal.setAppElement('main');
+Modal.setAppElement('#main');
 const modalStyles = cn.bind(styles);
 
 export default function MenuModal() {

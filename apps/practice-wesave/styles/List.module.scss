@@ -1,0 +1,18 @@
+@import './variables.module.scss';
+
+@mixin listitem-default {
+  background-color: $bg20;
+  border-radius: 27px;
+
+  &:hover {
+    background: $bg40;
+  }
+}
+
+@mixin listitem-selected {
+  background-color: $primary-blue40;
+
+  &:hover {
+    background: $primary-blue100;
+  }
+}

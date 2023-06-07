@@ -26,5 +26,4 @@
 | 달성현황 | 이승헌 | ⭕️                                                         |
 | 나의 성취 | 이승헌      | ⭕️                                                         |
 | 마이페이지 |  김승미     | 완료                                                         |
-## 참고
-기존 코드 repo: https://github.com/DDD-Community/warren-burffett-web
+

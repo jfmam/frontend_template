@@ -2,8 +2,6 @@ import { ButtonHTMLAttributes } from 'react';
 import cn from 'classnames/bind';
 import styles from '@/styles/button.module.scss';
 
-import TabSelector from './TabSelector';
-
 const btnStyles = cn.bind(styles);
 
 export function TextBtn({ children, className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {

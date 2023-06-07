@@ -1,7 +1,6 @@
 import { ReactElement, useMemo } from 'react';
 import cn from 'classnames/bind';
 import { format } from 'date-fns';
-import { dehydrate, QueryClient } from 'react-query';
 import styles from '@/styles/TodayChallenge.module.scss';
 import ChallengeLayout from '@/components/layout/challenge/ChallengeLayout';
 import { useDateInfo } from '@/hooks/useTodayInfo';

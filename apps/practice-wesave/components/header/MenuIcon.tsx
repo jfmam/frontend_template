@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ButtonHTMLAttributes, useState, MouseEvent } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import styles from '@/styles/button.module.scss';
 import cn from 'classnames/bind';
 import useMediaQuery from '@/hooks/useMediaQuery';

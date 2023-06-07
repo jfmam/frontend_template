@@ -1,13 +1,16 @@
 {
   "extends": ["next/core-web-vitals", "prettier"],
-  "ignorePatterns": ["/**/*.stories.@(tsx|jsx|js|ts)"],
+  "plugins": ["@typescript-eslint/eslint-plugin"],
+  "ignorePatterns": ["/**/*.stories.*"],
   "overrides": [
     {
       "files": [
-        "./**/*.stories.@(jsx|tsx)"
+        "./**/*.@(jsx|tsx)"
       ],
       "rules": {
-        "import/no-anonymous-default-export": "off"
+        "import/no-anonymous-default-export": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "error"
       }
     }
   ]

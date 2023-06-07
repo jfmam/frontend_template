@@ -1,7 +1,5 @@
 import { ReactNode } from 'react';
 import Slider from 'react-slick';
-import cn from 'classnames/bind';
-import styles from '@/styles/ChallengeLayout.module.scss';
 
 import ChallengeMenu from './ChallengeMenu';
 import { ChallengeMenuContext } from './ChallengeMenuContext';
@@ -9,8 +7,6 @@ import { ChallengeMenuContext } from './ChallengeMenuContext';
 interface ChallengeLayoutProps {
   children: ReactNode;
 }
-
-const layoutStyles = cn.bind(styles);
 
 export default function ChallengeLayout({ children }: ChallengeLayoutProps) {
   const settings = {

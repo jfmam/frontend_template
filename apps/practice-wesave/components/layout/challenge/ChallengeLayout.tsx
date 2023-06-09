@@ -13,6 +13,7 @@ export default function ChallengeLayout({ children }: ChallengeLayoutProps) {
     dots: false,
     infinite: false,
     slidesToShow: 2,
+
     responsive: [
       {
         breakpoint: 768,
@@ -29,7 +30,7 @@ export default function ChallengeLayout({ children }: ChallengeLayoutProps) {
     <ChallengeMenuContext>
       <Slider {...settings}>
         <ChallengeMenu />
-        <div>{children}</div>
+        <>{children}</>
       </Slider>
     </ChallengeMenuContext>
   );

@@ -1,6 +1,6 @@
 import ChallengeAPI from '@/api/challenge';
 import { ChallengeResponse } from '@/common/challenge';
-import { useQuery, UseQueryOptions } from 'react-query';
+import { useQuery } from 'react-query';
 
 export const getChellenges = async () => {
   const challenges = await new ChallengeAPI().getChallenges();

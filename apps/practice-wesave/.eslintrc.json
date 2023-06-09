@@ -5,7 +5,7 @@
   "overrides": [
     {
       "files": [
-        "./**/*.@(jsx|tsx)"
+        "./**/*.@(jsx|tsx|ts|js)"
       ],
       "rules": {
         "import/no-anonymous-default-export": "off",

@@ -1,0 +1,34 @@
+@import './variables.module.scss';
+
+.myachievement {
+  display: flex;
+  margin-left: 130px;
+  align-items: center;
+  height: $content-height;
+
+  @media (max-width: 960px) {
+    margin: 48px auto 0;
+  }
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+    margin: 0 auto;
+    width: fit-content;
+    height: $content-height-mobile;
+  }
+}
+
+.badge-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  max-width: 426px;
+
+  @media (max-width: 768px) {
+    gap: 42px;
+  }
+
+  @media (max-width: 425px) {
+    gap: 36px;
+  }
+}

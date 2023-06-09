@@ -36,7 +36,6 @@ function TodayChallengeList({ items }: TodayChallengeListProps) {
 }
 export default function TodayChallenge({ initialData }: { initialData: ChallengeResponse[] }) {
   const { data } = useFetchChallenges({ initialData });
-  console.log(data);
 
   return <div>{data && data?.length !== 0 ? <TodayChallengeList items={data} /> : <ChallengeRegister />}</div>;
 }

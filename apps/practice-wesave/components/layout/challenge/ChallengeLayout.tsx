@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import Slider from 'react-slick';
 
 import ChallengeMenu from './ChallengeMenu';
-import { ChallengeMenuContext } from './ChallengeMenuContext';
 
 interface ChallengeLayoutProps {
   children: ReactNode;
@@ -27,11 +26,9 @@ export default function ChallengeLayout({ children }: ChallengeLayoutProps) {
   };
 
   return (
-    <ChallengeMenuContext>
-      <Slider {...settings}>
-        <ChallengeMenu />
-        <>{children}</>
-      </Slider>
-    </ChallengeMenuContext>
+    <Slider {...settings}>
+      <ChallengeMenu />
+      <>{children}</>
+    </Slider>
   );
 }

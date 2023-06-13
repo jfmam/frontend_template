@@ -49,7 +49,7 @@ export default function Badge({ type, onClick, lengthType, isSelected }: BadgePr
         width={calcImageSize(lengthType)}
         height={calcImageSize(lengthType)}
         alt="badge"
-        src={`${type}.svg`}
+        src={`/${type}.svg`}
         loading="lazy"
       />
     </button>

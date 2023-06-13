@@ -25,6 +25,8 @@ type InitialValuesType = {
 
 export default function ChallengeCreateForm() {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [selectedbadge, setSelectedBadge] = useState<BadgeType | null>(null);
+  const [badgeList, setBadgeList] = useState<BadgeType[]>(badges);
 
   const initialValues: InitialValuesType = {
     challengeName: '',
@@ -32,6 +34,23 @@ export default function ChallengeCreateForm() {
     deadline: '',
     dueDate: '',
     badge: null,
+  };
+
+  const onClickBadge = (selectBadge: BadgeType) => {
+    if (selectBadge === selectedbadge) {
+      setSelectedBadge(null);
+      return;
+    }
+
+    setSelectedBadge(selectBadge);
+
+    if (isOpenModal) {
+      setBadgeList(prevBadges => {
+        const updatedBadges = prevBadges.filter(v => v !== selectBadge);
+        updatedBadges.unshift(selectBadge);
+        return updatedBadges;
+      });
+    }
   };
 
   return (
@@ -45,7 +64,7 @@ export default function ChallengeCreateForm() {
                   챌린지 이름
                 </label>
                 <Field
-                  maxlength={20}
+                  maxLength={20}
                   id="name"
                   name="challengeName"
                   className={cx('field')}
@@ -70,7 +89,7 @@ export default function ChallengeCreateForm() {
                     물건사기
                   </Tabselector>
                 </div>
-                <Field maxlength={20} name="name" placeholder="직접 입력" as={Input} className={cx('field')} />
+                <Field maxLength={20} name="name" placeholder="직접 입력" as={Input} className={cx('field')} />
               </div>
               <div>
                 <label htmlFor="deadline" className={cx('label')}>
@@ -92,9 +111,13 @@ export default function ChallengeCreateForm() {
               <div>
                 <label className={cx('label')}>뱃지 선택</label>
                 <div className={cx('badge-container')}>
-                  {}
-                  {badges.slice(0, 3).map(badge => (
-                    <Badge type={badge} key={badge} />
+                  {badgeList.slice(0, 3).map(badge => (
+                    <Badge
+                      onClick={() => onClickBadge(badge)}
+                      isSelected={selectedbadge === badge}
+                      type={badge}
+                      key={badge}
+                    />
                   ))}
                   <button onClick={() => setIsOpenModal(true)} className={badgeCx('badge')}>
                     더 보기
@@ -108,8 +131,8 @@ export default function ChallengeCreateForm() {
             <BadgeModal
               isOpen={isOpenModal}
               onRequestClose={() => setIsOpenModal(false)}
-              oldSelectedBadge={values.badge}
-              onClickSelectBtn={(badge: BadgeType | null) => setFieldValue('badge', badge)}
+              oldSelectedBadge={selectedbadge}
+              onClickSelectBtn={(badge: BadgeType) => onClickBadge(badge)}
             />
           </>
         )}

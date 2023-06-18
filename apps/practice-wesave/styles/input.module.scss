@@ -12,10 +12,10 @@
 
   &:focus {
     border-bottom-color: $primary-blue20;
-  }
 
-  &:invalid {
-    border-bottom-color: $indication-red;
+    &:invalid {
+      border-bottom-color: $indication-red;
+    }
   }
 
   &::placeholder {

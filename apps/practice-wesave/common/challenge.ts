@@ -9,7 +9,7 @@ export interface Challenge {
   startDate: string;
   endDate: string;
   actionDay: string[];
-  badge: BadgeType | null;
+  badge: BadgeType;
 }
 
 export type ChallengeResponse = Challenge & Response & { badge: string; type: string };

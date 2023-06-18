@@ -32,6 +32,7 @@ const cx = cn.bind(styles);
 
 export default function Badge({ type, onClick, lengthType, isSelected }: BadgeProps) {
   const clickBtn = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
+    e.preventDefault();
     if (onClick) onClick(e);
   };
   return (

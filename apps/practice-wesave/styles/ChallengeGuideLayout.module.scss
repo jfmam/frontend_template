@@ -1,0 +1,21 @@
+@import './font.module.scss';
+@import './variables.module.scss';
+
+.description {
+  font-size: $body1;
+  margin-top: 2rem;
+
+  @media (max-width: 425px) {
+    font-size: $body2;
+  }
+}
+
+.confirm-container {
+  margin-top: 48px;
+}
+
+.confirm {
+  width: 20.4375rem;
+  height: 4.625rem;
+  font-size: $body3;
+}

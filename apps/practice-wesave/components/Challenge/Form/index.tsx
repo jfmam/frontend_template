@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
+import { FormikProps } from 'formik';
 import cn from 'classnames/bind';
 import { PrimaryBtn } from '@/components/button/PrimaryBtn';
 import Tabselector from '@/components/button/TabSelector';
@@ -10,7 +9,6 @@ import badgeStyles from '@/styles/Badge.module.scss';
 import Input from '@/components/input';
 import styles from '@/styles/ChallengeCreateForm.module.scss';
 import BadgeModal from '@/components/Modal/BadgeModal';
-import { useRegistChallenges } from '@/hooks/quries/challenge/useRegistChallenges';
 import { Challenge } from '@/common/challenge';
 
 import { badges, days } from './constants';
@@ -18,39 +16,20 @@ import { badges, days } from './constants';
 const badgeCx = cn.bind(badgeStyles);
 const cx = cn.bind(styles);
 
-type InitialValuesType = Challenge & { badge: BadgeType | null };
+export type InitialValuesType = Challenge & { badge: BadgeType | null };
 
-const registerSchema = yup.object().shape({
-  name: yup.string().max(20).required('챌린지 이름을 작성해 주세요.'),
-  goal: yup.string().max(20).required('목표를 설정해 주세요.'),
-  actionDay: yup.array().min(1, '최소 1개이상 선택하야 합니다.'),
-  badge: yup.string().required('뱃지를 선택해 주세요'),
-});
+interface ChallengeCreateFormProps {
+  isLoading: boolean;
+  formik: FormikProps<InitialValuesType>;
+}
 
-export default function ChallengeCreateForm() {
+export default function ChallengeCreateForm({ isLoading, formik }: ChallengeCreateFormProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [badgeList, setBadgeList] = useState<BadgeType[]>(badges);
-  const { mutate, isLoading } = useRegistChallenges();
-  const { handleSubmit, values, handleChange, setFieldValue, errors, dirty } = useFormik<InitialValuesType>({
-    initialValues: {
-      name: '',
-      type: 'save',
-      actionDay: [],
-      endDate: '',
-      goal: '',
-      startDate: '',
-      badge: 'pig',
-    },
-    onSubmit: (challenge: InitialValuesType, { resetForm }) => {
-      mutate(challenge, {
-        onSuccess: () => resetForm(),
-      });
-    },
-    validationSchema: registerSchema,
-  });
+  const { dirty, setFieldValue, handleChange, handleSubmit, values, errors } = formik;
 
   const onClickDaySelector = (day: string) => {
-    if (values.actionDay.includes(day)) {
+    if (formik.values.actionDay.includes(day)) {
       setFieldValue(
         'actionDay',
         values.actionDay.filter(d => d !== day),

@@ -90,8 +90,16 @@
   border-radius: 50%;
   border: 1.5px solid $bg50;
 
+  &:hover {
+    background: $bg40;
+  }
+
   &--selected {
     background-color: $primary-blue40;
+
+    &:hover {
+      background-color: $primary-blue100;
+    }
   }
 }
 

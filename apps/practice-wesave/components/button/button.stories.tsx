@@ -40,7 +40,14 @@ export const TabSelectorButton = (props: ButtonHTMLAttributes<HTMLButtonElement>
   );
 };
 
-export const CheckSelectorButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => <CheckSelector />;
+export const CheckSelectorButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
+  const [isSelect, setIsSelect] = useState(false);
+  const onClickBtn = () => {
+    setIsSelect(v => !v);
+  };
+
+  return <CheckSelector onClick={onClickBtn} isSelect={isSelect} />;
+};
 
 export const BadgeButton = () => {
   const badges: BadgeType[] = ['art', 'award', 'game', 'health', 'money', 'pig', 'present', 'rocket', 'target'];

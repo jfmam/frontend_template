@@ -1,0 +1,40 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+@import './List.module.scss';
+
+.list-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
+}
+
+.button {
+  @include listitem-default;
+
+  width: 16.6875rem;
+  border-radius: 27px;
+  padding: 24px 32px 22px;
+  text-align: left;
+
+  &-select {
+    @include listitem-selected;
+  }
+}
+
+.name {
+  font-size: $body2;
+}
+
+.goal {
+  margin-top: 0.5rem;
+  font-size: $callout;
+  color: $bg60;
+
+  &-selected {
+    color: $bg0;
+  }
+}

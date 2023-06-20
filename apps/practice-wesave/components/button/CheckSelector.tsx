@@ -6,10 +6,15 @@ import checkmarkStyles from '@/styles/checkmark.module.scss';
 const btnCx = cn.bind(btnStyles);
 const checkmarkCx = cn.bind(checkmarkStyles);
 
-export default function CheckSelector() {
+interface CheakSelectorProps {
+  isSelect: boolean;
+  onClick: () => void;
+}
+
+export default function CheckSelector({ isSelect, onClick }: CheakSelectorProps) {
   return (
-    <button className={btnCx('check-selector')}>
-      <span className={checkmarkCx('checkmark')} />
+    <button onClick={onClick} className={btnCx('check-selector', { 'check-selector--selected': isSelect })}>
+      <span className={checkmarkCx('checkmark', { 'checkmark--selected': isSelect })} />
     </button>
   );
 }

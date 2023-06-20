@@ -2,7 +2,7 @@ import styles from '@/styles/ChallengeList.module.scss';
 import cn from 'classnames/bind';
 import { ChallengeResponse } from '@/common/challenge';
 
-import ChallengeListItem from './ChallengeListItem';
+import TodayChallengeListItem from './TodayChallengeListItem';
 
 const cx = cn.bind(styles);
 
@@ -14,7 +14,7 @@ export default function ChallengeList({ items }: ChallengeListProps) {
   return (
     <ul className={cx('list')}>
       {items.map((item: ChallengeResponse, idx: number) => (
-        <ChallengeListItem key={`${item.name}_${idx}`} challengeListItem={item} />
+        <TodayChallengeListItem key={`${item.name}_${idx}`} challengeListItem={item} />
       ))}
     </ul>
   );

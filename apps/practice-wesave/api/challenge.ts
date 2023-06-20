@@ -20,4 +20,12 @@ export default class ChallengeAPI {
 
     return result.status === 201 ? { status: 201, message: 'success' } : { status: result.status, message: 'error' };
   }
+
+  async toggleChallenges(
+    challengeId: ChallengeResponse['id'],
+  ): Promise<{ status: number; message: 'success' | 'error' }> {
+    const result = await this.service.post(`/challenge/${challengeId}`);
+
+    return result.status === 201 ? { status: 201, message: 'success' } : { status: result.status, message: 'error' };
+  }
 }

@@ -1,6 +1,15 @@
 @import './variables.module.scss';
 @import './font.module.scss';
 
+.today-challenge {
+  margin-top: 7.875rem;
+  margin-left: 13.5%;
+}
+
+.challenge-list {
+  margin-top: 64px;
+}
+
 .date {
   color: $bg100;
   font-size: $body1;

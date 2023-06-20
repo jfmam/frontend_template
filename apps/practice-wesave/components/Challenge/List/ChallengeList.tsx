@@ -1,5 +1,5 @@
-import styles from '@/styles/ChallengeList.module.scss';
 import cn from 'classnames/bind';
+import styles from '@/styles/ChallengeList.module.scss';
 import { ChallengeResponse } from '@/common/challenge';
 
 import TodayChallengeListItem from './TodayChallengeListItem';

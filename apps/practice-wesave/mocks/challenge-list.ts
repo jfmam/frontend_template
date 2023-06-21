@@ -21,6 +21,18 @@ export const challengeResponseMock: ChallengeResponse[] = [
     type: 'spend',
     updateDate: new Date().toString(),
   },
+  {
+    id: 2,
+    actionDay: ['월', '화', '수', '목', '금', '일'],
+    badge: 'pig',
+    createDate: new Date().toString(),
+    endDate: new Date().toString(),
+    goal: '500000',
+    name: '돈 모으기',
+    startDate: new Date().toString(),
+    type: 'spend',
+    updateDate: new Date().toString(),
+  },
 ];
 
 export const challengeListMock: ChallengeListItem[] = [

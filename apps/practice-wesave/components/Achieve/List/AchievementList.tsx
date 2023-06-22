@@ -1,27 +1,21 @@
 import { ReactNode } from 'react';
 import cn from 'classnames/bind';
 import styles from '@/styles/AchievementList.module.scss';
+import { AchivementResponse } from '@/common/achievement';
 
 const cx = cn.bind(styles);
 
-type AchievementMockType = {
-  name: string;
-  goal: string;
-  type: string;
-  actionDay: string[];
-  completedRatio: number;
-};
-
 interface AchievementProps {
   children: ReactNode;
+  className?: string;
 }
 
-function AchievementList({ children }: AchievementProps) {
-  return <ul className={cx('list')}>{children}</ul>;
+function AchievementList({ children, className }: AchievementProps) {
+  return <ul className={cx('list', className)}>{children}</ul>;
 }
 
 interface AchievementItemProps {
-  item: AchievementMockType;
+  item: AchivementResponse;
   onClick?: () => void;
 }
 

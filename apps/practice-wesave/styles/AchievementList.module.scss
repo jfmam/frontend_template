@@ -27,8 +27,16 @@
 
   width: 28.5rem;
   border-radius: 27px;
-  padding: 32px 24px;
+  padding: 24px 32px 22px;
   text-align: left;
+
+  @media (max-width: 1200px) {
+    width: 23rem;
+  }
+
+  @media (max-width: 996px) {
+    width: 21rem;
+  }
 
   @media (max-width: 504px) {
     width: 20.4375rem;
@@ -44,10 +52,9 @@
 }
 
 .details {
-  margin-top: 0.5rem;
   font-size: $callout;
   color: $bg60;
-  width: 50%;
+  width: 75%;
   display: inline-block;
 
   @media (max-width: 504px) {
@@ -64,7 +71,7 @@
 }
 
 .percent {
-  width: 50%;
+  width: 25%;
   font-size: $body2;
   text-align: right;
   display: inline-block;

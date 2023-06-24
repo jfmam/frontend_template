@@ -1,10 +1,11 @@
 import React, { ButtonHTMLAttributes, useState } from 'react';
 import cn from 'classnames/bind';
 import styles from '@/styles/button.module.scss';
+import { BadgeType } from '@/common/badge';
 
 import TabSelector from './TabSelector';
 import CheckSelector from './CheckSelector';
-import Badge, { BadgeType } from './Badge';
+import Badge from './Badge';
 import DaySelector from './DaySelector';
 
 const btnStyles = cn.bind(styles);

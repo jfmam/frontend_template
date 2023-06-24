@@ -2,9 +2,10 @@ import Modal from 'react-modal';
 import cn from 'classnames/bind';
 import styles from '@/styles/BadgeModal.module.scss';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import { BadgeType } from '@/common/badge';
 
 import { badges } from '../Challenge/Form/constants';
-import Badge, { BadgeType } from '../button/Badge';
+import Badge from '../button/Badge';
 import { PrimaryBtn } from '../button/PrimaryBtn';
 
 Modal.setAppElement('main');

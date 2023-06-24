@@ -3,6 +3,8 @@ import cn from 'classnames/bind';
 import styles from '@/styles/AchievementList.module.scss';
 import { AchivementResponse } from '@/common/achievement';
 
+import { dueDay } from '@/components/utils/day';
+
 const cx = cn.bind(styles);
 
 interface AchievementProps {
@@ -21,7 +23,6 @@ interface AchievementItemProps {
 
 function AchievementItem({ item, onClick }: AchievementItemProps) {
   const { actionDay, completedRatio, goal, name, type } = item;
-  const dueDay = actionDay.length !== 7 ? actionDay.join('·') : '매일';
 
   const onClickBtn = () => {
     if (onClick) onClick();
@@ -33,7 +34,7 @@ function AchievementItem({ item, onClick }: AchievementItemProps) {
         <div className={cx('name')}>{name}</div>
         <div className={cx('details', { 'details-completed': completedRatio === 100 })}>
           <span className={cx('details-goal')}>{type === 'save' ? `${goal}원` : goal}</span>
-          <span>{dueDay}</span>
+          <span>{dueDay(actionDay)}</span>
         </div>
         <div className={cx('percent')}>{`${completedRatio}%`}</div>
       </button>

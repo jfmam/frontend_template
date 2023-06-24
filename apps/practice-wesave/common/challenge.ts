@@ -1,6 +1,5 @@
 import { Response } from './response';
-
-export type BadgeType = 'pig' | 'game' | 'present' | 'health' | 'money' | 'art' | 'rocket' | 'target' | 'award';
+import { BadgeType } from './badge';
 
 export interface Challenge {
   name: string;

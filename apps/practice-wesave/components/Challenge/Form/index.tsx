@@ -3,13 +3,14 @@ import { FormikProps } from 'formik';
 import cn from 'classnames/bind';
 import { PrimaryBtn } from '@/components/button/PrimaryBtn';
 import Tabselector from '@/components/button/TabSelector';
-import Badge, { BadgeType } from '@/components/button/Badge';
+import Badge from '@/components/button/Badge';
 import DaySelector from '@/components/button/DaySelector';
 import badgeStyles from '@/styles/Badge.module.scss';
 import Input from '@/components/input';
 import styles from '@/styles/ChallengeCreateForm.module.scss';
 import BadgeModal from '@/components/Modal/BadgeModal';
 import { Challenge } from '@/common/challenge';
+import { BadgeType } from '@/common/badge';
 
 import { badges, days } from './constants';
 

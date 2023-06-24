@@ -1,4 +1,5 @@
 import { AchivementResponse } from '@/common/achievement';
+import { addDays } from 'date-fns';
 
 type AchievementMockType = {
   id: number;
@@ -37,8 +38,10 @@ export const AchievementResponseMock: AchivementResponse[] = [
     type: 'spend',
     completedRatio: 100,
     badge: 'art',
-    createDate: new Date().toString(),
-    updateDate: new Date().toString(),
+    createDate: new Date().toISOString(),
+    updateDate: new Date().toISOString(),
+    startDate: new Date(),
+    endDate: addDays(new Date(), 3),
   },
   {
     id: 2,
@@ -48,7 +51,9 @@ export const AchievementResponseMock: AchivementResponse[] = [
     type: 'spend',
     completedRatio: 80,
     badge: 'award',
-    createDate: new Date().toString(),
-    updateDate: new Date().toString(),
+    createDate: new Date().toISOString(),
+    updateDate: new Date().toISOString(),
+    startDate: new Date(),
+    endDate: addDays(new Date(), 300),
   },
 ];

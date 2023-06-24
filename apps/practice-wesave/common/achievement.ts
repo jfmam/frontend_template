@@ -1,4 +1,4 @@
-import { BadgeType } from './challenge';
+import { BadgeType } from './badge';
 import { Response } from './response';
 
 export interface Achievement {
@@ -8,6 +8,8 @@ export interface Achievement {
   actionDay: string[];
   badge: BadgeType;
   completedRatio: number;
+  startDate: Date;
+  endDate: Date;
 }
 
 export type AchivementResponse = Achievement & Response;

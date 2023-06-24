@@ -1,9 +1,8 @@
+import { MouseEvent } from 'react';
 import Image from 'next/image';
 import cn from 'classnames/bind';
 import styles from '@/styles/Badge.module.scss';
-import { MouseEvent } from 'react';
-
-export type BadgeType = 'pig' | 'game' | 'present' | 'health' | 'money' | 'art' | 'rocket' | 'target' | 'award';
+import { BadgeType } from '@/common/badge';
 
 export type BadgeLengthType = 'large' | 'small' | 'medium';
 

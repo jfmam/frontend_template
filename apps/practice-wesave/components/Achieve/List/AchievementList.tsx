@@ -2,8 +2,7 @@ import { ReactNode } from 'react';
 import cn from 'classnames/bind';
 import styles from '@/styles/AchievementList.module.scss';
 import { AchivementResponse } from '@/common/achievement';
-
-import { dueDay } from '@/components/utils/day';
+import ListItemLayout from '@/components/layout/ListItemLayout';
 
 const cx = cn.bind(styles);
 
@@ -31,12 +30,7 @@ function AchievementItem({ item, onClick }: AchievementItemProps) {
   return (
     <li className={cx('list-item')}>
       <button className={cx('button', { 'button-complete': completedRatio === 100 })} onClick={() => onClickBtn()}>
-        <div className={cx('name')}>{name}</div>
-        <div className={cx('details', { 'details-completed': completedRatio === 100 })}>
-          <span className={cx('details-goal')}>{type === 'save' ? `${goal}원` : goal}</span>
-          <span>{dueDay(actionDay)}</span>
-        </div>
-        <div className={cx('percent')}>{`${completedRatio}%`}</div>
+        <ListItemLayout actionDay={actionDay} completedRatio={completedRatio} goal={goal} name={name} type={type} />
       </button>
     </li>
   );

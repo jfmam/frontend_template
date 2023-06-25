@@ -11,13 +11,14 @@ interface ListItemLayout {
   type: string;
   actionDay: string[];
   goal: string;
+  disabled?: boolean;
 }
 
-export default function ListItemLayout({ actionDay, completedRatio, name, type, goal }: ListItemLayout) {
+export default function ListItemLayout({ actionDay, completedRatio, name, type, goal, disabled }: ListItemLayout) {
   return (
     <>
       <div className={cx('name')}>{name}</div>
-      <div className={cx('details', { 'details-completed': completedRatio === 100 })}>
+      <div className={cx('details', { 'details-completed': !disabled && completedRatio === 100 })}>
         <span className={cx('details-goal')}>{type === 'save' ? `${goal}원` : goal}</span>
         <span>{dueDay(actionDay)}</span>
       </div>

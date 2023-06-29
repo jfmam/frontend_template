@@ -27,7 +27,6 @@ export default function AchievementStatus() {
     setDetailItem(null);
   };
 
-  console.log(data);
   return (
     <>
       {data?.pages && data?.pages.length !== 0 ? (

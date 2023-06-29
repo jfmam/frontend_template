@@ -18,4 +18,12 @@ export default class AchievementAPI {
 
     return result.data;
   }
+
+  async getMyAchievements(options: Pagination): Promise<PaginationResponse<AchivementResponse>> {
+    const result = await this.service.get<PaginationResponse<AchivementResponse>>(`/my-achievement`, {
+      params: options,
+    });
+
+    return result.data;
+  }
 }

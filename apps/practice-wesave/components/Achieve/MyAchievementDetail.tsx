@@ -20,21 +20,14 @@ export default function MyAchievementDetail({ item, isOpen, onRequestClose }: Ac
   const isDesktop = useMediaQuery({
     query: '(min-width: 504px)',
   });
-  const { actionDay, badge, completedRatio, goal, name, type } = item;
+  const { actionDay, badge, goal, name, type } = item;
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} shouldCloseOnEsc className={cx('container')}>
       <div>
         <Badge height={isDesktop ? 456 : 250} width={isDesktop ? 456 : 250} type={badge} />
       </div>
       <div className={cx('info')}>
-        <ListItemLayout
-          disabled
-          actionDay={actionDay}
-          completedRatio={completedRatio}
-          goal={goal}
-          name={name}
-          type={type}
-        />
+        <ListItemLayout disabled completedRatio={100} actionDay={actionDay} goal={goal} name={name} type={type} />
       </div>
     </Modal>
   );

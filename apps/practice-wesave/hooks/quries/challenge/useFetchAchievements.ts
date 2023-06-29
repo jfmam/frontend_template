@@ -1,17 +1,32 @@
-import { useQuery } from 'react-query';
-import { AchivementResponse } from '@/common/achievement';
+import { useInfiniteQuery } from 'react-query';
 import AchievementAPI from '@/api/achievement';
+import { PaginationResponse } from '@/common/pagination';
+import { AchivementResponse } from '@/common/achievement';
 
-export const getAchivements = async () => {
-  const achievements = await new AchievementAPI().getAchievements();
+const pageSize = 5;
 
-  return achievements;
+export const getAchivements = async (offset = 1): Promise<PaginationResponse<AchivementResponse>> => {
+  const achievements = await new AchievementAPI().getAchievements({
+    limit: pageSize,
+    offset: offset,
+  });
+
+  const result: PaginationResponse<AchivementResponse> = {
+    items: achievements.items,
+    isLastPage: achievements.isLastPage,
+    limit: pageSize,
+    offset,
+  };
+
+  return result;
 };
 
-export function useFetchAchievements({ initialData }: { initialData?: AchivementResponse[] }) {
-  return useQuery<AchivementResponse[]>('achievements', getAchivements, {
-    retry: 1,
-    refetchOnWindowFocus: false,
-    initialData,
+export function useFetchAchievements() {
+  return useInfiniteQuery('achievements', ({ pageParam }) => getAchivements(pageParam?.offset), {
+    getNextPageParam: lastPage => {
+      if (lastPage.isLastPage) return undefined;
+      return { offset: lastPage.offset + 1 };
+    },
+    staleTime: 1000,
   });
 }

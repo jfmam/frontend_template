@@ -1,17 +1,31 @@
+import { useInfiniteQuery } from 'react-query';
 import ChallengeAPI from '@/api/challenge';
 import { ChallengeResponse } from '@/common/challenge';
-import { useQuery } from 'react-query';
+import { PaginationResponse } from '@/common/pagination';
 
-export const getChellenges = async () => {
-  const challenges = await new ChallengeAPI().getChallenges();
+const pageSize = 5;
 
-  return challenges;
+export const getChellenges = async (offset = 1) => {
+  const challenges = await new ChallengeAPI().getChallenges({
+    limit: pageSize,
+    offset: offset,
+  });
+
+  const result: PaginationResponse<ChallengeResponse> = {
+    items: challenges.items,
+    isLastPage: challenges.isLastPage,
+    limit: pageSize,
+    offset,
+  };
+
+  return result;
 };
 
-export function useFetchChallenges({ initialData }: { initialData?: ChallengeResponse[] }) {
-  return useQuery<ChallengeResponse[]>('challenges', getChellenges, {
-    retry: 1,
-    refetchOnWindowFocus: false,
-    initialData,
+export function useFetchChallenges() {
+  return useInfiniteQuery('challenges', ({ pageParam }) => getChellenges(pageParam?.offset), {
+    getNextPageParam: lastPage => {
+      if (lastPage.isLastPage) return undefined;
+      return { offset: lastPage.offset + 1 };
+    },
   });
 }

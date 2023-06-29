@@ -8,11 +8,14 @@ import { getChellenges, useFetchChallenges } from '@/hooks/quries/challenge/useF
 import ChallengeList from '@/components/Challenge/List/ChallengeList';
 import { ChallengeResponse } from '@/common/challenge';
 import ChallengeRegister from '@/components/Challenge/ChallengeRegister';
+import InfiniteScroller from '@/components/InfiniteScroller';
+import { PaginationResponse } from '@/common/pagination';
+import { dehydrate, QueryClient } from 'react-query';
 
 const cx = cn.bind(styles);
 
 interface TodayChallengeListProps {
-  items: ChallengeResponse[];
+  items: PaginationResponse<ChallengeResponse>[];
 }
 
 function TodayChallengeList({ items }: TodayChallengeListProps) {
@@ -34,10 +37,24 @@ function TodayChallengeList({ items }: TodayChallengeListProps) {
     </div>
   );
 }
-export default function TodayChallenge({ initialData }: { initialData: ChallengeResponse[] }) {
-  const { data } = useFetchChallenges({ initialData });
+export default function TodayChallenge() {
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useFetchChallenges();
 
-  return <>{data && data?.length !== 0 ? <TodayChallengeList items={data} /> : <ChallengeRegister />}</>;
+  return (
+    <>
+      {data?.pages && data?.pages.length !== 0 ? (
+        <InfiniteScroller
+          fetchNextPage={() => fetchNextPage()}
+          hasNextPage={!!hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+        >
+          <TodayChallengeList items={data.pages} />
+        </InfiniteScroller>
+      ) : (
+        <ChallengeRegister />
+      )}
+    </>
+  );
 }
 
 TodayChallenge.getLayout = function getLayout(page: ReactElement) {
@@ -45,9 +62,13 @@ TodayChallenge.getLayout = function getLayout(page: ReactElement) {
 };
 
 export async function getServerSideProps() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchInfiniteQuery('challenges', () => getChellenges(), { staleTime: 1000 });
+
   return {
     props: {
-      initialData: await getChellenges(),
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
   };
 }

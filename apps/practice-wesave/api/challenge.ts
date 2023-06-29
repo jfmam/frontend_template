@@ -1,4 +1,5 @@
 import { ChallengeResponse, Challenge } from '@/common/challenge';
+import { Pagination, PaginationResponse } from '@/common/pagination';
 import { AxiosInstance } from 'axios';
 import { instance } from './base';
 
@@ -9,8 +10,10 @@ export default class ChallengeAPI {
     this.service = instance.session;
   }
 
-  async getChallenges(): Promise<ChallengeResponse[]> {
-    const result = await this.service.get<ChallengeResponse[]>('/challenge');
+  async getChallenges(options: Pagination): Promise<PaginationResponse<ChallengeResponse>> {
+    const result = await this.service.get<PaginationResponse<ChallengeResponse>>('/challenge', {
+      params: options,
+    });
 
     return result.data;
   }

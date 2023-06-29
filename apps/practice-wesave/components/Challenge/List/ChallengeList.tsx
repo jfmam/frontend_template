@@ -4,11 +4,12 @@ import { ChallengeResponse } from '@/common/challenge';
 
 import TodayChallengeListItem from './TodayChallengeListItem';
 import { useToggleChallenges, ChallengeStatus } from '@/hooks/quries/challenge/useToggleChallenges';
+import { PaginationResponse } from '@/common/pagination';
 
 const cx = cn.bind(styles);
 
 interface ChallengeListProps {
-  items: Array<ChallengeResponse>;
+  items: PaginationResponse<ChallengeResponse>[];
 }
 
 export default function ChallengeList({ items }: ChallengeListProps) {
@@ -20,8 +21,12 @@ export default function ChallengeList({ items }: ChallengeListProps) {
 
   return (
     <ul className={cx('list')}>
-      {items.map((item: ChallengeResponse) => (
-        <TodayChallengeListItem onClick={handleToggleStatus(item.id)} key={`${item.id}`} challengeListItem={item} />
+      {items.map(item => (
+        <>
+          {item.items.map(v => (
+            <TodayChallengeListItem onClick={handleToggleStatus(v.id)} key={`${v.id}`} challengeListItem={v} />
+          ))}
+        </>
       ))}
     </ul>
   );

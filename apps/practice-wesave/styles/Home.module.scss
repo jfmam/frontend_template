@@ -1,0 +1,19 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  height: inherit;
+  padding: 0 55px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  flex: 72 auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  flex: 23 auto;
+}

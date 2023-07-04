@@ -1,0 +1,34 @@
+@import './font.module.scss';
+@import './variables.module.scss';
+
+.day-button {
+  background-color: #fff;
+  border: 0;
+  padding: 0;
+  font-size: $heading2;
+  color: $bg20;
+
+  @media (max-width: 1920px) {
+    font-size: $heading3;
+  }
+
+  @media (max-width: 1440px) {
+    font-size: $heading4;
+  }
+
+  @media (max-width: 850px) {
+    font-size: $heading5;
+  }
+
+  @media (max-width: 768px) {
+    font-size: $body1;
+  }
+
+  @media (max-width: 425px) {
+    font-size: $body2;
+  }
+}
+
+.selected {
+  color: $bg100;
+}

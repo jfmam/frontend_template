@@ -6,9 +6,8 @@
   outline: none;
   border-bottom: 1.5px solid $bg100;
   width: 100%;
-  height: 2.25rem;
-  font-size: 1.5rem;
-  line-height: 1.5;
+  // height: 2.25rem;
+  // font-size: 1.5rem;
 
   &:focus {
     border-bottom-color: $primary-blue20;
@@ -21,4 +20,9 @@
   &::placeholder {
     color: $bg40;
   }
+}
+
+.default {
+  height: 2.25rem;
+  font-size: 1.5rem;
 }

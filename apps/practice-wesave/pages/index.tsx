@@ -9,7 +9,7 @@ const cx = cn.bind(styles);
 
 const Home: NextPage = () => {
   return (
-    <div className={cx('main')}>
+    <div className={cx('home')}>
       <div className={cx('image-container')}>
         <Image src="/main.svg" width="840" height="420" alt="welcome wesaver" loading="lazy" />
       </div>

@@ -1,0 +1,116 @@
+@import './font.module.scss';
+
+.income {
+  font-size: $heading2;
+  font-weight: 400;
+  line-height: 1.6;
+
+  @media (max-width: 1920px) {
+    font-size: $heading3;
+  }
+
+  @media (max-width: 1440px) {
+    font-size: $heading4;
+  }
+
+  @media (max-width: 850px) {
+    font-size: $heading5;
+  }
+
+  @media (max-width: 768px) {
+    font-size: $body1;
+  }
+
+  @media (max-width: 425px) {
+    font-size: $body2;
+  }
+}
+
+.input {
+  font-size: $heading2;
+  font-weight: 400;
+  height: fit-content;
+
+  &:not(:focus) {
+    border: none;
+  }
+
+  @media (max-width: 1920px) {
+    font-size: $heading3;
+  }
+
+  @media (max-width: 1440px) {
+    font-size: $heading4;
+  }
+
+  @media (max-width: 850px) {
+    font-size: $heading5;
+  }
+
+  @media (max-width: 768px) {
+    font-size: $body1;
+  }
+
+  @media (max-width: 425px) {
+    font-size: $body2;
+  }
+}
+
+.input-number {
+  max-width: 6.5rem;
+
+  @media (max-width: 1920px) {
+    max-width: 5rem;
+  }
+
+  @media (max-width: 1440px) {
+    max-width: 4.5rem;
+  }
+
+  @media (max-width: 850px) {
+    max-width: 3.5rem;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 2.5rem;
+  }
+
+  @media (max-width: 425px) {
+    max-width: 2rem;
+  }
+}
+
+.input-salary {
+  max-width: 33rem;
+
+  @media (max-width: 1920px) {
+    max-width: 25rem;
+  }
+
+  @media (max-width: 1440px) {
+    max-width: 20.5rem;
+  }
+
+  @media (max-width: 850px) {
+    max-width: 15.5rem;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 12.5rem;
+  }
+
+  @media (max-width: 425px) {
+    max-width: 10rem;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8.3125rem;
+
+  @media (max-width: 768px) {
+    padding-top: 7.5rem;
+  }
+}

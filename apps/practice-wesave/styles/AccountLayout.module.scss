@@ -1,0 +1,34 @@
+@import './variables.module.scss';
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.divide-line {
+  width: 0;
+  height: 100%;
+  border-right: 1.5px solid $bg0;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.image-container {
+  width: 100%;
+  height: 49.7rem;
+  position: relative;
+
+  @media (min-width: 768px) {
+    display: block;
+    width: max(39.606vw, 76.044rem);
+    height: 100%;
+  }
+}

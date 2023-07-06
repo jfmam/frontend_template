@@ -14,11 +14,11 @@ type CookieSetOptions = {
 };
 
 export const setAccessToken = (accessToken: string, options?: CookieSetOptions) => {
-  return cookies.set('accessToken', accessToken, options);
+  return cookies.set('token', accessToken, options);
 };
 
 export const getAccessToken = () => {
-  return cookies.get('accessToken');
+  return cookies.get('token');
 };
 
 export const setRefreshToken = (refreshToken: string, options?: CookieSetOptions) => {

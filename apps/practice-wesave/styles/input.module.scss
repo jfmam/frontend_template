@@ -21,7 +21,9 @@
 }
 
 .error {
-  border-bottom-color: $indication-red !important;
+  &:focus {
+    border-bottom-color: $indication-red !important;
+  }
 }
 
 .default {

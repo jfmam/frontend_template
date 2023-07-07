@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import cn from 'classnames/bind';
 
 import styles from '@/styles/signin.module.scss';
-import AccountLayout from '@/components/layout/AccountLayout';
+import AccountLayout from '@/components/layout/Account/AccountLayout';
 import Input from '@/components/input';
 import { PrimaryBtn } from '@/components/button/PrimaryBtn';
 import { SnsButton } from '@/components/button/SnsButton';

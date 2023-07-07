@@ -6,3 +6,11 @@ export type UserLoginType = {
 export type Token = {
   token: string;
 };
+
+export type SignUpType = {
+  name: string;
+  email: string;
+  password: string;
+  passwordCheck: string;
+  agree: boolean;
+};

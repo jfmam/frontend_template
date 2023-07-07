@@ -1,4 +1,4 @@
-import { Token, UserLoginType } from '@/common/user';
+import { SignUpType, Token, UserLoginType } from '@/common/user';
 import { AxiosInstance } from 'axios';
 import { instance } from './base';
 
@@ -17,5 +17,15 @@ export default class UserAPI {
     }
 
     return { token: result.data.token };
+  }
+
+  async creaetUser(params: SignUpType): Promise<{ message: string }> {
+    const result = await this.service.post('/user/signup', params);
+
+    if (result.status === 422) {
+      throw new Error('이미 존재하는 유저입니다.');
+    }
+
+    return { message: '새로운 유저를 생성 하였습니다.' };
   }
 }

@@ -3,22 +3,19 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
 import cn from 'classnames/bind';
-import AccountLayout from '@/components/layout/AccountLayout';
+import { useRouter } from 'next/router';
+import { useMediaQuery } from 'react-responsive';
+import AccountLayout from '@/components/layout/Account/AccountLayout';
 import FieldErrorMessage from '@/components/error/FieldErrorMessage';
 import Input from '@/components/input';
 import { PrimaryBtn } from '@/components/button/PrimaryBtn';
 import styles from '@/styles/signup.module.scss';
 import { SnsButton } from '@/components/button/SnsButton';
+import { useSignUp } from '@/hooks/quries/user/useSignUp';
+import { SignUpType } from '@/common/user';
+import AccountGuideLayout from '@/components/layout/Account/AccountGuideLayout';
 
 const cx = cn.bind(styles);
-
-type SignUpType = {
-  name: string;
-  email: string;
-  password: string;
-  passwordCheck: string;
-  agree: boolean;
-};
 
 Yup.setLocale({
   string: {
@@ -39,6 +36,11 @@ const signUpSchema = Yup.object().shape({
 });
 
 export default function SignUp() {
+  const { mutate, isError, isLoading, isSuccess } = useSignUp();
+  const router = useRouter();
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 425px)',
+  });
   const formik = useFormik<SignUpType>({
     initialValues: {
       name: '',
@@ -47,70 +49,108 @@ export default function SignUp() {
       passwordCheck: '',
       agree: false,
     },
-    onSubmit: () => {},
+    onSubmit: (values, { resetForm }) => {
+      mutate(values, {
+        onSuccess: () => {
+          resetForm();
+        },
+      });
+    },
     validationSchema: signUpSchema,
   });
-  console.log(formik.errors.password);
+
+  const setTouchField = (key: keyof SignUpType) => {
+    formik.setTouched({ [key]: true });
+  };
+
   return (
     <div className={cx('signup')}>
       <div className={cx('panel')}>
-        <h1 className={cx('title')}>회원가입</h1>
-        <form onSubmit={formik.handleSubmit} className={cx('form')}>
-          <div className={cx('input-container')}>
-            <Input
-              isError={formik.errors.name !== undefined}
-              name="name"
-              placeholder="이름"
-              onChange={formik.handleChange}
-            />
-            {formik.errors.name && <FieldErrorMessage message={formik.errors.name} />}
+        {isSuccess ? (
+          <AccountGuideLayout
+            icon={{ src: '/complete.svg', width: isDesktop ? 95 : 70, height: isDesktop ? 95 : 70 }}
+            description={{ first: '환영해요!', second: '회원가입을 완료했습니다.' }}
+            onClickButton={() => router.push('/login')}
+          />
+        ) : (
+          <div>
+            <h1 className={cx('title')}>회원가입</h1>
+            <form onSubmit={formik.handleSubmit} className={cx('form')}>
+              <div className={cx('input-container')}>
+                <Input
+                  isError={formik.errors.name !== undefined}
+                  {...formik.getFieldProps('name')}
+                  onFocus={() => {
+                    setTouchField('name');
+                  }}
+                  name="name"
+                  placeholder="이름"
+                />
+                {formik.errors.name && formik.touched.name && <FieldErrorMessage message={formik.errors.name} />}
+              </div>
+              <div className={cx('input-container')}>
+                <Input
+                  isError={formik.errors.email !== undefined}
+                  {...formik.getFieldProps('email')}
+                  onFocus={() => {
+                    setTouchField('email');
+                  }}
+                  name="email"
+                  type="email"
+                  placeholder="이메일"
+                />
+                {formik.errors.email && formik.touched.email && <FieldErrorMessage message={formik.errors.email} />}
+                {!formik.errors.email && isError && <FieldErrorMessage message="위세이브에 이미 가입된 계정입니다" />}
+              </div>
+              <div className={cx('input-container')}>
+                <Input
+                  isError={formik.errors.password !== undefined}
+                  {...formik.getFieldProps('password')}
+                  onFocus={() => {
+                    setTouchField('password');
+                  }}
+                  name="password"
+                  type="password"
+                  placeholder="비밀번호"
+                />
+                {!formik.errors.password && <span className={cx('password-condition')}>8자 이상, 숫자 포함</span>}
+                {formik.errors.password && formik.touched.password && (
+                  <FieldErrorMessage message={formik.errors.password} />
+                )}
+              </div>
+              <div className={cx('input-container')}>
+                <Input
+                  isError={formik.errors.passwordCheck !== undefined}
+                  {...formik.getFieldProps('passwordCheck')}
+                  onFocus={() => {
+                    setTouchField('passwordCheck');
+                  }}
+                  name="passwordCheck"
+                  type="password"
+                  placeholder="비밀번호 확인"
+                />
+                {formik.touched.passwordCheck && formik.errors.passwordCheck && (
+                  <FieldErrorMessage message={formik.errors.passwordCheck} />
+                )}
+              </div>
+              <div className={cx('submit-button-container')}>
+                <PrimaryBtn disabled={isLoading} type="submit">
+                  회원가입
+                </PrimaryBtn>
+              </div>
+            </form>
+            <div className={cx('auth-button-container')}>
+              <Link className={cx('anchor')} href="/login">
+                로그인
+              </Link>
+            </div>
+            <div className={cx('sns-button-container')}>
+              <SnsButton sns="naver" onClick={() => {}} />
+              <SnsButton sns="kakao" onClick={() => {}} />
+              <SnsButton sns="google" onClick={() => {}} />
+            </div>
           </div>
-          <div className={cx('input-container')}>
-            <Input
-              isError={formik.errors.email !== undefined}
-              name="email"
-              type="email"
-              placeholder="이메일"
-              onChange={formik.handleChange}
-            />
-            {formik.errors.email && <FieldErrorMessage message={formik.errors.email} />}
-            {/* {existUser && <div css={inputError}>위세이브에 이미 가입된 계정입니다.</div>} */}
-          </div>
-          <div className={cx('input-container')}>
-            <Input
-              isError={formik.errors.password !== undefined}
-              onChange={formik.handleChange}
-              name="password"
-              type="password"
-              placeholder="비밀번호"
-            />
-            {!formik.errors.password && <span className={cx('password-condition')}>8자 이상, 숫자 포함</span>}
-            {formik.errors.password && <FieldErrorMessage message={formik.errors.password} />}
-          </div>
-          <div className={cx('input-container')}>
-            <Input
-              isError={formik.errors.passwordCheck !== undefined}
-              onChange={formik.handleChange}
-              name="passwordCheck"
-              type="password"
-              placeholder="비밀번호 확인"
-            />
-            {formik.errors.passwordCheck && <FieldErrorMessage message={formik.errors.passwordCheck} />}
-          </div>
-          <div className={cx('submit-button-container')}>
-            <PrimaryBtn type="submit">회원가입</PrimaryBtn>
-          </div>
-        </form>
-        <div className={cx('auth-button-container')}>
-          <Link className={cx('anchor')} href="/login">
-            로그인
-          </Link>
-        </div>
-        <div className={cx('sns-button-container')}>
-          <SnsButton sns="naver" onClick={() => {}} />
-          <SnsButton sns="kakao" onClick={() => {}} />
-          <SnsButton sns="google" onClick={() => {}} />
-        </div>
+        )}
       </div>
     </div>
   );

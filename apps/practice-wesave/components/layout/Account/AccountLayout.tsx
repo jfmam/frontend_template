@@ -6,7 +6,7 @@ import styles from '@/styles/AccountLayout.module.scss';
 const cx = cn.bind(styles);
 
 interface AccountLayoutProps {
-  imageUrl: 'login' | 'signup';
+  imageUrl: 'login' | 'signup' | 'password-reset';
   backgroundColor: string;
   children: ReactNode;
 }

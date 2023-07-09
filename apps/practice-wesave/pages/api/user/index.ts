@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 const mock = {
   email: 'jfmam@naver.com',
   paaword: '123123',
+  name: 'hello',
 };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -17,6 +18,19 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     return res.status(401).json({
       message: '이메일 또는 패스워드가 일치하지 않습니다.',
+    });
+  }
+
+  if (req.method === 'GET') {
+    if (mock.email === req.query.email) {
+      return res.status(200).json({
+        email: mock.email,
+        name: mock.name,
+      });
+    }
+
+    return res.status(404).json({
+      message: '존재하지 않는 유저입니다.',
     });
   }
 }

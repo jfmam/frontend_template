@@ -14,3 +14,10 @@ export type SignUpType = {
   passwordCheck: string;
   agree: boolean;
 };
+
+export interface User {
+  name: string;
+  email: string;
+}
+
+export type UserResponse = User & Response;

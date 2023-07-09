@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import cn from 'classnames/bind';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -8,6 +8,7 @@ import Input from '@/components/input';
 import { PrimaryBtn } from '@/components/button/PrimaryBtn';
 import Link from 'next/link';
 import FieldErrorMessage from '@/components/error/FieldErrorMessage';
+import { useFindUser } from '@/hooks/quries/user/usePasswordManagement';
 
 const cx = cn.bind(styles);
 
@@ -16,25 +17,21 @@ const EmailSchema = Yup.object().shape({
 });
 
 export default function ForgotPassword() {
+  const { mutate, isError, isLoading } = useFindUser();
+  const [isSettled, setIsSettled] = useState(false);
   const formik = useFormik<{ email: string }>({
     initialValues: {
       email: '',
     },
     validationSchema: EmailSchema,
-    onSubmit: () => {},
+    onSubmit: values => {
+      mutate(values.email, {
+        onSettled: () => {
+          setIsSettled(true);
+        },
+      });
+    },
   });
-
-  //   const verifyEmail = useMutation(async (params: Email) => await verifyEmailAPI(params), {
-  //     onError: err => {
-  //       console.log(err);
-  //       setVerified(false);
-  //     },
-  //     onSuccess: data => {
-  //       console.log(data);
-  //       setVerified(true);
-  //       router.push('/new-password');
-  //     },
-  //   });
 
   return (
     <div className={cx('forgot-password')}>
@@ -47,7 +44,9 @@ export default function ForgotPassword() {
           <div className={cx('input-container')}>
             <Input
               {...formik.getFieldProps}
+              onBlur={formik.handleBlur}
               onChange={formik.handleChange}
+              onClick={() => setIsSettled(false)}
               isError={formik.errors.email !== undefined}
               onFocus={() => formik.setTouched({ email: true })}
               name="email"
@@ -55,12 +54,24 @@ export default function ForgotPassword() {
               placeholder="이메일"
             />
             {formik.errors.email && formik.touched.email && <FieldErrorMessage message={formik.errors.email} />}
-            {/* {!verified && (
-              <div css={inputError}>위세이브에 가입되어 있지 않은 계정이거나, 이메일이 일치하지 않습니다.</div>
-            )} */}
+            {!formik.errors.email && isSettled && isError && (
+              <FieldErrorMessage message="위세이브에 가입되어 있지 않은 계정이거나, 이메일이 일치하지 않습니다." />
+            )}
+            {!isError && isSettled && (
+              <div className={cx('resend-container')}>
+                <span>인증 이메일을 받지 못하셨나요?</span>
+                <span>
+                  <button disabled={isLoading} type="submit" className={cx('resend-button')}>
+                    인증메일 재전송
+                  </button>
+                </span>
+              </div>
+            )}
           </div>
           <div className={cx('submit-button-container')}>
-            <PrimaryBtn type="submit">인증 메일 전송</PrimaryBtn>
+            <PrimaryBtn disabled={isLoading} type="submit">
+              인증 메일 전송
+            </PrimaryBtn>
           </div>
           <div className={cx('auth-button-container')}>
             <Link className={cx('anchor')} href="/signin">

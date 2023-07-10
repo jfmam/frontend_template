@@ -1,0 +1,58 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.resign {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 25.32vh 56px 0;
+  text-align: center;
+
+  @media (max-width: 768) {
+    padding-top: 21vh;
+  }
+
+  @media (max-width: 425px) {
+    padding: 18.71vh 24px 0;
+  }
+}
+
+.resign-message {
+  text-align: center;
+  font-size: $heading5;
+  color: $bg100;
+  line-height: 1.5;
+
+  @media (max-width: 660px) {
+    font-size: $body1;
+  }
+
+  @media (max-width: 425px) {
+    font-size: $body2;
+  }
+}
+
+.button-container {
+  margin: 7.25rem auto 0;
+  max-width: 42.0625rem;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 660px) {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+.button {
+  @media (max-width: 425px) {
+    width: min(100%, 16.5rem);
+  }
+}
+
+.button-cancel {
+  background-color: $bg40;
+
+  &:hover {
+    background-color: $indication-red;
+  }
+}

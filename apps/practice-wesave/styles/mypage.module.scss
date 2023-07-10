@@ -1,0 +1,75 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.mypage {
+  max-width: 75.25rem;
+  padding: 9.875rem 1.875rem 0 3.6875rem;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 6.875rem 1.875rem;
+  }
+
+  @media (max-width: 425px) {
+    padding: 3rem 1.5rem;
+  }
+}
+
+.name {
+  font-size: $heading4;
+  color: $bg100;
+  border-bottom: 1.5px solid $bg60;
+  padding-bottom: 2.4375rem;
+
+  @media (max-width: 768px) {
+    font-size: $heading5;
+  }
+
+  @media (max-width: 425px) {
+    font-size: $body1;
+  }
+}
+
+.user-info {
+  border-bottom: 1.5px solid $bg40;
+  padding: 1.8125rem 0;
+  font-size: $body2;
+
+  @media (max-width: 768px) {
+    font-size: $body3;
+  }
+
+  @media (max-width: 425px) {
+    font-size: $callout-small;
+  }
+}
+
+.user-email {
+  color: $bg100;
+  padding-bottom: 1.8125rem;
+}
+
+.user-name {
+  color: $bg60;
+}
+
+.anchor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.8125rem;
+  padding: 1.8125rem 0;
+}
+
+.anchor {
+  font-size: $body2;
+  color: $primary-blue;
+
+  @media (max-width: 768px) {
+    font-size: $body3;
+  }
+
+  @media (max-width: 425px) {
+    font-size: $callout-small;
+  }
+}

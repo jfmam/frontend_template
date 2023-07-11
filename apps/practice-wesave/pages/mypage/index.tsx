@@ -1,45 +1,19 @@
 import Link from 'next/link';
 import cn from 'classnames/bind';
 import mypageStyles from '@/styles/mypage.module.scss';
-import resignStyles from '@/styles/resign.module.scss';
-import { useState } from 'react';
-import { PrimaryBtn } from '@/components/button/PrimaryBtn';
+import { useState, lazy, Suspense } from 'react';
 
 const myPageCx = cn.bind(mypageStyles);
-const resignCx = cn.bind(resignStyles);
+
+const Resign = lazy(() => import('@/components/user/Resign'));
 
 const user = {
+  id: 1,
   name: '위세이브',
   email: 'jfmam@naver.com',
 };
 
-interface ResignProps {
-  onChangeMyPageUI: () => void;
-}
-
-function Resign({ onChangeMyPageUI }: ResignProps) {
-  return (
-    <div className={resignCx('resign')}>
-      <div className={resignCx('resign-message')}>
-        <div>WESAVE</div>
-        <div>회원탈퇴 하시겠습니까?</div>
-      </div>
-      <div className={resignCx('button-container')}>
-        <div>
-          <PrimaryBtn className={resignCx('button')} onClick={() => onChangeMyPageUI()}>
-            취소
-          </PrimaryBtn>
-        </div>
-        <div>
-          <PrimaryBtn className={resignCx('button', 'button-cancel')} onClick={() => {}}>
-            탈퇴
-          </PrimaryBtn>
-        </div>
-      </div>
-    </div>
-  );
-}
-
+// 추후 로그인 검사 기능을 만들고 조금 더 수정이 필요함
 export default function MyPage() {
   const [isResignUIVisible, setIsResignUIVisible] = useState(false);
   //   const { width } = useLayout();
@@ -54,7 +28,9 @@ export default function MyPage() {
   return (
     <>
       {isResignUIVisible ? (
-        <Resign onChangeMyPageUI={() => setIsResignUIVisible(false)} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Resign userId={user.id} onChangeMyPageUI={() => setIsResignUIVisible(false)} />
+        </Suspense>
       ) : (
         <div className={myPageCx('mypage')}>
           <div className={myPageCx('name')}>{user.name}님</div>

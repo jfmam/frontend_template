@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-import jwt from 'jsonwebtoken';
 
 const mock = {
+  id: 1,
   email: 'jfmam@naver.com',
   paaword: '123123',
   name: 'hello',
@@ -10,14 +10,12 @@ const mock = {
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    if (mock.email === req.body.email && mock.paaword === req.body.password) {
-      const secretKey = process.env.SECRET_KEY as string;
-      const token = jwt.sign(req.body.email, secretKey);
-      return res.status(201).json({ token });
+    if (mock.email !== req.body.email) {
+      return res.status(201).json({ message: '유저 생성을 완료하였습니다.' });
     }
 
-    return res.status(401).json({
-      message: '이메일 또는 패스워드가 일치하지 않습니다.',
+    return res.status(422).json({
+      message: '사용자 생성에 실패하였습니다.',
     });
   }
 
@@ -26,6 +24,18 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       return res.status(200).json({
         email: mock.email,
         name: mock.name,
+      });
+    }
+
+    return res.status(404).json({
+      message: '존재하지 않는 유저입니다.',
+    });
+  }
+
+  if (req.method === 'DELETE') {
+    if (mock.id === Number(req.query.id)) {
+      return res.status(201).json({
+        message: '회원탈퇴를 완료 하였습니다.',
       });
     }
 

@@ -1,0 +1,35 @@
+@import './font.module.scss';
+
+.chart {
+  width: 33.3333vw;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  position: relative;
+}
+
+.range-bar {
+  transition: height 1s ease;
+}
+
+.bar-contents {
+  width: inherit;
+  font-size: $heading3;
+  text-align: center;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @media (max-width: 912px) {
+    font-size: $heading5;
+  }
+
+  @media (max-width: 768px) {
+    font-size: $body1;
+  }
+
+  @media (max-width: 425px) {
+    font-size: $heading5;
+    top: 50%;
+  }
+}

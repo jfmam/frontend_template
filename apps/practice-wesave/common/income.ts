@@ -2,7 +2,7 @@ export interface Income {
   income: number;
   startTime: number;
   quitTime: number;
-  workday: string[];
+  workday: number[];
   payday: number;
   additional?: number;
 }

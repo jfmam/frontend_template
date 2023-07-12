@@ -1,4 +1,5 @@
 import { Reducer, useCallback, useReducer } from 'react';
+import { useMutation } from 'react-query';
 import { Income } from '@/common';
 import { checkHour, checkMonth } from '@/utils';
 
@@ -13,11 +14,11 @@ type Action =
     }
   | {
       type: 'SET_WORKDAY';
-      payload: string;
+      payload: number;
     }
   | {
       type: 'REMOVE_WORKDAY';
-      payload: string;
+      payload: number;
     }
   | {
       type: 'SET_PAYDAY';
@@ -153,7 +154,7 @@ export const useSalaryInput = () => {
   );
 
   const onChangeWorkday = useCallback(
-    (workday: string) => {
+    (workday: number) => {
       if (state.workday.includes(workday)) {
         dispatch({ type: 'REMOVE_WORKDAY', payload: workday });
         return;
@@ -184,3 +185,20 @@ export const useSalaryInput = () => {
     state,
   };
 };
+
+// 추후 api connection 필요
+const setIncome = async (income: Income) => {
+  try {
+    localStorage.setItem('income', JSON.stringify(income));
+
+    return null;
+  } catch (error) {
+    throw new Error('수입 저장에 실패하였습니다.');
+  }
+};
+
+export function useRegistIncome() {
+  return useMutation({
+    mutationFn: (income: Income) => setIncome(income),
+  });
+}

@@ -29,22 +29,27 @@ export const getRefreshToken = () => {
   return cookies.get('refreshToken');
 };
 
-export const getLocalStorageItem = <T>(key: string) => {
-  const data = localStorage.getItem(key);
+class LocalStorage {
+  constructor() {}
 
-  if (!data) {
+  static setItem(key: string, item: string) {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(key, item);
+    }
+  }
+
+  static getItem(key: string) {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(key);
+    }
     return null;
   }
 
-  const result: T = JSON.parse(data);
-  return result;
-};
+  static removeItem(key: string) {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(key);
+    }
+  }
+}
 
-export const setLocalStorageItem = (key: string, data: any) => {
-  const value = JSON.stringify(data);
-  return localStorage.setItem(key, value);
-};
-
-export const removeLocalStorageItem = (key: string) => {
-  return localStorage.removeItem(key);
-};
+export default LocalStorage;

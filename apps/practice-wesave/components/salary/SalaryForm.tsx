@@ -10,23 +10,24 @@ import Input from '../input';
 import { PrimaryBtn } from '../button/PrimaryBtn';
 
 import DayButton from './DayButton';
+import { useRegistIncome } from '@/hooks/quries/income/useSalaryInput';
+import { useRouter } from 'next/router';
 
 const cx = cn.bind(styles);
 
 interface IncomeProps {
-  onChangePage: () => void;
+  // onChangePage: () => void;
   onChangeIncome: (income: string) => void;
   onChangeQuitTime: (quitTime: string) => void;
   onChangePayday: (payday: string) => void;
   onChangeStartTime: (startTime: string) => void;
-  onChangeWorkday: (workDay: string) => void;
+  onChangeWorkday: (workDay: number) => void;
   state: Income;
 }
 
 const days = ['월', '화', '수', '목', '금', '토', '일'];
 
 export default function SalaryForm({
-  onChangePage,
   onChangeIncome,
   onChangePayday,
   onChangeQuitTime,
@@ -34,6 +35,8 @@ export default function SalaryForm({
   onChangeWorkday,
   state,
 }: IncomeProps) {
+  const { mutate } = useRegistIncome();
+  const router = useRouter();
   const isDesktop = useMediaQuery({
     query: '(min-width: 768px)',
   });
@@ -70,8 +73,8 @@ export default function SalaryForm({
       </div>
       <div>
         매주 (
-        {days.map(day => (
-          <DayButton onClick={() => onChangeWorkday(day)} key={day} day={day} />
+        {days.map((day, idx) => (
+          <DayButton onClick={() => onChangeWorkday((idx + 1) % 7)} key={day} day={day} />
         ))}
         ) 일해서
       </div>
@@ -120,8 +123,15 @@ export default function SalaryForm({
         <>)원 벌어요</>
       </div>
       <div className={cx('button-container')}>
-        <PrimaryBtn disabled={onValidateInput()} onClick={onChangePage}>
-          Next
+        <PrimaryBtn
+          disabled={onValidateInput()}
+          onClick={() =>
+            mutate(state, {
+              onSuccess: () => router.push('/timer'),
+            })
+          }
+        >
+          Done
         </PrimaryBtn>
       </div>
     </div>

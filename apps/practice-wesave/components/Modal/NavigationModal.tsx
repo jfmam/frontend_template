@@ -25,16 +25,16 @@ export default function MenuModal() {
       className={modalStyles('modal')}
     >
       <nav className={modalStyles('navigation-container')}>
-        <Link className={modalStyles('navigation-item')} href="/">
+        <Link onClick={() => onCloseModal()} className={modalStyles('navigation-item')} href="/">
           WESAVE
         </Link>
-        <Link className={modalStyles('navigation-item')} href="/timer">
+        <Link onClick={() => onCloseModal()} className={modalStyles('navigation-item')} href="/timer">
           Working-Timer
         </Link>
-        <Link className={modalStyles('navigation-item')} href="/challenge">
+        <Link onClick={() => onCloseModal()} className={modalStyles('navigation-item')} href="/challenge">
           Challenge
         </Link>
-        <Link className={modalStyles('navigation-item')} href="/mypage">
+        <Link onClick={() => onCloseModal()} className={modalStyles('navigation-item')} href="/mypage">
           My Page
         </Link>
       </nav>

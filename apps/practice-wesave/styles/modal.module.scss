@@ -20,9 +20,11 @@
 .navigation-container {
   display: flex;
   flex-direction: column;
-  padding-top: min(18.7rem, 17.4148vh);
+  justify-content: center;
   align-items: center;
   height: 100%;
+  gap: 7px;
+  padding: 0 36px;
 }
 
 .navigation-item {
@@ -31,5 +33,21 @@
 
   &:hover {
     color: $secondary-green;
+  }
+
+  @media (max-width: 1080px) {
+    font-size: $heading2;
+  }
+
+  @media (max-width: 768px) {
+    font-size: $heading4;
+  }
+
+  @media (max-width: 556px) {
+    font-size: $heading5;
+  }
+
+  @media (max-width: 425px) {
+    font-size: $body1;
   }
 }

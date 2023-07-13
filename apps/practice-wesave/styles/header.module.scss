@@ -23,6 +23,19 @@
   }
 }
 
+.logo {
+  background-color: transparent;
+  border: 0;
+  position: relative;
+  width: 152px;
+  height: 40px;
+
+  @media (max-width: 425px) {
+    width: 115px;
+    height: 30px;
+  }
+}
+
 .menu-open {
   position: absolute;
   z-index: 6;

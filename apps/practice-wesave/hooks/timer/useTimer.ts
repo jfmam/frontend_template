@@ -113,7 +113,7 @@ export const getTimerInfo = () => {
 };
 
 export function useTimer() {
-  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0, percentage: 0 });
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0, percentage: 100 });
 
   useEffect(() => {
     const value = LocalStorage.getItem('income');
@@ -127,13 +127,11 @@ export function useTimer() {
       const currentHour: number = new Date().getHours();
       const currentMinute: number = new Date().getMinutes();
       const currentSecond: number = new Date().getSeconds();
-
       if (currentHour < startTime || currentHour >= quitTime) {
         // startTime보다 이전이거나 quitTime보다 이후인 경우
         setTimeLeft({ hours: 0, minutes: 0, seconds: 0, percentage: 0 });
         return;
       }
-
       let remainingHours: number = quitTime - currentHour;
       let remainingMinutes: number = 59 - currentMinute;
       let remainingSeconds: number = 59 - currentSecond;
@@ -148,7 +146,7 @@ export function useTimer() {
       }
 
       const percentage =
-        ((remainingHours * 3600 + remainingMinutes * 60 + remainingSeconds) / (quitTime - startTime)) * 3600;
+        ((remainingHours * 3600 + remainingMinutes * 60 + remainingSeconds) / ((quitTime - startTime) * 3600)) * 100;
 
       setTimeLeft({ hours: remainingHours, minutes: remainingMinutes, seconds: remainingSeconds, percentage });
     }, 1000);

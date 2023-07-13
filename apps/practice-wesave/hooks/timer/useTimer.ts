@@ -83,36 +83,85 @@ function calculateWorkPercentageByHours(
   };
 }
 
-export const getTimerInfo = () => {
-  if (typeof window === 'undefined') {
-    throw new Error('서버 사이드 렌더링에서는 localStorage를 사용할 수 없습니다.');
-  }
-  const value = LocalStorage.getItem('income');
+// export const getTimerInfo = () => {
+//   if (typeof window === 'undefined') {
+//     throw new Error('서버 사이드 렌더링에서는 localStorage를 사용할 수 없습니다.');
+//   }
+//   const value = LocalStorage.getItem('income');
 
-  if (!value) {
-    throw new Error('소득정보가 존재하지 않습니다.');
-  }
+//   if (!value) {
+//     throw new Error('소득정보가 존재하지 않습니다.');
+//   }
 
-  const { income, workday, quitTime, startTime, payday }: Income = JSON.parse(value);
-  const { percentage: monthlyPercentage, totalDays, workingDays } = calculateWorkPercentageByPayday(payday, workday);
-  const currentMothIncome = (income / workingDays).toFixed(1);
+//   const { income, workday, quitTime, startTime, payday }: Income = JSON.parse(value);
+//   const { percentage: monthlyPercentage, totalDays, workingDays } = calculateWorkPercentageByPayday(payday, workday);
+//   const currentMothIncome = (income / workingDays).toFixed(1);
 
-  const todayIncome = income / totalDays;
-  const { percentage: dailyPercentage, workedMinutes } = calculateWorkPercentageByHours(startTime, quitTime);
-  const currentIncome = (todayIncome / workedMinutes).toFixed(1);
-  const { percentage: timerPercentage, workedSeconds } = calculateWorkPercentageByTimer(startTime, quitTime);
+//   const todayIncome = income / totalDays;
+//   const { percentage: dailyPercentage, workedMinutes } = calculateWorkPercentageByHours(startTime, quitTime);
+//   const currentIncome = (todayIncome / workedMinutes).toFixed(1);
+//   const { percentage: timerPercentage, workedSeconds } = calculateWorkPercentageByTimer(startTime, quitTime);
 
-  return {
-    monthlyPercentage,
-    currentMothIncome,
-    dailyPercentage,
-    currentIncome,
-    timerPercentage,
-    workedSeconds,
-  };
+//   return {
+//     monthlyPercentage,
+//     currentMothIncome,
+//     dailyPercentage,
+//     currentIncome,
+//     timerPercentage,
+//     workedSeconds,
+//   };
+// };
+
+type IncomeInfoType = {
+  monthlyPercentage: number;
+  currentMothIncome: string;
+  dailyPercentage: number;
+  currentIncome: string;
+  timerPercentage: number;
+  workedSeconds: number;
 };
 
+export function useIncomeInfo() {
+  const [timerInfo, setTimerInfo] = useState<IncomeInfoType>({
+    currentIncome: '0',
+    currentMothIncome: '0',
+    dailyPercentage: 0,
+    monthlyPercentage: 0,
+    timerPercentage: 0,
+    workedSeconds: 0,
+  });
+
+  useEffect(() => {
+    const value = localStorage.getItem('income');
+
+    if (!value) {
+      throw new Error('소득정보가 존재하지 않습니다.');
+    }
+
+    const { income, workday, quitTime, startTime, payday } = JSON.parse(value);
+    const { percentage: monthlyPercentage, totalDays, workingDays } = calculateWorkPercentageByPayday(payday, workday);
+    const currentMothIncome = (income / workingDays).toFixed(1);
+
+    const todayIncome = income / totalDays;
+    const { percentage: dailyPercentage, workedMinutes } = calculateWorkPercentageByHours(startTime, quitTime);
+    const currentIncome = (todayIncome / workedMinutes).toFixed(1);
+    const { percentage: timerPercentage, workedSeconds } = calculateWorkPercentageByTimer(startTime, quitTime);
+
+    setTimerInfo({
+      monthlyPercentage,
+      currentMothIncome,
+      dailyPercentage,
+      currentIncome,
+      timerPercentage,
+      workedSeconds,
+    });
+  }, []);
+
+  return timerInfo;
+}
+
 export function useTimer() {
+  const [timer, setTimer] = useState(0);
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0, percentage: 100 });
 
   useEffect(() => {
@@ -147,12 +196,11 @@ export function useTimer() {
 
       const percentage =
         ((remainingHours * 3600 + remainingMinutes * 60 + remainingSeconds) / ((quitTime - startTime) * 3600)) * 100;
-
       setTimeLeft({ hours: remainingHours, minutes: remainingMinutes, seconds: remainingSeconds, percentage });
-    }, 1000);
-
+    }, timer);
+    setTimer(1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [timer]);
 
   return timeLeft;
 }

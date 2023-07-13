@@ -1,8 +1,7 @@
 import cn from 'classnames/bind';
 import styels from '@/styles/timer.module.scss';
 import RangeBar from '@/components/timer/RangeBar';
-import { getTimerInfo, useTimer } from '@/hooks/timer';
-import { useEffect, useState } from 'react';
+import { useIncomeInfo, useTimer } from '@/hooks/timer';
 
 const cx = cn.bind(styels);
 
@@ -11,21 +10,17 @@ function formatNumberToTwoDigits(num: number): string {
 }
 
 export default function Timer() {
-  const [data, setData] = useState<any>();
   const { hours, minutes, seconds, percentage } = useTimer();
-
-  useEffect(() => {
-    setData(getTimerInfo());
-  }, []);
+  const { dailyPercentage, monthlyPercentage } = useIncomeInfo();
 
   return (
     <div className={cx('timer')}>
-      <RangeBar barColor="#3281f7" size={`${data?.monthlyPercentage}%`}>
-        <div>{data?.monthlyPercentage}%</div>
+      <RangeBar barColor="#3281f7" size={`${monthlyPercentage}%`}>
+        <div>{monthlyPercentage}%</div>
         <div>이번달</div>
       </RangeBar>
-      <RangeBar barColor="#bcfb4f" size={`${data?.dailyPercentage}%`}>
-        <div>{data?.dailyPercentage}%</div>
+      <RangeBar barColor="#bcfb4f" size={`${dailyPercentage}%`}>
+        <div>{dailyPercentage}%</div>
         <div>오늘</div>
       </RangeBar>
       <RangeBar barColor="#695af2" size={`${100 - percentage}%`}>

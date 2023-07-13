@@ -25,24 +25,6 @@ function calculateWorkdays(startDay: Date, endDay: Date, targetWeekdays: number[
   return workdayCount;
 }
 
-function calculateWorkPercentageByTimer(
-  startTime: number,
-  endTime: number,
-): { totalSeconds: number; workedSeconds: number; percentage: number } {
-  const currentSeconds: number = Math.floor((Date.now() - new Date().setHours(0, 0, 0, 0)) / 1000);
-
-  const totalSeconds: number = (endTime - startTime) * 3600;
-  const workedSeconds: number = currentSeconds - startTime * 3600;
-
-  const percentage: number = (workedSeconds / totalSeconds) * 100;
-
-  return {
-    totalSeconds,
-    workedSeconds,
-    percentage: percentage <= 100 ? Math.round(percentage) : 100,
-  };
-}
-
 function calculateWorkPercentageByPayday(
   payday: number,
   targetWeekdays: number[],
@@ -60,7 +42,7 @@ function calculateWorkPercentageByPayday(
   return {
     totalDays,
     workingDays,
-    percentage: percentage <= 100 ? Math.round(percentage) : 100,
+    percentage: percentage <= 100 ? percentage : 100,
   };
 }
 
@@ -71,6 +53,10 @@ function calculateWorkPercentageByHours(
   const currentHour: number = new Date().getHours();
   const currentMinute: number = new Date().getMinutes();
 
+  if (currentHour < startTime || currentHour >= endTime) {
+    return { totalMinutes: 0, workedMinutes: 0, percentage: 100 };
+  }
+
   const totalMinutes: number = (endTime - startTime) * 60;
   const workedMinutes: number = (currentHour - startTime) * 60 + currentMinute;
 
@@ -79,56 +65,50 @@ function calculateWorkPercentageByHours(
   return {
     totalMinutes,
     workedMinutes,
-    percentage: percentage <= 100 ? Math.round(percentage) : 100,
+    percentage: percentage <= 100 ? percentage : 100,
   };
 }
 
-// export const getTimerInfo = () => {
-//   if (typeof window === 'undefined') {
-//     throw new Error('서버 사이드 렌더링에서는 localStorage를 사용할 수 없습니다.');
-//   }
-//   const value = LocalStorage.getItem('income');
-
-//   if (!value) {
-//     throw new Error('소득정보가 존재하지 않습니다.');
-//   }
-
-//   const { income, workday, quitTime, startTime, payday }: Income = JSON.parse(value);
-//   const { percentage: monthlyPercentage, totalDays, workingDays } = calculateWorkPercentageByPayday(payday, workday);
-//   const currentMothIncome = (income / workingDays).toFixed(1);
-
-//   const todayIncome = income / totalDays;
-//   const { percentage: dailyPercentage, workedMinutes } = calculateWorkPercentageByHours(startTime, quitTime);
-//   const currentIncome = (todayIncome / workedMinutes).toFixed(1);
-//   const { percentage: timerPercentage, workedSeconds } = calculateWorkPercentageByTimer(startTime, quitTime);
-
-//   return {
-//     monthlyPercentage,
-//     currentMothIncome,
-//     dailyPercentage,
-//     currentIncome,
-//     timerPercentage,
-//     workedSeconds,
-//   };
-// };
-
-type IncomeInfoType = {
+type MonthlyIncomType = {
   monthlyPercentage: number;
   currentMothIncome: string;
-  dailyPercentage: number;
-  currentIncome: string;
-  timerPercentage: number;
-  workedSeconds: number;
 };
 
-export function useIncomeInfo() {
-  const [timerInfo, setTimerInfo] = useState<IncomeInfoType>({
-    currentIncome: '0',
+export function useMothlyInfo() {
+  const [timerInfo, setTimerInfo] = useState<MonthlyIncomType>({
     currentMothIncome: '0',
-    dailyPercentage: 0,
     monthlyPercentage: 0,
-    timerPercentage: 0,
-    workedSeconds: 0,
+  });
+
+  useEffect(() => {
+    const value = localStorage.getItem('income');
+
+    if (!value) {
+      throw new Error('소득정보가 존재하지 않습니다.');
+    }
+
+    const { income, workday, payday } = JSON.parse(value);
+    const { percentage: monthlyPercentage, workingDays } = calculateWorkPercentageByPayday(payday, workday);
+    const currentMothIncome = (income / workingDays).toFixed(0);
+
+    setTimerInfo({
+      monthlyPercentage: +monthlyPercentage.toFixed(1),
+      currentMothIncome,
+    });
+  }, []);
+
+  return timerInfo;
+}
+
+type DailyIncomType = {
+  dailyPercentage: number;
+  currentIncome: number;
+};
+
+export function useDailyInfo() {
+  const [timerInfo, setTimerInfo] = useState<DailyIncomType>({
+    currentIncome: 0,
+    dailyPercentage: 0,
   });
 
   useEffect(() => {
@@ -139,21 +119,15 @@ export function useIncomeInfo() {
     }
 
     const { income, workday, quitTime, startTime, payday } = JSON.parse(value);
-    const { percentage: monthlyPercentage, totalDays, workingDays } = calculateWorkPercentageByPayday(payday, workday);
-    const currentMothIncome = (income / workingDays).toFixed(1);
+    const { totalDays } = calculateWorkPercentageByPayday(payday, workday);
 
     const todayIncome = income / totalDays;
     const { percentage: dailyPercentage, workedMinutes } = calculateWorkPercentageByHours(startTime, quitTime);
-    const currentIncome = (todayIncome / workedMinutes).toFixed(1);
-    const { percentage: timerPercentage, workedSeconds } = calculateWorkPercentageByTimer(startTime, quitTime);
+    const currentIncome = todayIncome / workedMinutes;
 
     setTimerInfo({
-      monthlyPercentage,
-      currentMothIncome,
-      dailyPercentage,
+      dailyPercentage: +dailyPercentage.toFixed(1),
       currentIncome,
-      timerPercentage,
-      workedSeconds,
     });
   }, []);
 

@@ -1,4 +1,5 @@
 @import './font.module.scss';
+@import './variables.module.scss';
 
 .chart {
   width: 33.3333vw;
@@ -6,6 +7,12 @@
   justify-content: flex-end;
   flex-direction: column;
   position: relative;
+  height: $content-height;
+
+  @media (max-width: 425px) {
+    height: calc($content-height-mobile - 3.5625rem);
+    width: 100vw;
+  }
 }
 
 .range-bar {
@@ -20,6 +27,7 @@
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   @media (max-width: 912px) {
     font-size: $heading5;
   }

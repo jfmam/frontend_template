@@ -3,15 +3,15 @@ import { useCallback } from 'react';
 import cn from 'classnames/bind';
 import { useMediaQuery } from 'react-responsive';
 import styles from '@/styles/SalaryForm.module.scss';
+import { useRouter } from 'next/router';
 import { Income } from '@/common';
+import { useRegistIncome } from '@/hooks/quries/income/useSalaryInput';
 
 import { stringToMoney } from '../utils';
 import Input from '../input';
 import { PrimaryBtn } from '../button/PrimaryBtn';
 
 import DayButton from './DayButton';
-import { useRegistIncome } from '@/hooks/quries/income/useSalaryInput';
-import { useRouter } from 'next/router';
 
 const cx = cn.bind(styles);
 
@@ -78,7 +78,7 @@ export default function SalaryForm({
         ))}
         ) 일해서
       </div>
-      <div style={{ display: 'inline-flex' }}>
+      <div className={cx('center')}>
         <div style={{ paddingRight: isDesktop ? 57 : 16 }}>
           매달(
           <Input
@@ -92,24 +92,14 @@ export default function SalaryForm({
           />
           )일에
         </div>
-        <Image
-          sizes="(max-width: 425px) 59px, 18.93px"
-          width={isDesktop ? 187 : 59}
-          height={isDesktop ? 60 : 18.93}
-          src="/arrow.svg"
-          alt=""
-          loading="lazy"
-        />
+        <span className={cx('arrow-logo')}>
+          <Image fill sizes="(max-width: 425px) 59px, 18.93px" src="/arrow.svg" alt="" loading="lazy" />
+        </span>
       </div>
-      <div>
-        <Image
-          width={isDesktop ? 136 : 42}
-          height={isDesktop ? 80 : 24.71}
-          sizes="(max-width: 425px) 42px, 24.71px"
-          src="/won.svg"
-          alt=""
-          loading="lazy"
-        />
+      <div className={cx('center')}>
+        <span className={cx('won-logo')}>
+          <Image fill sizes="(max-width: 425px) 42px, 24.71px" src="/won.svg" alt="" loading="lazy" />
+        </span>
         <>(</>
         <Input
           onBlur={e => {

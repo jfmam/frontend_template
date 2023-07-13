@@ -21,7 +21,7 @@
     font-size: $body1;
   }
 
-  @media (max-width: 425px) {
+  @media (max-width: 522px) {
     font-size: $body2;
   }
 }
@@ -51,7 +51,7 @@
     font-size: $body1;
   }
 
-  @media (max-width: 425px) {
+  @media (max-width: 522px) {
     font-size: $body2;
   }
 }
@@ -84,7 +84,7 @@
   max-width: 33rem;
 
   @media (max-width: 1920px) {
-    max-width: 25rem;
+    max-width: 22.5rem;
   }
 
   @media (max-width: 1440px) {
@@ -96,11 +96,11 @@
   }
 
   @media (max-width: 768px) {
-    max-width: 12.5rem;
+    max-width: 11.5rem;
   }
 
-  @media (max-width: 425px) {
-    max-width: 10rem;
+  @media (max-width: 522px) {
+    max-width: 8rem;
   }
 }
 
@@ -113,4 +113,33 @@
   @media (max-width: 768px) {
     padding-top: 7.5rem;
   }
+}
+
+.won-logo {
+  display: inline-block;
+  position: relative;
+  width: 136px;
+  height: 80px;
+
+  @media (max-width: 768px) {
+    width: 42px;
+    height: 24.71px;
+  }
+}
+
+.arrow-logo {
+  display: inline-block;
+  position: relative;
+  width: 187px;
+  height: 60px;
+
+  @media (max-width: 768px) {
+    width: 59px;
+    height: 18.93px;
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
 }

@@ -35,15 +35,17 @@ export default function AchievementStatus() {
           hasNextPage={!!hasNextPage}
           isFetchingNextPage={isFetchingNextPage}
         >
-          <AchievementList className={cx('achievement-status')}>
-            {data.pages.map(page => (
-              <>
-                {page.items?.map(v => (
-                  <AchievementList.Item item={v} key={v.id} onClick={() => onClickListItem(v)} />
-                ))}
-              </>
-            ))}
-          </AchievementList>
+          <div className={cx('achievement-status')}>
+            <AchievementList>
+              {data.pages.map(page => (
+                <>
+                  {page.items?.map(v => (
+                    <AchievementList.Item item={v} key={v.id} onClick={() => onClickListItem(v)} />
+                  ))}
+                </>
+              ))}
+            </AchievementList>
+          </div>
           {isOpenDetail && (
             <Suspense fallback={<div>Loading...</div>}>
               <AchievementStatusDetail

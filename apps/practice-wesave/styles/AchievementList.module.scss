@@ -3,12 +3,16 @@
 @import './List.module.scss';
 
 .list {
-  width: 456px;
   max-height: 496px;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   @media (max-width: 425px) {
-    width: 327px;
     max-height: 648px;
+    padding: 0 1.5rem;
   }
 }
 

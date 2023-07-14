@@ -11,17 +11,23 @@ import ChallengeRegister from '@/components/Challenge/ChallengeRegister';
 import InfiniteScroller from '@/components/InfiniteScroller';
 import { PaginationResponse } from '@/common/pagination';
 import { dehydrate, QueryClient } from 'react-query';
+import { ChallengeStatus, useToggleChallenges } from '@/hooks/quries/challenge/useToggleChallenges';
 
 const cx = cn.bind(styles);
 
 interface TodayChallengeListProps {
-  items: PaginationResponse<ChallengeResponse>[];
+  pages: PaginationResponse<ChallengeResponse>[];
 }
 
-function TodayChallengeList({ items }: TodayChallengeListProps) {
+function TodayChallengeList({ pages }: TodayChallengeListProps) {
   const today = useMemo(() => new Date(), []);
   const formattedDate = useMemo(() => format(today, 'yyyy-mm-dd'), [today]);
   const { day, month, weekday } = useDateInfo(today);
+  const { mutateAsync } = useToggleChallenges();
+
+  const handleItem = (id: number) => (status: ChallengeStatus) => {
+    mutateAsync({ id, status });
+  };
 
   return (
     <div className={cx('today-challenge')}>
@@ -32,7 +38,15 @@ function TodayChallengeList({ items }: TodayChallengeListProps) {
         <p className={cx('date')}>{weekday}요일</p>
       </div>
       <div className={cx('challenge-list')}>
-        <ChallengeList items={items} />
+        <ChallengeList>
+          {pages.map(page => (
+            <>
+              {page.items?.map(v => (
+                <ChallengeList.Item onClick={() => handleItem(v.id)} item={v} key={v.id} />
+              ))}
+            </>
+          ))}
+        </ChallengeList>
       </div>
     </div>
   );
@@ -48,7 +62,7 @@ export default function TodayChallenge() {
           hasNextPage={!!hasNextPage}
           isFetchingNextPage={isFetchingNextPage}
         >
-          <TodayChallengeList items={data.pages} />
+          <TodayChallengeList pages={data.pages} />
         </InfiniteScroller>
       ) : (
         <ChallengeRegister />

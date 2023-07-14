@@ -1,33 +1,47 @@
+import { ReactNode, useState } from 'react';
 import cn from 'classnames/bind';
 import styles from '@/styles/ChallengeList.module.scss';
 import { ChallengeResponse } from '@/common/challenge';
 
-import TodayChallengeListItem from './TodayChallengeListItem';
-import { useToggleChallenges, ChallengeStatus } from '@/hooks/quries/challenge/useToggleChallenges';
-import { PaginationResponse } from '@/common/pagination';
+import { ChallengeStatus } from '@/hooks/quries/challenge/useToggleChallenges';
+import CheakSelector from '@/components/button/CheckSelector';
 
 const cx = cn.bind(styles);
 
 interface ChallengeListProps {
-  items: PaginationResponse<ChallengeResponse>[];
+  children: ReactNode;
 }
 
-export default function ChallengeList({ items }: ChallengeListProps) {
-  const { mutateAsync } = useToggleChallenges();
+function ChallengeList({ children }: ChallengeListProps) {
+  return <ul className={cx('list')}>{children}</ul>;
+}
 
-  const handleToggleStatus = (id: number) => (status: ChallengeStatus) => {
-    mutateAsync({ id, status });
+interface ChallengeItemProps {
+  item: ChallengeResponse;
+  onClick?: (status: ChallengeStatus) => void;
+}
+
+function ChallengeItem({ item, onClick }: ChallengeItemProps) {
+  const { goal, type, name } = item;
+  const [toggle, setToggle] = useState(false);
+
+  const onClickBtn = () => {
+    setToggle(origin => !origin);
+    if (onClick) onClick(toggle ? 'complete' : 'progress');
   };
 
   return (
-    <ul className={cx('list')}>
-      {items.map(item => (
-        <>
-          {item.items.map(v => (
-            <TodayChallengeListItem onClick={handleToggleStatus(v.id)} key={`${v.id}`} challengeListItem={v} />
-          ))}
-        </>
-      ))}
-    </ul>
+    <li className={cx('list-item')}>
+      <button className={cx('button', { 'button-select': toggle })} onClick={() => onClickBtn()}>
+        <div className={cx('name')}>{name}</div>
+        <div className={cx('goal', { 'goal-selected': toggle })}>{type === 'save' ? `${goal}원` : goal}</div>
+      </button>
+      <span>
+        <CheakSelector isSelect={toggle} onClick={() => onClickBtn()} />
+      </span>
+    </li>
   );
 }
+
+ChallengeList.Item = ChallengeItem;
+export default ChallengeList;

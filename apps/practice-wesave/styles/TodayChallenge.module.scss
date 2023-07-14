@@ -4,6 +4,11 @@
 .today-challenge {
   margin-top: 7.875rem;
   margin-left: 13.5%;
+
+  @media (max-width: 768px) {
+    margin: 0 24px;
+    margin-top: 3rem;
+  }
 }
 
 .challenge-list {

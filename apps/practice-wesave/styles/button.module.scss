@@ -47,26 +47,12 @@
   color: $bg40;
   border: none;
   background-color: transparent;
-  font-size: 1.5rem;
-
-  &:hover {
-    color: $bg50;
-
-    & > span {
-      background-color: $bg50;
-    }
-  }
+  font-size: $body3;
+  display: inline-flex;
+  align-items: center;
 
   &--selected {
     color: $bg100;
-
-    &:hover {
-      color: $bg60;
-
-      & > span {
-        background-color: $primary-purple60;
-      }
-    }
   }
 
   &-circle {

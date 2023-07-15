@@ -2,18 +2,13 @@
 
 .register {
   display: flex;
-  margin-left: 8.125rem;
+  margin-left: 14.17%;
+  margin-right: 24px;
   align-items: center;
-  height: $content-height;
 
   @media (max-width: 768px) {
     align-items: flex-start;
-    margin: 0 auto;
-    width: fit-content;
-    height: $content-height-mobile;
-  }
-
-  @media (max-width: 1100px) {
-    margin-left: 14.17%;
+    justify-content: center;
+    margin-left: 24px;
   }
 }

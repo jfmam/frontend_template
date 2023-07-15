@@ -9,7 +9,7 @@
 }
 
 .field {
-  width: 23.5rem;
+  // width: 23.5rem;
 
   &::placeholder {
     font-size: $body3;
@@ -24,12 +24,18 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: 24.875rem;
+  max-width: 24.875rem;
+  margin-top: 15.55vh;
+
+  @media (max-width: 768px) {
+    margin-top: 3rem;
+  }
 }
 
 .badge-container {
   display: inline-flex;
   gap: 14px;
+  flex-wrap: wrap;
 
   & > button:last-child {
     font-size: $callout-small;
@@ -40,6 +46,7 @@
 .days-container {
   margin-top: 16px;
   display: inline-flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 

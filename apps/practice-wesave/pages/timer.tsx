@@ -27,7 +27,7 @@ function DailyRangeBar() {
   return (
     <RangeBar barColor="#bcfb4f" size={`${dailyPercentage}%`}>
       <div>{dailyPercentage}%</div>
-      <div>이번달</div>
+      <div>오늘</div>
     </RangeBar>
   );
 }

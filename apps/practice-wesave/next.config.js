@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const path = require('path')
+const path = require('path');
 
 const nextConfig = {
   reactStrictMode: true,
@@ -14,7 +14,7 @@ const nextConfig = {
         permanent: true,
       },
     ];
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -21,7 +21,8 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "wesave:dev": "yarn workspace practice-wesave dev"
+    "wesave:dev": "yarn workspace practice-wesave dev",
+    "wesave:test": "yarn workspace practice-wesave test"
   },
   "workspaces": [
     "apps/*"

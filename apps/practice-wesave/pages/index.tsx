@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import cn from 'classnames/bind';
 import styles from '@/styles/home.module.scss';
-import router from 'next/router';
+import Link from 'next/link';
 import Image from 'next/image';
 import { PrimaryBtn } from '@/components/button/PrimaryBtn';
 import { useEffect, useState } from 'react';
@@ -24,7 +24,9 @@ const Home: NextPage = () => {
         <Image src="/main.svg" width="840" height="420" alt="welcome wesaver" loading="lazy" />
       </div>
       <div className={cx('button-container')}>
-        <PrimaryBtn onClick={() => router.push(`/${route}`)}>{"Let's WESAVE"}</PrimaryBtn>
+        <Link href={`/${route}`}>
+          <PrimaryBtn>{"Let's WESAVE"}</PrimaryBtn>
+        </Link>
       </div>
     </div>
   );

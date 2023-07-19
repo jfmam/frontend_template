@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { eachDayOfInterval, getDay } from 'date-fns';
+import { eachDayOfInterval, getDay, set, intervalToDuration, differenceInSeconds } from 'date-fns';
 import { Income } from '@/common';
 import LocalStorage from '@/utils/storage';
+
+import { isTodayWorkingDay } from './utils';
 
 function countWeekdaysInRange(startDate: Date, endDate: Date, targetWeekdays: number[]): number {
   const allDaysInRange: Date[] = eachDayOfInterval({ start: startDate, end: endDate });
@@ -145,32 +147,42 @@ export function useTimer() {
       throw new Error('소득정보가 존재하지 않습니다.');
     }
 
-    const { quitTime, startTime }: Income = JSON.parse(value);
+    const { quitTime, startTime, workday }: Income = JSON.parse(value);
     const interval = setInterval(() => {
-      const currentHour: number = new Date().getHours();
-      const currentMinute: number = new Date().getMinutes();
-      const currentSecond: number = new Date().getSeconds();
+      const current = new Date();
+      const currentHour: number = current.getHours();
+
+      if (!isTodayWorkingDay(workday)) {
+        setTimeLeft({ hours: 0, minutes: 0, seconds: 0, percentage: 100 });
+        return;
+      }
+
       if (currentHour < startTime || currentHour >= quitTime) {
-        // startTime보다 이전이거나 quitTime보다 이후인 경우
         setTimeLeft({ hours: 0, minutes: 0, seconds: 0, percentage: 0 });
         return;
       }
-      let remainingHours: number = quitTime - currentHour;
-      let remainingMinutes: number = 59 - currentMinute;
-      let remainingSeconds: number = 59 - currentSecond;
+      const remainingTime = set(new Date(), {
+        hours: quitTime,
+        minutes: 0,
+        seconds: 0,
+      });
 
-      if (currentMinute === 59 && currentSecond === 59) {
-        remainingHours--;
-        remainingMinutes = 0;
-        remainingSeconds = 0;
-      } else if (currentSecond === 59) {
-        remainingMinutes--;
-        remainingSeconds = 0;
-      }
+      const { hours, minutes, seconds } = intervalToDuration({
+        start: current,
+        end: remainingTime,
+      });
 
-      const percentage =
-        ((remainingHours * 3600 + remainingMinutes * 60 + remainingSeconds) / ((quitTime - startTime) * 3600)) * 100;
-      setTimeLeft({ hours: remainingHours, minutes: remainingMinutes, seconds: remainingSeconds, percentage });
+      const remainingHours = hours || 0;
+      const remainingMinutes = minutes || 0;
+      const remainingSeconds = seconds || 0;
+
+      const percentage = (differenceInSeconds(remainingTime, current) / ((quitTime - startTime) * 3600)) * 100;
+      setTimeLeft({
+        hours: remainingHours,
+        minutes: remainingMinutes,
+        seconds: remainingSeconds,
+        percentage: +percentage.toFixed(0),
+      });
     }, timer);
     setTimer(1000);
     return () => clearInterval(interval);

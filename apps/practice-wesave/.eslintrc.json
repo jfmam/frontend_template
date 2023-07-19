@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "prettier", "next/babel"],
+  "extends": ["next/core-web-vitals", "prettier"],
   "plugins": ["@typescript-eslint/eslint-plugin"],
   "ignorePatterns": ["/**/*.stories.*"],
   "overrides": [

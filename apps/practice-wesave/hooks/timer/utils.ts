@@ -1,6 +1,7 @@
-export function isTodayWorkingDay(targetWorkingDays: string[]): boolean {
-  const weekdays: string[] = ['일', '월', '화', '수', '목', '금', '토'];
-  const today: string = weekdays[new Date().getDay()];
+import { getDay } from 'date-fns';
 
-  return targetWorkingDays.includes(today);
+export function isTodayWorkingDay(workingDays: number[]): boolean {
+  const today = getDay(new Date());
+
+  return workingDays.includes(today);
 }

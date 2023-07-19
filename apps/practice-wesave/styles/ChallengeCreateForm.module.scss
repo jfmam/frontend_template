@@ -26,6 +26,7 @@
   gap: 24px;
   max-width: 24.875rem;
   margin-top: 15.55vh;
+  height: 100vh;
 
   @media (max-width: 768px) {
     margin-top: 3rem;
@@ -53,6 +54,7 @@
 .confirm-btn-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 36px;
 }
 
 .confirm-btn {

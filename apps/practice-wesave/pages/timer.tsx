@@ -3,7 +3,7 @@ import cn from 'classnames/bind';
 import Slider from 'react-slick';
 import styels from '@/styles/timer.module.scss';
 import RangeBar from '@/components/timer/RangeBar';
-import { useDailyInfo, useMothlyInfo, useTimer } from '@/hooks/timer';
+import { useDailyInfo, useMonthlyInfo, useTimer } from '@/hooks/timer';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
 const cx = cn.bind(styels);
@@ -13,7 +13,7 @@ function formatNumberToTwoDigits(num: number): string {
 }
 
 function MonthlyRangeBar() {
-  const { monthlyPercentage } = useMothlyInfo();
+  const { monthlyPercentage } = useMonthlyInfo();
   return (
     <RangeBar barColor="#3281f7" size={`${monthlyPercentage}%`}>
       <div>{monthlyPercentage}%</div>

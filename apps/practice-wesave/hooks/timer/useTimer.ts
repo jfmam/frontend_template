@@ -60,11 +60,13 @@ function calculateWorkPercentageByHours(
   startTime: number,
   endTime: number,
 ): { totalMinutes: number; workedMinutes: number; percentage: number } {
-  const currentHour: number = new Date().getHours();
-  const currentMinute: number = new Date().getMinutes();
+  const current = new Date();
+  const currentHour: number = current.getHours();
+  const currentMinute: number = current.getMinutes();
 
   if (currentHour < startTime || currentHour >= endTime) {
-    return { totalMinutes: 0, workedMinutes: 0, percentage: 100 };
+    const totalMinutes = (endTime - startTime) * 60;
+    return { totalMinutes, workedMinutes: totalMinutes, percentage: 100 };
   }
 
   const totalMinutes: number = (endTime - startTime) * 60;
@@ -131,9 +133,13 @@ export function useDailyInfo() {
     const { income, workday, quitTime, startTime, payday } = JSON.parse(value);
     const { totalDays } = calculateWorkPercentageByPayday(payday, workday);
 
-    const todayIncome = income / totalDays;
-    const { percentage: dailyPercentage, workedMinutes } = calculateWorkPercentageByHours(startTime, quitTime);
-    const currentIncome = todayIncome / workedMinutes;
+    const todayIncome = +(income / totalDays).toFixed(0);
+    const {
+      percentage: dailyPercentage,
+      workedMinutes,
+      totalMinutes,
+    } = calculateWorkPercentageByHours(startTime, quitTime);
+    const currentIncome = +((todayIncome / totalMinutes) * workedMinutes).toFixed(0);
 
     setTimerInfo({
       dailyPercentage: +dailyPercentage.toFixed(1),

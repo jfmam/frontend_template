@@ -12,6 +12,7 @@ export default function ChallengeLayout({ children }: ChallengeLayoutProps) {
     dots: false,
     infinite: false,
     slidesToShow: 2,
+    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 768,

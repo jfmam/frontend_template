@@ -2,8 +2,9 @@
 @import './font.module.scss';
 
 .today-challenge {
-  margin-top: 7.875rem;
-  margin-left: 13.5%;
+  padding-top: 11.66vh;
+  padding-left: 13.5%;
+  height: $content-height;
 
   @media (max-width: 768px) {
     margin: 0 24px;
@@ -13,6 +14,8 @@
 
 .challenge-list {
   margin-top: 64px;
+  overflow-y: scroll;
+  height: 45.92vh;
 }
 
 .date {

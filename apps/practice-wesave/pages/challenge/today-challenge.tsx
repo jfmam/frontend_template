@@ -6,20 +6,15 @@ import ChallengeLayout from '@/components/layout/challenge/ChallengeLayout';
 import { useDateInfo } from '@/hooks/useTodayInfo';
 import { getChellenges, useFetchChallenges } from '@/hooks/quries/challenge/useFetchChallenges';
 import ChallengeList from '@/components/Challenge/List/ChallengeList';
-import { ChallengeResponse } from '@/common/challenge';
 import ChallengeRegister from '@/components/Challenge/ChallengeRegister';
 import InfiniteScroller from '@/components/InfiniteScroller';
-import { PaginationResponse } from '@/common/pagination';
 import { dehydrate, QueryClient } from 'react-query';
 import { ChallengeStatus, useToggleChallenges } from '@/hooks/quries/challenge/useToggleChallenges';
 
 const cx = cn.bind(styles);
 
-interface TodayChallengeListProps {
-  pages: PaginationResponse<ChallengeResponse>[];
-}
-
-function TodayChallengeList({ pages }: TodayChallengeListProps) {
+export default function TodayChallenge() {
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useFetchChallenges();
   const today = useMemo(() => new Date(), []);
   const formattedDate = useMemo(() => format(today, 'yyyy-mm-dd'), [today]);
   const { day, month, weekday } = useDateInfo(today);
@@ -30,40 +25,33 @@ function TodayChallengeList({ pages }: TodayChallengeListProps) {
   };
 
   return (
-    <div className={cx('today-challenge')}>
-      <div>
-        <time dateTime={formattedDate} className={cx('date')}>
-          {month}월 {day}일
-        </time>
-        <p className={cx('date')}>{weekday}요일</p>
-      </div>
-      <div className={cx('challenge-list')}>
-        <ChallengeList>
-          {pages.map(page => (
-            <>
-              {page.items?.map(v => (
-                <ChallengeList.Item onClick={() => handleItem(v.id)} item={v} key={v.id} />
-              ))}
-            </>
-          ))}
-        </ChallengeList>
-      </div>
-    </div>
-  );
-}
-export default function TodayChallenge() {
-  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useFetchChallenges();
-
-  return (
     <>
       {data?.pages && data?.pages.length !== 0 ? (
-        <InfiniteScroller
-          fetchNextPage={() => fetchNextPage()}
-          hasNextPage={!!hasNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-        >
-          <TodayChallengeList pages={data.pages} />
-        </InfiniteScroller>
+        <div className={cx('today-challenge')}>
+          <div>
+            <time dateTime={formattedDate} className={cx('date')}>
+              {month}월 {day}일
+            </time>
+            <p className={cx('date')}>{weekday}요일</p>
+          </div>
+          <div className={cx('challenge-list')}>
+            <ChallengeList>
+              <InfiniteScroller
+                fetchNextPage={() => fetchNextPage()}
+                hasNextPage={!!hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+              >
+                {data.pages.map(page => (
+                  <>
+                    {page.items?.map(v => (
+                      <ChallengeList.Item onClick={() => handleItem(v.id)} item={v} key={v.id} />
+                    ))}
+                  </>
+                ))}
+              </InfiniteScroller>
+            </ChallengeList>
+          </div>
+        </div>
       ) : (
         <ChallengeRegister />
       )}

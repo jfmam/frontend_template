@@ -2,7 +2,7 @@
 @import './font.module.scss';
 
 .challenge-naviation {
-  height: 100vh;
+  height: $content-height;
   display: flex;
   flex-direction: column;
   justify-content: center;

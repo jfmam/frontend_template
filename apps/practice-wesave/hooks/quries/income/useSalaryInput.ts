@@ -108,7 +108,7 @@ const initialState: InitialStateType = {
 
 export const useSalaryInput = () => {
   const [state, dispatch] = useReducer<Reducer<InitialStateType, Action>>(reducer, initialState);
-  console.log(state);
+
   const onChangeAdditional = useCallback(
     (additional: string) => {
       if (isNaN(+additional)) {

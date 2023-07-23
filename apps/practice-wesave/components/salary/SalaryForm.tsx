@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import styles from '@/styles/SalaryForm.module.scss';
 import { useRouter } from 'next/router';
 import { Income } from '@/common';
-import { useRegistIncome } from '@/hooks/quries/income/useSalaryInput';
+import { InitialStateType, useRegistIncome } from '@/hooks/quries/income/useSalaryInput';
 
 import { stringToMoney } from '../utils';
 import Input from '../input';
@@ -22,7 +22,7 @@ interface IncomeProps {
   onChangePayday: (payday: string) => void;
   onChangeStartTime: (startTime: string) => void;
   onChangeWorkday: (workDay: number) => void;
-  state: Income;
+  state: InitialStateType;
 }
 
 const days = ['월', '화', '수', '목', '금', '토', '일'];
@@ -43,7 +43,7 @@ export default function SalaryForm({
   const onValidateInput = useCallback(() => {
     const isDaySelected = state.workday.length === 0;
     const { income, payday, quitTime, startTime } = state;
-    return Object.values({ income, payday, quitTime, startTime }).includes(0) || isDaySelected;
+    return Object.values({ income, payday, quitTime, startTime }).includes(null) || isDaySelected;
   }, [state]);
 
   return (
@@ -53,21 +53,23 @@ export default function SalaryForm({
         <Input
           onChange={e => onChangeStartTime(e.target.value)}
           onBlur={e => {
-            e.currentTarget.value = state.startTime.toString();
+            e.currentTarget.value = state.startTime?.toString().padStart(2, '0') || '00';
           }}
           className={cx('input', 'input-number')}
           maxLength={2}
           placeholder="00"
+          aria-label="startTime"
         />
         )시 부터 (
         <Input
           onChange={e => onChangeQuitTime(e.target.value)}
           onBlur={e => {
-            e.currentTarget.value = state.quitTime.toString();
+            e.currentTarget.value = state.quitTime?.toString().padStart(2, '0') || '24';
           }}
           className={cx('input', 'input-number')}
           maxLength={2}
           placeholder="00"
+          aria-label="quitTime"
         />
         )시까지
       </div>
@@ -84,11 +86,12 @@ export default function SalaryForm({
           <Input
             onChange={e => onChangePayday(e.target.value)}
             onBlur={e => {
-              e.currentTarget.value = state.payday.toString();
+              e.currentTarget.value = state.payday?.toString() || '1';
             }}
             className={cx('input', 'input-number')}
             maxLength={2}
             placeholder="00"
+            aria-label="payday"
           />
           )일에
         </div>
@@ -103,12 +106,13 @@ export default function SalaryForm({
         <>(</>
         <Input
           onBlur={e => {
-            e.currentTarget.value = stringToMoney(state.income.toString());
+            e.currentTarget.value = stringToMoney(state.income?.toString() || '0');
           }}
           className={cx('input', 'input-salary')}
           onChange={e => onChangeIncome(e.target.value)}
           maxLength={10}
           placeholder="00,000,000"
+          aria-label="income"
         />
         <>)원 벌어요</>
       </div>
@@ -116,7 +120,7 @@ export default function SalaryForm({
         <PrimaryBtn
           disabled={onValidateInput()}
           onClick={() =>
-            mutate(state, {
+            mutate(state as Income, {
               onSuccess: () => router.push('/timer'),
             })
           }

@@ -3,14 +3,22 @@ import { useMutation } from 'react-query';
 import { Income } from '@/common';
 import { checkHour, checkMonth } from '@/utils';
 
+export type InitialStateType = {
+  startTime: number | null;
+  quitTime: number | null;
+  workday: number[];
+  payday: number | null;
+  income: number | null;
+};
+
 type Action =
   | {
       type: 'SET_STARTTIME';
-      payload: Income['startTime'];
+      payload: number;
     }
   | {
       type: 'SET_QUITTIME';
-      payload: Income['quitTime'];
+      payload: number;
     }
   | {
       type: 'SET_WORKDAY';
@@ -22,11 +30,11 @@ type Action =
     }
   | {
       type: 'SET_PAYDAY';
-      payload: Income['payday'];
+      payload: number;
     }
   | {
       type: 'SET_INCOME';
-      payload: Income['income'];
+      payload: number;
     }
   | {
       type: 'SET_ADDITIONAL';
@@ -40,7 +48,7 @@ type Action =
       payload?: Income['additional'];
     };
 
-const reducer = (state: Income, action: Action): Income => {
+const reducer = (state: InitialStateType, action: Action) => {
   switch (action.type) {
     case 'SET_ADDITIONAL': {
       return {
@@ -90,17 +98,17 @@ const reducer = (state: Income, action: Action): Income => {
   }
 };
 
-const initialState = {
-  startTime: 0,
-  quitTime: 0,
+const initialState: InitialStateType = {
+  startTime: null,
+  quitTime: null,
   workday: [],
-  payday: 0,
-  income: 0,
+  payday: null,
+  income: null,
 };
 
 export const useSalaryInput = () => {
-  const [state, dispatch] = useReducer<Reducer<Income, Action>>(reducer, initialState);
-
+  const [state, dispatch] = useReducer<Reducer<InitialStateType, Action>>(reducer, initialState);
+  console.log(state);
   const onChangeAdditional = useCallback(
     (additional: string) => {
       if (isNaN(+additional)) {
@@ -119,9 +127,14 @@ export const useSalaryInput = () => {
         return;
       }
 
+      if (state.quitTime !== null && +startTime >= state.quitTime) {
+        dispatch({ type: 'SET_STARTTIME', payload: 0 });
+        return;
+      }
+
       dispatch({ type: 'SET_STARTTIME', payload: +startTime });
     },
-    [dispatch],
+    [dispatch, state.quitTime],
   );
 
   const onChangeQuitTime = useCallback(
@@ -131,7 +144,12 @@ export const useSalaryInput = () => {
         return;
       }
 
-      if (+quitTime - state.startTime < 0) {
+      if (state.startTime === null) {
+        dispatch({ type: 'SET_QUITTIME', payload: +quitTime });
+        return;
+      }
+
+      if (+quitTime - state.startTime <= 0) {
         dispatch({ type: 'SET_QUITTIME', payload: +quitTime + 12 > 24 ? 24 : +quitTime + 12 });
         return;
       }

@@ -15,6 +15,7 @@
 - react-query
 - aws amplify
 - storybook
+- jest, react testing library
 
 ## 담당 및 기능
 | 기능                   | 담당 | 진행 중 |

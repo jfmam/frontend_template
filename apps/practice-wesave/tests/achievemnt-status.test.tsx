@@ -25,8 +25,8 @@ describe('achievement page 테스트', () => {
   });
 
   it('achievement list가 없을 경우', () => {
-    jest.mock('@/hooks/quries/challenge/useFetchChallenges', () => ({
-      useFetchChallenges: jest.fn().mockImplementation(() => ({ data: { pages: [] } })),
+    jest.mock('@/hooks/quries/challenge/useFetchAchievements', () => ({
+      useFetchAchievements: jest.fn().mockImplementation(() => ({ data: { pages: [] } })),
     }));
     const queryClient = new QueryClient();
     render(

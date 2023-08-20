@@ -27,6 +27,5 @@ export function useFetchMyAchievements() {
       if (lastPage.isLastPage) return undefined;
       return { offset: lastPage.offset + 1 };
     },
-    staleTime: 1000,
   });
 }

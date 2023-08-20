@@ -1,4 +1,4 @@
-import { ReactElement, Suspense, useState } from 'react';
+import { Fragment, ReactElement, Suspense, useState } from 'react';
 import cn from 'classnames/bind';
 import { dehydrate, QueryClient } from 'react-query';
 
@@ -41,7 +41,7 @@ export default function MyAchievement() {
             <div className={cx('myachievement')}>
               <div className={cx('badge-container')}>
                 {data.pages?.map(page => (
-                  <>
+                  <Fragment key={page.offset}>
                     {page.items?.map(v => (
                       <AchievementBadge
                         onClick={() => onClickListItem(v)}
@@ -50,7 +50,7 @@ export default function MyAchievement() {
                         lengthType={isLarge ? undefined : 'small'}
                       />
                     ))}
-                  </>
+                  </Fragment>
                 ))}
               </div>
             </div>

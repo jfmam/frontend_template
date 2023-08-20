@@ -1,4 +1,4 @@
-import { ReactElement, Suspense, useState } from 'react';
+import { Fragment, ReactElement, Suspense, useState } from 'react';
 import cn from 'classnames/bind';
 import ChallengeLayout from '@/components/layout/challenge/ChallengeLayout';
 import { getAchivements, useFetchAchievements } from '@/hooks/quries/challenge/useFetchAchievements';
@@ -38,11 +38,11 @@ export default function AchievementStatus() {
           <div className={cx('achievement-status')}>
             <AchievementList>
               {data.pages.map(page => (
-                <>
+                <Fragment key={page.offset}>
                   {page.items?.map(v => (
                     <AchievementList.Item item={v} key={v.id} onClick={() => onClickListItem(v)} />
                   ))}
-                </>
+                </Fragment>
               ))}
             </AchievementList>
           </div>

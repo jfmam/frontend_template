@@ -6483,6 +6483,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bezier-easing@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "bezier-easing@npm:2.1.0"
+  checksum: ec22666b5385979b3e7a63eaf2631395b1be5beb3aed4f14cc70ae9eb09032082584f7e3eec045e4c122466987ed7e159f5b39f82b8a9870cd55e75b0d55a7d5
+  languageName: node
+  linkType: hard
+
 "big-integer@npm:^1.6.16, big-integer@npm:^1.6.7":
   version: 1.6.51
   resolution: "big-integer@npm:1.6.51"
@@ -12775,6 +12782,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jsdom-testing-mocks@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "jsdom-testing-mocks@npm:1.9.0"
+  dependencies:
+    bezier-easing: ^2.1.0
+    css-mediaquery: ^0.1.2
+  checksum: 236a7d6b7da5dbc96f192c842a959cf5d98c7144311fe3b8d13b3aabd85abb5b6e4f200661f64f9765a923f577d11b7e48b0f92e704055e3d1a51be9df845e41
+  languageName: node
+  linkType: hard
+
 "jsdom@npm:^20.0.0":
   version: 20.0.3
   resolution: "jsdom@npm:20.0.3"
@@ -15774,6 +15791,7 @@ __metadata:
     jest: ^29.6.1
     jest-dom: ^4.0.0
     jest-environment-jsdom: ^29.6.1
+    jsdom-testing-mocks: ^1.9.0
     jsonwebtoken: ^9.0.1
     msw: ^1.2.3
     next: 13.2.4

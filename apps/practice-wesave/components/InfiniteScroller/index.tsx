@@ -44,7 +44,7 @@ export default function InfiniteScroller({
   return (
     <div>
       {children}
-      {hasNextPage && <div ref={observerRef}></div>}
+      {hasNextPage && <div style={{ height: 50 }} ref={observerRef}></div>}
     </div>
   );
 }

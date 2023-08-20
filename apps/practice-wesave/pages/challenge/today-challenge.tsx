@@ -1,4 +1,4 @@
-import { ReactElement, useMemo } from 'react';
+import { ReactElement, useMemo, Fragment } from 'react';
 import cn from 'classnames/bind';
 import { format } from 'date-fns';
 import styles from '@/styles/TodayChallenge.module.scss';
@@ -41,12 +41,12 @@ export default function TodayChallenge() {
                 hasNextPage={!!hasNextPage}
                 isFetchingNextPage={isFetchingNextPage}
               >
-                {data.pages.map(page => (
-                  <>
-                    {page.items?.map(v => (
+                {data.pages.map(({ items, offset }) => (
+                  <Fragment key={offset}>
+                    {items?.map(v => (
                       <ChallengeList.Item onClick={() => handleItem(v.id)} item={v} key={v.id} />
                     ))}
-                  </>
+                  </Fragment>
                 ))}
               </InfiniteScroller>
             </ChallengeList>

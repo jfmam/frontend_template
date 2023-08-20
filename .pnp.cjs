@@ -12343,6 +12343,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["bezier-easing", [\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/cache/bezier-easing-npm-2.1.0-71cc003779-ec22666b53.zip/node_modules/bezier-easing/",\
+          "packageDependencies": [\
+            ["bezier-easing", "npm:2.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["big-integer", [\
         ["npm:1.6.51", {\
           "packageLocation": "./.yarn/cache/big-integer-npm-1.6.51-1a244d8e1f-3d444173d1.zip/node_modules/big-integer/",\
@@ -19752,6 +19761,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["jsdom-testing-mocks", [\
+        ["npm:1.9.0", {\
+          "packageLocation": "./.yarn/cache/jsdom-testing-mocks-npm-1.9.0-620a1c5ad2-236a7d6b7d.zip/node_modules/jsdom-testing-mocks/",\
+          "packageDependencies": [\
+            ["jsdom-testing-mocks", "npm:1.9.0"],\
+            ["bezier-easing", "npm:2.1.0"],\
+            ["css-mediaquery", "npm:0.1.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["jsesc", [\
         ["npm:0.5.0", {\
           "packageLocation": "./.yarn/cache/jsesc-npm-0.5.0-6827074492-b8b44cbfc9.zip/node_modules/jsesc/",\
@@ -23032,6 +23052,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:59ea08c590b1d14efec692f6041a3a0db8adfc32c86d000597b9a5a929ff4014d6a0b812824b25ba1b6086b299b976200cd0e2d2a1e419e4d08a9aef74cd24ec#npm:29.6.1"],\
             ["jest-dom", "npm:4.0.0"],\
             ["jest-environment-jsdom", "virtual:59ea08c590b1d14efec692f6041a3a0db8adfc32c86d000597b9a5a929ff4014d6a0b812824b25ba1b6086b299b976200cd0e2d2a1e419e4d08a9aef74cd24ec#npm:29.6.1"],\
+            ["jsdom-testing-mocks", "npm:1.9.0"],\
             ["jsonwebtoken", "npm:9.0.1"],\
             ["msw", "virtual:59ea08c590b1d14efec692f6041a3a0db8adfc32c86d000597b9a5a929ff4014d6a0b812824b25ba1b6086b299b976200cd0e2d2a1e419e4d08a9aef74cd24ec#npm:1.2.3"],\
             ["next", "virtual:59ea08c590b1d14efec692f6041a3a0db8adfc32c86d000597b9a5a929ff4014d6a0b812824b25ba1b6086b299b976200cd0e2d2a1e419e4d08a9aef74cd24ec#npm:13.2.4"],\

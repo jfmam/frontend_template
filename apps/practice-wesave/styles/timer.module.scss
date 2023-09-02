@@ -1,6 +1,12 @@
 @import './variables.module.scss';
 @import './font.module.scss';
 
+.button-container {
+  @media (min-width: 425px) {
+    display: none;
+  }
+}
+
 .button {
   border: 1.5px solid $bg100;
   border-top: 0;

@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 import styels from '@/styles/timer.module.scss';
 import RangeBar from '@/components/timer/RangeBar';
 import { useDailyInfo, useMonthlyInfo, useTimer } from '@/hooks/timer';
-import useMediaQuery from '@/hooks/useMediaQuery';
 
 const cx = cn.bind(styels);
 
@@ -45,7 +44,6 @@ function TimerRangeBar() {
 }
 
 export default function Timer() {
-  const isMobile = useMediaQuery('(min-width: 425px)');
   const [barIndex, setBarIndex] = useState(0);
   let sliderRef = useRef<{ slickGoTo: Function } | null>(null);
   const settings = {
@@ -69,28 +67,28 @@ export default function Timer() {
 
   return (
     <>
-      {!isMobile && (
-        <div>
-          <button
-            className={cx('button', { 'button-active': barIndex === 0 })}
-            onClick={() => sliderRef.current?.slickGoTo(0)}
-          >
-            이번달
-          </button>
-          <button
-            className={cx('button', { 'button-active': barIndex === 1 })}
-            onClick={() => sliderRef.current?.slickGoTo(1)}
-          >
-            오늘
-          </button>
-          <button
-            className={cx('button', { 'button-active': barIndex === 2 })}
-            onClick={() => sliderRef.current?.slickGoTo(2)}
-          >
-            타이머
-          </button>
-        </div>
-      )}
+      {/* {!isMobile && ( */}
+      <div className={cx('button-container')}>
+        <button
+          className={cx('button', { 'button-active': barIndex === 0 })}
+          onClick={() => sliderRef.current?.slickGoTo(0)}
+        >
+          이번달
+        </button>
+        <button
+          className={cx('button', { 'button-active': barIndex === 1 })}
+          onClick={() => sliderRef.current?.slickGoTo(1)}
+        >
+          오늘
+        </button>
+        <button
+          className={cx('button', { 'button-active': barIndex === 2 })}
+          onClick={() => sliderRef.current?.slickGoTo(2)}
+        >
+          타이머
+        </button>
+      </div>
+      {/* )} */}
       <Slider ref={slider => (sliderRef.current = slider)} {...settings}>
         <MonthlyRangeBar />
         <DailyRangeBar />

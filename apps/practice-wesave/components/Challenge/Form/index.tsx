@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormikProps } from 'formik';
 import cn from 'classnames/bind';
 import { PrimaryBtn } from '@/components/button/PrimaryBtn';
@@ -13,6 +13,7 @@ import { Challenge } from '@/common/challenge';
 import { BadgeType } from '@/common/badge';
 
 import { badges, days } from './constants';
+import { toast, Toaster } from 'react-hot-toast';
 
 const badgeCx = cn.bind(badgeStyles);
 const cx = cn.bind(styles);
@@ -21,10 +22,11 @@ export type InitialValuesType = Challenge & { badge: BadgeType | null };
 
 interface ChallengeCreateFormProps {
   isLoading: boolean;
+  isError: boolean;
   formik: FormikProps<InitialValuesType>;
 }
 
-export default function ChallengeCreateForm({ isLoading, formik }: ChallengeCreateFormProps) {
+export default function ChallengeCreateForm({ isLoading, isError, formik }: ChallengeCreateFormProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [badgeList, setBadgeList] = useState<BadgeType[]>(badges);
   const { dirty, setFieldValue, handleChange, handleSubmit, values, errors } = formik;
@@ -56,6 +58,12 @@ export default function ChallengeCreateForm({ isLoading, formik }: ChallengeCrea
       });
     }
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error('챌린지 생성에 실패하였습니다.');
+    }
+  }, [isError]);
 
   return (
     <>
@@ -127,7 +135,7 @@ export default function ChallengeCreateForm({ isLoading, formik }: ChallengeCrea
             disabled={Object.keys(errors).length > 0 || isLoading || !dirty}
             className={cx('confirm-btn')}
           >
-            만들기
+            {!isError ? '만들기' : '재시도'}
           </PrimaryBtn>
         </div>
       </form>
@@ -137,6 +145,7 @@ export default function ChallengeCreateForm({ isLoading, formik }: ChallengeCrea
         oldSelectedBadge={values.badge}
         onClickSelectBtn={(badge: BadgeType) => onClickBadge(badge)}
       />
+      {isError && <Toaster position="top-center" />}
     </>
   );
 }

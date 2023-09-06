@@ -21,7 +21,7 @@ const registerSchema = yup.object().shape({
 
 export default function Register() {
   const [isSuccess, setIsSuccess] = useState(false);
-  const { mutate, isLoading } = useRegistChallenges();
+  const { mutate, isLoading, isError } = useRegistChallenges();
   const isDesktop = useMediaQuery({
     query: '(min-width: 425px)',
   });
@@ -45,21 +45,24 @@ export default function Register() {
     },
     validationSchema: registerSchema,
   });
-  return (
-    <div className={cx('register')}>
-      {isSuccess ? (
-        <ChallengeGuideLayout
-          icon={{ src: '/complete.svg', width: isDesktop ? 95 : 70, height: isDesktop ? 95 : 70 }}
-          description={{ first: '새로운 챌린지를', second: '만들었습니다!' }}
-          onClickButton={() => setIsSuccess(false)}
-        />
-      ) : (
-        <ChallengeCreateForm isLoading={isLoading} formik={formik} />
-      )}
-    </div>
-  );
+
+  if (isSuccess) {
+    return (
+      <ChallengeGuideLayout
+        icon={{ src: '/complete.svg', width: isDesktop ? 95 : 70, height: isDesktop ? 95 : 70 }}
+        description={{ first: '새로운 챌린지를', second: '만들었습니다!' }}
+        onClickButton={() => setIsSuccess(false)}
+      />
+    );
+  }
+
+  return <ChallengeCreateForm isError={isError} isLoading={isLoading} formik={formik} />;
 }
 
 Register.getLayout = function getLayout(page: ReactElement) {
-  return <ChallengeLayout>{page}</ChallengeLayout>;
+  return (
+    <ChallengeLayout>
+      <div className={cx('register')}>{page}</div>
+    </ChallengeLayout>
+  );
 };

@@ -6,7 +6,7 @@ import ChallengeLayout from '@/components/layout/challenge/ChallengeLayout';
 import { getAchivements, useFetchAchievements } from '@/hooks/quries/challenge/useFetchAchievements';
 import ApiErrorBoundary from '@/components/error/boundary/ApiErrorBoundary';
 import AchievementFetcher from '@/components/Fetcher/AchievementFetcher';
-import AchievementContainer from '@/components/Achieve/AchievementContainer';
+import AchievementContainer from '@/components/container/AchievementContainer';
 
 export default function AchievementStatus() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useFetchAchievements();

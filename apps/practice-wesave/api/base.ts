@@ -15,6 +15,8 @@ class APIService {
         // 'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json;charset=UTF-8',
       },
+      validateStatus: () => true,
+      timeout: 5000,
     });
   }
 }

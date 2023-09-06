@@ -1,0 +1,20 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.container {
+  height: $content-height;
+
+  @media (max-width: 425px) {
+    height: $content-height-mobile;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.message {
+  font-size: $body2;
+  text-align: center;
+}

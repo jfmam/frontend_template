@@ -35,10 +35,12 @@ describe('achievement page 테스트', () => {
       </QueryClientProvider>,
     );
 
-    expect(screen.getByRole('button', { name: '챌린지 만들기' })).toBeInTheDocument();
+    waitFor(() => {
+      expect(screen.findByRole('button', { name: '챌린지 만들기' })).toBeInTheDocument();
+    });
   });
 
-  it('achivement 상세보기', async () => {
+  it('achievement 상세보기', async () => {
     const queryClient = new QueryClient();
     render(
       <QueryClientProvider client={queryClient}>

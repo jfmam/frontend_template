@@ -1,65 +1,27 @@
-import { Fragment, ReactElement, Suspense, useState } from 'react';
-import cn from 'classnames/bind';
+'use client';
+
+import { ReactElement } from 'react';
+import { dehydrate, QueryClient } from 'react-query';
 import ChallengeLayout from '@/components/layout/challenge/ChallengeLayout';
 import { getAchivements, useFetchAchievements } from '@/hooks/quries/challenge/useFetchAchievements';
-import { AchivementResponse } from '@/common/achievement';
-import AchievementList from '@/components/Achieve/List/AchievementList';
-import ChallengeRegister from '@/components/Challenge/ChallengeRegister';
-import styles from '@/styles/achievement-status.module.scss';
-import AchievementStatusDetail from '@/components/Achieve/AchievementStatusDetail';
-import { dehydrate, QueryClient } from 'react-query';
-import InfiniteScroller from '@/components/InfiniteScroller';
-
-const cx = cn.bind(styles);
+import ApiErrorBoundary from '@/components/error/boundary/ApiErrorBoundary';
+import AchievementFetcher from '@/components/Fetcher/AchievementFetcher';
+import AchievementContainer from '@/components/Achieve/AchievementContainer';
 
 export default function AchievementStatus() {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useFetchAchievements();
-  const [isOpenDetail, setIsOpenDetail] = useState(false);
-  const [detailItem, setDetailItem] = useState<AchivementResponse | null>(null);
-
-  const onClickListItem = (value: AchivementResponse) => {
-    setIsOpenDetail(true);
-    setDetailItem(value);
-  };
-
-  const closeDetail = () => {
-    setIsOpenDetail(false);
-    setDetailItem(null);
-  };
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useFetchAchievements();
 
   return (
-    <>
-      {data?.pages && data?.pages.length !== 0 ? (
-        <InfiniteScroller
-          fetchNextPage={() => fetchNextPage()}
-          hasNextPage={!!hasNextPage}
+    <ApiErrorBoundary error={data?.pages[0].error}>
+      <AchievementFetcher data={data} isLoading={isLoading}>
+        <AchievementContainer
+          data={data}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
           isFetchingNextPage={isFetchingNextPage}
-        >
-          <div className={cx('achievement-status')}>
-            <AchievementList>
-              {data.pages.map(page => (
-                <Fragment key={page.offset}>
-                  {page.items?.map(v => (
-                    <AchievementList.Item item={v} key={v.id} onClick={() => onClickListItem(v)} />
-                  ))}
-                </Fragment>
-              ))}
-            </AchievementList>
-          </div>
-          {isOpenDetail && (
-            <Suspense fallback={<div>Loading...</div>}>
-              <AchievementStatusDetail
-                item={detailItem as AchivementResponse}
-                onRequestClose={closeDetail}
-                isOpen={isOpenDetail}
-              />
-            </Suspense>
-          )}
-        </InfiniteScroller>
-      ) : (
-        <ChallengeRegister />
-      )}
-    </>
+        />
+      </AchievementFetcher>
+    </ApiErrorBoundary>
   );
 }
 
@@ -70,7 +32,9 @@ AchievementStatus.getLayout = function getLayout(page: ReactElement) {
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchInfiniteQuery('achievements', () => getAchivements(), { staleTime: 1000 });
+  await queryClient.prefetchInfiniteQuery('achievements', () => getAchivements(), {
+    retry: false,
+  });
 
   return {
     props: {

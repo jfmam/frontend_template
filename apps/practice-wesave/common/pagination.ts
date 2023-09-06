@@ -6,4 +6,5 @@ export interface Pagination {
 export type PaginationResponse<T> = {
   items: T[];
   isLastPage?: boolean;
+  error?: { message: string; type?: 'network' | 'auth' | 'unknown' };
 } & Pagination;

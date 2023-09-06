@@ -1,8 +1,9 @@
 import { AchivementResponse } from '@/common/achievement';
 import { Pagination, PaginationResponse } from '@/common/pagination';
-
 import { AxiosInstance } from 'axios';
+
 import { instance } from './base';
+import { checkError } from './error';
 
 export default class AchievementAPI {
   service: AxiosInstance;
@@ -15,7 +16,7 @@ export default class AchievementAPI {
     const result = await this.service.get<PaginationResponse<AchivementResponse>>(`/achievement`, {
       params: options,
     });
-
+    checkError(result.status);
     return result.data;
   }
 

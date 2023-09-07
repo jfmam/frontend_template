@@ -5,8 +5,7 @@ import useMediaQuery from '@/hooks/useMediaQuery';
 import { BadgeType } from '@/common/badge';
 
 import { badges } from '../Challenge/Form/constants';
-import Badge from '../button/Badge';
-import { PrimaryBtn } from '../button/PrimaryBtn';
+import { PrimaryBtn, Badge } from '../atom';
 
 Modal.setAppElement('main');
 const modalStyles = cn.bind(styles);

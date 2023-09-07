@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import cn from 'classnames/bind';
 import styles from '@/styles/error.module.scss';
-import { PrimaryBtn } from '../button/PrimaryBtn';
+import { PrimaryBtn } from '../atom';
 
 const cx = cn.bind(styles);
 

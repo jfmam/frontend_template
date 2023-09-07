@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 import { useModalDispatch, useModalState } from '../Modal/NavigationModalContext';
 
-import MenuIcon from './MenuIcon';
+import { MenuIcon } from '../atom';
 
 const headerStyle = cn.bind(styles);
 

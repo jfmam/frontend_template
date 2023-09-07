@@ -3,7 +3,7 @@ import Image from 'next/image';
 import cn from 'classnames/bind';
 import styles from '@/styles/challenge.module.scss';
 
-import { PrimaryBtn } from '../button/PrimaryBtn';
+import { PrimaryBtn } from '../atom';
 
 const cx = cn.bind(styles);
 

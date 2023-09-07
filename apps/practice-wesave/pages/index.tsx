@@ -1,10 +1,10 @@
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import cn from 'classnames/bind';
-import styles from '@/styles/home.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import { PrimaryBtn } from '@/components/button/PrimaryBtn';
-import { useEffect, useState } from 'react';
+import styles from '@/styles/home.module.scss';
+import { PrimaryBtn } from '@/components/atom';
 import LocalStorage from '@/utils/storage';
 
 const cx = cn.bind(styles);

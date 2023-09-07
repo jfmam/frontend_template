@@ -9,10 +9,10 @@ interface SnsButtonProps {
   onClick: () => void;
 }
 
-export const SnsButton = ({ sns, onClick }: SnsButtonProps) => {
+export default function SnsButton({ sns, onClick }: SnsButtonProps) {
   return (
     <button className={cx('sns')} onClick={onClick}>
       <Image width={64} height={64} src={`/${sns}.svg`} alt={`${sns} login button`}></Image>
     </button>
   );
-};
+}

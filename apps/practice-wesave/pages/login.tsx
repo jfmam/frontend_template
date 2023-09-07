@@ -4,15 +4,12 @@ import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import cn from 'classnames/bind';
-
+import { useCookies } from 'react-cookie';
 import styles from '@/styles/signin.module.scss';
 import AccountLayout from '@/components/layout/Account/AccountLayout';
-import Input from '@/components/input';
-import { PrimaryBtn } from '@/components/button/PrimaryBtn';
-import { SnsButton } from '@/components/button/SnsButton';
+import { PrimaryBtn, SnsButton, Input } from '@/components/atom';
 import { Token, UserLoginType } from '@/common/user';
 import { useLogin } from '@/hooks/quries/user/useLogin';
-import { useCookies } from 'react-cookie';
 import FieldErrorMessage from '@/components/error/FieldErrorMessage';
 
 const signInSchema = Yup.object().shape({

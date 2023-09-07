@@ -1,19 +1,15 @@
 import { useEffect, useState } from 'react';
+import { toast, Toaster } from 'react-hot-toast';
 import { FormikProps } from 'formik';
 import cn from 'classnames/bind';
-import { PrimaryBtn } from '@/components/button/PrimaryBtn';
-import Tabselector from '@/components/button/TabSelector';
-import Badge from '@/components/button/Badge';
-import DaySelector from '@/components/button/DaySelector';
+import { PrimaryBtn, Badge, TabSelector, DaySelector, Input } from '@/components/atom';
 import badgeStyles from '@/styles/Badge.module.scss';
-import Input from '@/components/input';
 import styles from '@/styles/ChallengeCreateForm.module.scss';
 import BadgeModal from '@/components/Modal/BadgeModal';
 import { Challenge } from '@/common/challenge';
 import { BadgeType } from '@/common/badge';
 
 import { badges, days } from './constants';
-import { toast, Toaster } from 'react-hot-toast';
 
 const badgeCx = cn.bind(badgeStyles);
 const cx = cn.bind(styles);
@@ -84,20 +80,20 @@ export default function ChallengeCreateForm({ isLoading, isError, formik }: Chal
         </div>
         <div>
           <div>
-            <Tabselector
+            <TabSelector
               onClick={() => setFieldValue('type', 'save')}
               isSelected={values.type === 'save'}
               className={cx('label')}
             >
               돈모으기
-            </Tabselector>
-            <Tabselector
+            </TabSelector>
+            <TabSelector
               onClick={() => setFieldValue('type', 'spend')}
               isSelected={values.type === 'spend'}
               className={cx('label')}
             >
               물건사기
-            </Tabselector>
+            </TabSelector>
           </div>
           <Input required maxLength={20} name="goal" placeholder="직접 입력" onChange={handleChange} />
         </div>

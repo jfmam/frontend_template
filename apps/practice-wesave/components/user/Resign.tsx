@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import cn from 'classnames/bind';
 import resignStyles from '@/styles/resign.module.scss';
-import { PrimaryBtn } from '@/components/button/PrimaryBtn';
+import { PrimaryBtn } from '@/components/atom';
 import { useResignUser } from '@/hooks/quries/user/useUser';
 
 const resignCx = cn.bind(resignStyles);

@@ -8,10 +8,7 @@ import { Income } from '@/common';
 import { InitialStateType, useRegistIncome } from '@/hooks/quries/income/useSalaryInput';
 
 import { stringToMoney } from '../utils';
-import Input from '../input';
-import { PrimaryBtn } from '../button/PrimaryBtn';
-
-import DayButton from './DayButton';
+import { PrimaryBtn, Input, DayButton } from '../atom';
 
 const cx = cn.bind(styles);
 

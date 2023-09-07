@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import cn from 'classnames/bind';
 import styles from '@/styles/TodayChallengeButton.module.scss';
 import { ChallengeResponse } from '@/common/challenge';
-import CheakSelector from '@/components/button/CheckSelector';
+import { CheckSelector } from '@/components/atom';
 import { ChallengeStatus } from '@/hooks/quries/challenge/useToggleChallenges';
 
 interface ChallengeButtonProps {
@@ -28,7 +28,7 @@ export default function TodayChallengeButton({ challengeListItem, onClick }: Cha
         <div className={cx('goal', { 'goal-selected': toggle })}>{type === 'save' ? `${goal}원` : goal}</div>
       </button>
       <span>
-        <CheakSelector isSelect={toggle} onClick={() => onClickBtn(toggle)} />
+        <CheckSelector isSelect={toggle} onClick={() => onClickBtn(toggle)} />
       </span>
     </li>
   );

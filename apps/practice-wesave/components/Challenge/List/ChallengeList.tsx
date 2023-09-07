@@ -4,7 +4,7 @@ import styles from '@/styles/ChallengeList.module.scss';
 import { ChallengeResponse } from '@/common/challenge';
 
 import { ChallengeStatus } from '@/hooks/quries/challenge/useToggleChallenges';
-import CheakSelector from '@/components/button/CheckSelector';
+import { CheckSelector } from '@/components/atom';
 
 const cx = cn.bind(styles);
 
@@ -37,7 +37,7 @@ function ChallengeItem({ item, onClick }: ChallengeItemProps) {
         <div className={cx('goal', { 'goal-selected': toggle })}>{type === 'save' ? `${goal}원` : goal}</div>
       </button>
       <span>
-        <CheakSelector isSelect={toggle} onClick={() => onClickBtn()} />
+        <CheckSelector isSelect={toggle} onClick={() => onClickBtn()} />
       </span>
     </li>
   );

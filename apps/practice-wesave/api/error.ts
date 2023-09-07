@@ -1,4 +1,4 @@
-import { APIError } from '@/components/error/ApiError';
+import { APIError } from '@/common';
 
 export const checkError = (status: number) => {
   try {

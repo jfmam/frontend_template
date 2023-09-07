@@ -1,11 +1,9 @@
 import { ReactElement } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 
-import ChallengeLayout from '@/components/layout/challenge/ChallengeLayout';
+import ChallengeLayout from '@/components/template/layout/challenge/ChallengeLayout';
 import { getMyAchivements, useFetchMyAchievements } from '@/hooks/quries/challenge/useFetchMyAchivement';
-import ApiErrorBoundary from '@/components/error/boundary/ApiErrorBoundary';
-import MyAchievementContainer from '@/components/container/MyAchievementContainer';
-import MyAchievementFetcher from '@/components/Fetcher/MyAchievementFetcher';
+import { ApiErrorBoundary, MyAchievementFetcher, MyAchievementContainer } from '@/components/template';
 
 export default function MyAchievement() {
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading } = useFetchMyAchievements();

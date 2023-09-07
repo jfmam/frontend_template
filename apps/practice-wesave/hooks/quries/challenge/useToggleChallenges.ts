@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import ChallengeAPI from '@/api/challenge';
-import { ChallengeResponse } from '@/common/challenge';
+import { ChallengeResponse } from '@/common';
 
 export type ChallengeStatus = 'complete' | 'progress';
 

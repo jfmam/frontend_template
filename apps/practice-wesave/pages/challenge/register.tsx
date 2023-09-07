@@ -2,13 +2,12 @@ import { ReactElement, useState } from 'react';
 import cn from 'classnames/bind';
 import * as yup from 'yup';
 import { useMediaQuery } from 'react-responsive';
-
-import ChallengeLayout from '@/components/layout/challenge/ChallengeLayout';
-import ChallengeCreateForm, { InitialValuesType } from '@/components/Challenge/Form';
-import styles from '@/styles/Register.module.scss';
-import { useRegistChallenges } from '@/hooks/quries/challenge/useRegistChallenges';
 import { useFormik } from 'formik';
-import ChallengeGuideLayout from '@/components/layout/challenge/ChallengeGuideLayout';
+
+import { ChallengeLayout } from '@/components/template';
+import { ChallengeGuideLayout, ChallengeCreateForm, InitialValuesType } from '@/components/section';
+import { useRegistChallenges } from '@/hooks/quries/challenge/useRegistChallenges';
+import styles from '@/styles/Register.module.scss';
 
 const cx = cn.bind(styles);
 

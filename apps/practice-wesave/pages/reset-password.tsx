@@ -6,10 +6,9 @@ import { useRouter } from 'next/router';
 import { useMediaQuery } from 'react-responsive';
 import styles from '@/styles/reset-password.module.scss';
 import { PrimaryBtn, Input } from '@/components/atom';
-import FieldErrorMessage from '@/components/error/FieldErrorMessage';
-import AccountLayout from '@/components/layout/Account/AccountLayout';
+import { FieldErrorMessage } from '@/components/section';
+import { AccountLayout, AccountGuideLayout } from '@/components/template';
 import { useResetPassword } from '@/hooks/quries/user/usePasswordManagement';
-import AccountGuideLayout from '@/components/layout/Account/AccountGuideLayout';
 
 const cx = cn.bind(styles);
 

@@ -1,4 +1,4 @@
-import { BadgeType } from '@/common/badge';
+import { BadgeType } from '@/common';
 
 type MyAchievementBadegeListMock = Array<{ id: number; badge: BadgeType }>;
 

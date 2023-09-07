@@ -1,6 +1,5 @@
-import { AchivementResponse } from '@/common/achievement';
-import { Pagination, PaginationResponse } from '@/common/pagination';
 import { AxiosInstance } from 'axios';
+import { AchivementResponse, Pagination, PaginationResponse } from '@/common';
 
 import { instance } from './base';
 import { checkError } from './error';

@@ -1,4 +1,4 @@
-import { ChallengeResponse } from '@/common/challenge';
+import { ChallengeResponse } from '@/common';
 
 type ChallengeListItem = {
   name: string;

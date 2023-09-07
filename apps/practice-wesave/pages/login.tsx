@@ -6,11 +6,11 @@ import { useFormik } from 'formik';
 import cn from 'classnames/bind';
 import { useCookies } from 'react-cookie';
 import styles from '@/styles/signin.module.scss';
-import AccountLayout from '@/components/layout/Account/AccountLayout';
+import { AccountLayout } from '@/components/template';
 import { PrimaryBtn, SnsButton, Input } from '@/components/atom';
 import { Token, UserLoginType } from '@/common/user';
 import { useLogin } from '@/hooks/quries/user/useLogin';
-import FieldErrorMessage from '@/components/error/FieldErrorMessage';
+import { FieldErrorMessage } from '@/components/section';
 
 const signInSchema = Yup.object().shape({
   email: Yup.string().email('올바른 이메일을 입력해주세요.').required('이메일을 입력해주세요.'),

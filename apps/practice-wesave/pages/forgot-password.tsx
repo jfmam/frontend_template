@@ -3,10 +3,10 @@ import cn from 'classnames/bind';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/styles/forgot-password.module.scss';
-import AccountLayout from '@/components/layout/Account/AccountLayout';
+import { AccountLayout } from '@/components/template';
 import { PrimaryBtn, Input } from '@/components/atom';
 import Link from 'next/link';
-import FieldErrorMessage from '@/components/error/FieldErrorMessage';
+import { FieldErrorMessage } from '@/components/section';
 import { useFindUser } from '@/hooks/quries/user/usePasswordManagement';
 
 const cx = cn.bind(styles);

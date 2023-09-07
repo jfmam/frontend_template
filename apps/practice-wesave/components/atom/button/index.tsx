@@ -6,3 +6,4 @@ export { default as TabSelector } from './TabSelector';
 export { default as SnsButton } from './SnsButton';
 export { default as DayButton } from './DayButton';
 export { default as MenuIcon } from './MenuIcon';
+export { default as AchievementBadge } from './AchievementBadge';

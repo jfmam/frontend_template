@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import SalaryForm from '@/components/salary/SalaryForm';
+import SalaryForm from '@/components/template/salary/SalaryForm';
 import { useRegistIncome } from '@/hooks/quries/income/useSalaryInput';
 
 jest.mock('@/hooks/quries/income/useSalaryInput', () => ({

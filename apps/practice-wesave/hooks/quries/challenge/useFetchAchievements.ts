@@ -1,8 +1,7 @@
 import { useInfiniteQuery } from 'react-query';
-import AchievementAPI from '@/api/achievement';
-import { PaginationResponse } from '@/common/pagination';
-import { AchivementResponse } from '@/common/achievement';
 import { AxiosError } from 'axios';
+import AchievementAPI from '@/api/achievement';
+import { PaginationResponse, AchivementResponse } from '@/common';
 
 const pageSize = 5;
 

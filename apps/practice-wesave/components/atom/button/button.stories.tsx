@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes, useState } from 'react';
 import cn from 'classnames/bind';
 import styles from '@/styles/button.module.scss';
-import { BadgeType } from '@/common/badge';
+import { BadgeType } from '@/common';
 
 import TabSelector from './TabSelector';
 import CheckSelector from './CheckSelector';

@@ -1,8 +1,7 @@
+import { AxiosError } from 'axios';
 import { useInfiniteQuery } from 'react-query';
 import ChallengeAPI from '@/api/challenge';
-import { ChallengeResponse } from '@/common/challenge';
-import { PaginationResponse } from '@/common/pagination';
-import { AxiosError } from 'axios';
+import { ChallengeResponse, PaginationResponse } from '@/common';
 
 const pageSize = 5;
 

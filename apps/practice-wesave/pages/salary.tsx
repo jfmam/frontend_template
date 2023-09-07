@@ -1,6 +1,6 @@
 import cn from 'classnames/bind';
 import styles from '@/styles/salary.module.scss';
-import SalaryForm from '@/components/salary/SalaryForm';
+import { SalaryForm } from '@/components/template';
 import { useSalaryInput } from '@/hooks/quries/income/useSalaryInput';
 
 const cx = cn.bind(styles);

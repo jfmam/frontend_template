@@ -1,11 +1,11 @@
+import { useState, lazy, Suspense } from 'react';
 import Link from 'next/link';
 import cn from 'classnames/bind';
 import mypageStyles from '@/styles/mypage.module.scss';
-import { useState, lazy, Suspense } from 'react';
 
 const myPageCx = cn.bind(mypageStyles);
 
-const Resign = lazy(() => import('@/components/user/Resign'));
+const Resign = lazy(() => import('@/components/template/user/Resign'));
 
 const user = {
   id: 1,

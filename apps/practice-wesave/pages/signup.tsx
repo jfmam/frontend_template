@@ -5,13 +5,12 @@ import Link from 'next/link';
 import cn from 'classnames/bind';
 import { useRouter } from 'next/router';
 import { useMediaQuery } from 'react-responsive';
-import AccountLayout from '@/components/layout/Account/AccountLayout';
-import FieldErrorMessage from '@/components/error/FieldErrorMessage';
+import { AccountLayout, AccountGuideLayout } from '@/components/template';
+import { FieldErrorMessage } from '@/components/section';
 import { PrimaryBtn, SnsButton, Input } from '@/components/atom';
 import styles from '@/styles/signup.module.scss';
 import { useSignUp } from '@/hooks/quries/user/useSignUp';
-import { SignUpType } from '@/common/user';
-import AccountGuideLayout from '@/components/layout/Account/AccountGuideLayout';
+import { SignUpType } from '@/common';
 
 const cx = cn.bind(styles);
 

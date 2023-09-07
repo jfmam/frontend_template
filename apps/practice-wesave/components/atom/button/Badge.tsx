@@ -2,7 +2,7 @@ import { MouseEvent } from 'react';
 import Image from 'next/image';
 import cn from 'classnames/bind';
 import styles from '@/styles/Badge.module.scss';
-import { BadgeType } from '@/common/badge';
+import { BadgeType } from '@/common';
 
 export type BadgeLengthType = 'large' | 'small' | 'medium';
 

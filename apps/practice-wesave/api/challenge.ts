@@ -1,6 +1,6 @@
-import { ChallengeResponse, Challenge } from '@/common/challenge';
-import { Pagination, PaginationResponse } from '@/common/pagination';
 import { AxiosInstance } from 'axios';
+import { ChallengeResponse, Challenge, Pagination, PaginationResponse } from '@/common';
+
 import { instance } from './base';
 
 export default class ChallengeAPI {

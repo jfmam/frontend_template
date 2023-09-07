@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import UserAPI from '@/api/user';
-import { UserLoginType } from '@/common/user';
+import { UserLoginType } from '@/common';
 
 export type ChallengeStatus = 'complete' | 'progress';
 

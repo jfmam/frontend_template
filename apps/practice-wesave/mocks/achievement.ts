@@ -1,4 +1,4 @@
-import { AchivementResponse } from '@/common/achievement';
+import { AchivementResponse } from '@/common';
 import { addDays } from 'date-fns';
 
 type AchievementMockType = {

@@ -1,5 +1,5 @@
 import ChallengeAPI from '@/api/challenge';
-import { Challenge } from '@/common/challenge';
+import { Challenge } from '@/common';
 import { useMutation } from 'react-query';
 
 export const registChellenges = async (challenge: Challenge) => {

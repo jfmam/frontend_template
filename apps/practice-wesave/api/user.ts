@@ -1,5 +1,6 @@
-import { SignUpType, Token, UserLoginType, UserResponse } from '@/common/user';
 import { AxiosInstance } from 'axios';
+import { SignUpType, Token, UserLoginType, UserResponse } from '@/common';
+
 import { instance } from './base';
 
 export default class UserAPI {

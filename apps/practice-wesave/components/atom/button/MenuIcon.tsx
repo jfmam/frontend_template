@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { ButtonHTMLAttributes } from 'react';
-import styles from '@/styles/button.module.scss';
 import cn from 'classnames/bind';
+import styles from '@/styles/button.module.scss';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
 const btnStyles = cn.bind(styles);

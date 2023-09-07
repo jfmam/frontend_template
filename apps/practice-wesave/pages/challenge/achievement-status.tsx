@@ -1,12 +1,7 @@
-'use client';
-
 import { ReactElement } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
-import ChallengeLayout from '@/components/layout/challenge/ChallengeLayout';
 import { getAchivements, useFetchAchievements } from '@/hooks/quries/challenge/useFetchAchievements';
-import ApiErrorBoundary from '@/components/error/boundary/ApiErrorBoundary';
-import AchievementFetcher from '@/components/Fetcher/AchievementFetcher';
-import AchievementContainer from '@/components/container/AchievementContainer';
+import { ApiErrorBoundary, AchievementFetcher, AchievementContainer, ChallengeLayout } from '@/components/template';
 
 export default function AchievementStatus() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useFetchAchievements();

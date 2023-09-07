@@ -6,11 +6,10 @@ import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
 import { ReactElement, ReactNode, useState, lazy } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
-import Header from '@/components/header';
-import { ModalContext } from '@/components/Modal/NavigationModalContext';
+import { Header, NavigationModalContext } from '@/components/section';
 import { pretendard } from '@/config/fonts';
 
-const NavigationModal = lazy(() => import('@/components/Modal/NavigationModal'));
+const NavigationModal = lazy(() => import('@/components/section/Modal/navigation/NavigationModal'));
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -39,10 +38,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <div className={pretendard.className}>
-          <ModalContext>
+          <NavigationModalContext>
             <NavigationModal />
             <Header />
-          </ModalContext>
+          </NavigationModalContext>
           <main id="main">{getLayout(<Component {...pageProps} />)}</main>
         </div>
       </Hydrate>

@@ -1,10 +1,12 @@
 import { ReactElement } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
-import ChallengeLayout from '@/components/layout/challenge/ChallengeLayout';
 import { getChellenges, useFetchChallenges } from '@/hooks/quries/challenge/useFetchChallenges';
-import ApiErrorBoundary from '@/components/error/boundary/ApiErrorBoundary';
-import TodayChallengeFetcher from '@/components/Fetcher/TodayChallengeFetcher';
-import TodayChallengeContainer from '@/components/container/TodayChallengeContainer';
+import {
+  ApiErrorBoundary,
+  TodayChallengeFetcher,
+  TodayChallengeContainer,
+  ChallengeLayout,
+} from '@/components/template';
 
 export default function TodayChallenge() {
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading } = useFetchChallenges();

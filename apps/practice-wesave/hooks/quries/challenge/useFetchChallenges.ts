@@ -40,6 +40,8 @@ export function useFetchChallenges() {
         if (lastPage.isLastPage) return undefined;
         return { offset: lastPage.offset + 1 };
       },
+      useErrorBoundary: true,
+      suspense: true,
     },
   );
 }

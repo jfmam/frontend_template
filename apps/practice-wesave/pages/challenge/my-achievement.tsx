@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 
 import ChallengeLayout from '@/components/template/layout/challenge/ChallengeLayout';
-import { getMyAchivements, useFetchMyAchievements } from '@/hooks/quries/challenge/useFetchMyAchivement';
+import { getMyAchivements, useFetchMyAchievements } from '@/hooks/quries/challenge/useFetchMyAchievement';
 import { ApiErrorBoundary, MyAchievementFetcher, MyAchievementContainer } from '@/components/template';
 
 export default function MyAchievement() {

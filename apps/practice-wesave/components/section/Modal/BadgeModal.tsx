@@ -7,7 +7,7 @@ import { BadgeType } from '@/common';
 import { badges } from '../Challenge/Form/constants';
 import { PrimaryBtn, Badge } from '../../atom';
 
-Modal.setAppElement('main');
+Modal.setAppElement('#main');
 const modalStyles = cn.bind(styles);
 
 interface BadgeModalProps {

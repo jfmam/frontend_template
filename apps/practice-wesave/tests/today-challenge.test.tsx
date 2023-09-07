@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { server } from '@/mocks/msw/server';
 import { mockIntersectionObserver } from 'jsdom-testing-mocks';
@@ -34,6 +34,6 @@ describe('today-challenge page 테스트', () => {
       </QueryClientProvider>,
     );
 
-    expect(screen.getByRole('button', { name: '챌린지 만들기' })).toBeInTheDocument();
+    waitFor(() => expect(screen.findByRole('button', { name: '챌린지 만들기' })).toBeInTheDocument());
   });
 });

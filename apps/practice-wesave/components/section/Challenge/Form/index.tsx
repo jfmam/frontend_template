@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy } from 'react';
 import { toast, Toaster } from 'react-hot-toast';
 import { FormikProps } from 'formik';
 import cn from 'classnames/bind';
 import { PrimaryBtn, Badge, TabSelector, DaySelector, Input } from '@/components/atom';
 import badgeStyles from '@/styles/Badge.module.scss';
 import styles from '@/styles/ChallengeCreateForm.module.scss';
-import { BadgeModal } from '@/components/section';
 import { Challenge, BadgeType } from '@/common';
+
+const BadgeModal = lazy(() => import('@/components/section/Modal/BadgeModal'));
 
 import { badges, days } from './constants';
 
@@ -134,12 +135,14 @@ export default function ChallengeCreateForm({ isLoading, isError, formik }: Chal
           </PrimaryBtn>
         </div>
       </form>
-      <BadgeModal
-        isOpen={isOpenModal}
-        onRequestClose={() => setIsOpenModal(false)}
-        oldSelectedBadge={values.badge}
-        onClickSelectBtn={(badge: BadgeType) => onClickBadge(badge)}
-      />
+      {isOpenModal && (
+        <BadgeModal
+          isOpen={isOpenModal}
+          onRequestClose={() => setIsOpenModal(false)}
+          oldSelectedBadge={values.badge}
+          onClickSelectBtn={(badge: BadgeType) => onClickBadge(badge)}
+        />
+      )}
       {isError && <Toaster position="top-center" />}
     </>
   );

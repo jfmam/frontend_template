@@ -1,12 +1,14 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, lazy } from 'react';
 import cn from 'classnames/bind';
 import { AxiosError } from 'axios';
 import { FetchNextPageOptions, InfiniteData, InfiniteQueryObserverResult } from 'react-query';
-import { ChallengeRegister, InfiniteScroller, MyAchievementDetail } from '@/components/section';
+import { ChallengeRegister, InfiniteScroller } from '@/components/section';
 import { AchievementBadge } from '@/components/atom';
 import styles from '@/styles/MyAchievement.module.scss';
 import { PaginationResponse, AchivementResponse } from '@/common';
 import useMediaQuery from '@/hooks/useMediaQuery';
+
+const MyAchievementDetail = lazy(() => import('@/components/section/Achieve/MyAchievementDetail'));
 
 const cx = cn.bind(styles);
 

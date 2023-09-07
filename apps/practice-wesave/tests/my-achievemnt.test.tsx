@@ -25,7 +25,7 @@ describe('my achievement page 테스트', () => {
   });
 
   it('my achievement list가 없을 경우', () => {
-    jest.mock('@/hooks/quries/challenge/useFetchMyAchivement', () => ({
+    jest.mock('@/hooks/quries/challenge/useFetchMyAchievement', () => ({
       useFetchMyAchievements: jest.fn().mockImplementation(() => ({ data: { pages: [] } })),
     }));
     const queryClient = new QueryClient();
@@ -35,7 +35,7 @@ describe('my achievement page 테스트', () => {
       </QueryClientProvider>,
     );
 
-    expect(screen.getByRole('button', { name: '챌린지 만들기' })).toBeInTheDocument();
+    waitFor(() => expect(screen.findByRole('button', { name: '챌린지 만들기' })).toBeInTheDocument());
   });
 
   it('my achievement 상세보기', async () => {

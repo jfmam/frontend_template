@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import cn from 'classnames/bind';
 import Slider from 'react-slick';
 import styels from '@/styles/timer.module.scss';
-import RangeBar from '@/components/timer/RangeBar';
+import { RangeBar } from '@/components/section';
 import { useDailyInfo, useMonthlyInfo, useTimer } from '@/hooks/timer';
 
 const cx = cn.bind(styels);

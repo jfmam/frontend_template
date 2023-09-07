@@ -3,7 +3,7 @@ import Image from 'next/image';
 import cn from 'classnames/bind';
 import styles from '@/styles/Header.module.scss';
 
-import { useModalDispatch, useModalState } from '../../section';
+import { useModalDispatch, useModalState } from '../../section/Modal/navigation/NavigationModalContext';
 import { MenuIcon } from '../../atom';
 
 const headerStyle = cn.bind(styles);

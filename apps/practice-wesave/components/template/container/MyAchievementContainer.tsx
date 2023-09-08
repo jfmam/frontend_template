@@ -45,7 +45,7 @@ export default function MyAchievementContainer({
     throw new Error(data?.pages[0].error.message, { cause: { type: data?.pages[0].error.type } });
   }
 
-  if (!data?.pages || data?.pages.length === 0) {
+  if (data?.pages[0].items.length === 0 || !data?.pages[0].items) {
     return <ChallengeRegister />;
   }
 

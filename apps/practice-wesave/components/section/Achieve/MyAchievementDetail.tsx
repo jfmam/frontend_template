@@ -25,7 +25,11 @@ export default function MyAchievementDetail({ item, isOpen, onRequestClose }: Ac
         <BadgeImage height={isDesktop ? 456 : 250} width={isDesktop ? 456 : 250} type={badge} />
       </div>
       <div className={cx('info')}>
-        <ListItemLayout disabled completedRatio={100} actionDay={actionDay} goal={goal} name={name} type={type} />
+        <ListItemLayout>
+          <ListItemLayout.Name name={name} />
+          <ListItemLayout.Detail actionDay={actionDay} goal={goal} type={type} completedRatio={100} disabled />
+          <ListItemLayout.ComplteRatio completedRatio={100} />
+        </ListItemLayout>
       </div>
     </Modal>
   );

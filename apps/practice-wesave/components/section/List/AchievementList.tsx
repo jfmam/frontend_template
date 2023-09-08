@@ -31,7 +31,11 @@ function AchievementItem({ item, onClick }: AchievementItemProps) {
   return (
     <li className={cx('list-item')}>
       <button className={cx('button', { 'button-complete': completedRatio === 100 })} onClick={() => onClickBtn()}>
-        <ListItemLayout actionDay={actionDay} completedRatio={completedRatio} goal={goal} name={name} type={type} />
+        <ListItemLayout>
+          <ListItemLayout.Name name={name} />
+          <ListItemLayout.Detail actionDay={actionDay} completedRatio={completedRatio} goal={goal} type={type} />
+          <ListItemLayout.ComplteRatio completedRatio={completedRatio} />
+        </ListItemLayout>
       </button>
     </li>
   );

@@ -4,10 +4,11 @@ import * as yup from 'yup';
 import { useMediaQuery } from 'react-responsive';
 import { useFormik } from 'formik';
 
-import { ChallengeLayout } from '@/components/template';
-import { ChallengeGuideLayout, ChallengeCreateForm, InitialValuesType } from '@/components/section';
+import { ChallengeLayout, NotificationLayout } from '@/components/template';
+import { ChallengeCreateForm, InitialValuesType } from '@/components/section';
 import { useRegistChallenges } from '@/hooks/quries/challenge/useRegistChallenges';
 import styles from '@/styles/Register.module.scss';
+import { PrimaryBtn } from '@/components/atom';
 
 const cx = cn.bind(styles);
 
@@ -47,11 +48,18 @@ export default function Register() {
 
   if (isSuccess) {
     return (
-      <ChallengeGuideLayout
-        icon={{ src: '/complete.svg', width: isDesktop ? 95 : 70, height: isDesktop ? 95 : 70 }}
-        description={{ first: '새로운 챌린지를', second: '만들었습니다!' }}
-        onClickButton={() => setIsSuccess(false)}
-      />
+      <NotificationLayout icon={{ src: '/complete.svg', width: isDesktop ? 95 : 70, height: isDesktop ? 95 : 70 }}>
+        <NotificationLayout.Description>
+          새로운 챌린지를
+          <br />
+          만들었습니다!
+        </NotificationLayout.Description>
+        <NotificationLayout.Confirm>
+          <PrimaryBtn onClick={() => setIsSuccess(false)} className={cx('confirm-button')}>
+            챌린지 만들기
+          </PrimaryBtn>
+        </NotificationLayout.Confirm>
+      </NotificationLayout>
     );
   }
 

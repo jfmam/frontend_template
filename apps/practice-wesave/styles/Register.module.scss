@@ -1,4 +1,5 @@
 @import './variables.module.scss';
+@import './font.module.scss';
 
 .register {
   display: flex;
@@ -12,4 +13,10 @@
     justify-content: center;
     margin-left: 24px;
   }
+}
+
+.confirm-button {
+  width: 20.4375rem;
+  height: 4.625rem;
+  font-size: $body3;
 }

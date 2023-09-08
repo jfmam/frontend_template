@@ -106,7 +106,7 @@ const initialState: InitialStateType = {
   income: null,
 };
 
-export const useSalaryInput = () => {
+export function useSalaryInput() {
   const [state, dispatch] = useReducer<Reducer<InitialStateType, Action>>(reducer, initialState);
 
   const onChangeAdditional = useCallback(
@@ -202,7 +202,7 @@ export const useSalaryInput = () => {
     onChangeWorkday,
     state,
   };
-};
+}
 
 // 추후 api connection 필요
 const setIncome = async (income: Income) => {

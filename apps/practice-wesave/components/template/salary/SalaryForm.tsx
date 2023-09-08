@@ -1,109 +1,120 @@
 import Image from 'next/image';
-import { useCallback } from 'react';
+import { ReactNode } from 'react';
 import cn from 'classnames/bind';
-import { useMediaQuery } from 'react-responsive';
 import styles from '@/styles/SalaryForm.module.scss';
-import { useRouter } from 'next/router';
-import { Income } from '@/common';
-import { InitialStateType, useRegistIncome } from '@/hooks/quries/income/useSalaryInput';
 
 import { stringToMoney } from '../../utils';
 import { PrimaryBtn, Input, DayButton } from '../../atom';
 
 const cx = cn.bind(styles);
 
-interface IncomeProps {
-  // onChangePage: () => void;
-  onChangeIncome: (income: string) => void;
-  onChangeQuitTime: (quitTime: string) => void;
-  onChangePayday: (payday: string) => void;
-  onChangeStartTime: (startTime: string) => void;
-  onChangeWorkday: (workDay: number) => void;
-  state: InitialStateType;
+const days = ['월', '화', '수', '목', '금', '토', '일'];
+interface SalaryFormProps {
+  children: ReactNode;
 }
 
-const days = ['월', '화', '수', '목', '금', '토', '일'];
+function SalaryForm({ children }: SalaryFormProps) {
+  return <div className={cx('income')}>{children}</div>;
+}
 
-export default function SalaryForm({
-  onChangeIncome,
-  onChangePayday,
-  onChangeQuitTime,
-  onChangeStartTime,
-  onChangeWorkday,
-  state,
-}: IncomeProps) {
-  const { mutate } = useRegistIncome();
-  const router = useRouter();
-  const isDesktop = useMediaQuery({
-    query: '(min-width: 768px)',
-  });
-  const onValidateInput = useCallback(() => {
-    const isDaySelected = state.workday.length === 0;
-    const { income, payday, quitTime, startTime } = state;
-    return Object.values({ income, payday, quitTime, startTime }).includes(null) || isDaySelected;
-  }, [state]);
+interface TimeRangeInputProps {
+  onChangeStartTime: (startTime: string) => void;
+  startTime: number | null;
+  onChangeQuitTime: (quitTime: string) => void;
+  quitTime: number | null;
+}
 
+function TimeRangeInput({ onChangeStartTime, startTime, onChangeQuitTime, quitTime }: TimeRangeInputProps) {
   return (
-    <div className={cx('income')}>
-      <div>
-        매일 (
+    <div>
+      매일 (
+      <Input
+        onChange={e => onChangeStartTime(e.target.value)}
+        onBlur={e => {
+          e.currentTarget.value = startTime?.toString().padStart(2, '0') || '00';
+        }}
+        className={cx('input', 'input-number')}
+        maxLength={2}
+        placeholder="00"
+        aria-label="startTime"
+      />
+      )시 부터 (
+      <Input
+        onChange={e => onChangeQuitTime(e.target.value)}
+        onBlur={e => {
+          e.currentTarget.value = quitTime?.toString().padStart(2, '0') || '24';
+        }}
+        className={cx('input', 'input-number')}
+        maxLength={2}
+        placeholder="00"
+        aria-label="quitTime"
+      />
+      )시까지
+    </div>
+  );
+}
+
+interface DayButtonsProps {
+  onChangeWorkday: (workDay: number) => void;
+}
+
+function DayButtons({ onChangeWorkday }: DayButtonsProps) {
+  return (
+    <div>
+      매주 (
+      {days.map((day, idx) => (
+        <DayButton onClick={() => onChangeWorkday((idx + 1) % 7)} key={day} day={day} />
+      ))}
+      ) 일해서
+    </div>
+  );
+}
+
+interface PayDayInputProps {
+  onChangePayday: (payday: string) => void;
+  payday: number | null;
+}
+
+function PayDayInput({ onChangePayday, payday }: PayDayInputProps) {
+  return (
+    <div className={cx('center')}>
+      <div className={cx('payday-container')}>
+        매달(
         <Input
-          onChange={e => onChangeStartTime(e.target.value)}
+          onChange={e => onChangePayday(e.target.value)}
           onBlur={e => {
-            e.currentTarget.value = state.startTime?.toString().padStart(2, '0') || '00';
+            e.currentTarget.value = payday?.toString() || '1';
           }}
           className={cx('input', 'input-number')}
           maxLength={2}
           placeholder="00"
-          aria-label="startTime"
+          aria-label="payday"
         />
-        )시 부터 (
-        <Input
-          onChange={e => onChangeQuitTime(e.target.value)}
-          onBlur={e => {
-            e.currentTarget.value = state.quitTime?.toString().padStart(2, '0') || '24';
-          }}
-          className={cx('input', 'input-number')}
-          maxLength={2}
-          placeholder="00"
-          aria-label="quitTime"
-        />
-        )시까지
+        )일에
       </div>
-      <div>
-        매주 (
-        {days.map((day, idx) => (
-          <DayButton onClick={() => onChangeWorkday((idx + 1) % 7)} key={day} day={day} />
-        ))}
-        ) 일해서
-      </div>
-      <div className={cx('center')}>
-        <div style={{ paddingRight: isDesktop ? 57 : 16 }}>
-          매달(
-          <Input
-            onChange={e => onChangePayday(e.target.value)}
-            onBlur={e => {
-              e.currentTarget.value = state.payday?.toString() || '1';
-            }}
-            className={cx('input', 'input-number')}
-            maxLength={2}
-            placeholder="00"
-            aria-label="payday"
-          />
-          )일에
-        </div>
-        <span className={cx('arrow-logo')}>
-          <Image fill sizes="(max-width: 425px) 59px, 18.93px" src="/arrow.svg" alt="" loading="lazy" />
-        </span>
-      </div>
-      <div className={cx('center')}>
-        <span className={cx('won-logo')}>
-          <Image fill sizes="(max-width: 425px) 42px, 24.71px" src="/won.svg" alt="" loading="lazy" />
-        </span>
-        <>(</>
+      <span className={cx('arrow-logo')}>
+        <Image fill sizes="(max-width: 425px) 59px, 18.93px" src="/arrow.svg" alt="" loading="eager" />
+      </span>
+    </div>
+  );
+}
+
+interface IncomeInputProps {
+  onChangeIncome: (income: string) => void;
+  income: number | null;
+}
+
+function IncomeInput({ onChangeIncome, income }: IncomeInputProps) {
+  return (
+    <div className={cx('center')}>
+      <span className={cx('won-logo')}>
+        <Image fill sizes="(max-width: 425px) 42px, 24.71px" src="/won.svg" alt="" loading="eager" />
+      </span>
+      <>
+        (
         <Input
           onBlur={e => {
-            e.currentTarget.value = stringToMoney(state.income?.toString() || '0');
+            e.currentTarget.value = stringToMoney(income?.toString() || '0');
           }}
           className={cx('input', 'input-salary')}
           onChange={e => onChangeIncome(e.target.value)}
@@ -111,20 +122,30 @@ export default function SalaryForm({
           placeholder="00,000,000"
           aria-label="income"
         />
-        <>)원 벌어요</>
-      </div>
-      <div className={cx('button-container')}>
-        <PrimaryBtn
-          disabled={onValidateInput()}
-          onClick={() =>
-            mutate(state as Income, {
-              onSuccess: () => router.push('/timer'),
-            })
-          }
-        >
-          Done
-        </PrimaryBtn>
-      </div>
+        )원 벌어요
+      </>
     </div>
   );
 }
+
+interface RegisterButtonProps {
+  onClick: () => void;
+  disabled: boolean;
+}
+
+function RegisterButton({ disabled, onClick }: RegisterButtonProps) {
+  return (
+    <div className={cx('button-container')}>
+      <PrimaryBtn disabled={disabled} onClick={onClick}>
+        Done
+      </PrimaryBtn>
+    </div>
+  );
+}
+
+SalaryForm.TimeRangeInput = TimeRangeInput;
+SalaryForm.DayButtons = DayButtons;
+SalaryForm.PayDayInput = PayDayInput;
+SalaryForm.IncomeInput = IncomeInput;
+SalaryForm.RegisterButton = RegisterButton;
+export default SalaryForm;

@@ -7,7 +7,7 @@ import { useMediaQuery } from 'react-responsive';
 import styles from '@/styles/reset-password.module.scss';
 import { PrimaryBtn, Input } from '@/components/atom';
 import { FieldErrorMessage } from '@/components/section';
-import { AccountLayout, AccountGuideLayout } from '@/components/template';
+import { AccountLayout, NotificationLayout } from '@/components/template';
 import { useResetPassword } from '@/hooks/quries/user/usePasswordManagement';
 
 const cx = cn.bind(styles);
@@ -38,56 +38,59 @@ export default function ResetPassword() {
     validationSchema: passwordSchema,
   });
 
+  if (isSuccess) {
+    <NotificationLayout icon={{ src: '/complete.svg', width: isDesktop ? 95 : 70, height: isDesktop ? 95 : 70 }}>
+      <NotificationLayout.Description>
+        비밀번호 재설정을
+        <br />
+        완료했습니다!
+      </NotificationLayout.Description>
+      <NotificationLayout.Confirm>
+        <PrimaryBtn onClick={() => router.push('/login')} className={cx('login-button')}>
+          로그인
+        </PrimaryBtn>
+      </NotificationLayout.Confirm>
+    </NotificationLayout>;
+  }
+
   return (
-    <div className={cx('reset-password')}>
-      <div className={cx('panel')}>
-        {isSuccess ? (
-          <AccountGuideLayout
-            icon={{ src: '/complete.svg', width: isDesktop ? 95 : 70, height: isDesktop ? 95 : 70 }}
-            description={{ first: '환영해요!', second: '회원가입을 완료했습니다.' }}
-            onClickButton={() => router.push('/login')}
-          />
-        ) : (
-          <>
-            <div className={cx('welcome-text')}>
-              <p>새로운 비밀번호를</p>
-              <p>입력해 주세요</p>
-            </div>
-            <form onSubmit={formik.handleSubmit} className={cx('form')}>
-              <div className={cx('input-container')}>
-                <Input
-                  isError={formik.errors.password !== undefined}
-                  onFocus={() => formik.setTouched({ password: true })}
-                  {...formik.getFieldProps}
-                  onChange={formik.handleChange}
-                  onClick={() => setIsSettled(false)}
-                  name="password"
-                  type="password"
-                  placeholder="비밀번호"
-                />
-                {!formik.errors.password && !isError && (
-                  <span className={cx('password-condition')}>8자 이상, 숫자 포함</span>
-                )}
-                {formik.errors.password && <FieldErrorMessage message={formik.errors.password} />}
-                {!formik.errors.password && isSettled && isError && (
-                  <FieldErrorMessage message="이전과 다른 비밀번호로 설정해주세요." />
-                )}
-              </div>
-              <div className={cx('submit-button-container')}>
-                <PrimaryBtn type="submit">확인</PrimaryBtn>
-              </div>
-            </form>
-          </>
-        )}
+    <>
+      <div className={cx('welcome-text')}>
+        <p>새로운 비밀번호를</p>
+        <p>입력해 주세요</p>
       </div>
-    </div>
+      <form onSubmit={formik.handleSubmit} className={cx('form')}>
+        <div className={cx('input-container')}>
+          <Input
+            isError={formik.errors.password !== undefined}
+            onFocus={() => formik.setTouched({ password: true })}
+            {...formik.getFieldProps}
+            onChange={formik.handleChange}
+            onClick={() => setIsSettled(false)}
+            name="password"
+            type="password"
+            placeholder="비밀번호"
+          />
+          {!formik.errors.password && !isError && <span className={cx('password-condition')}>8자 이상, 숫자 포함</span>}
+          {formik.errors.password && <FieldErrorMessage message={formik.errors.password} />}
+          {!formik.errors.password && isSettled && isError && (
+            <FieldErrorMessage message="이전과 다른 비밀번호로 설정해주세요." />
+          )}
+        </div>
+        <div className={cx('submit-button-container')}>
+          <PrimaryBtn type="submit">확인</PrimaryBtn>
+        </div>
+      </form>
+    </>
   );
 }
 
 ResetPassword.getLayout = function getLayout(page: ReactElement) {
   return (
     <AccountLayout backgroundColor="#a8a1f8" imageUrl="password-reset">
-      {page}
+      <div className={cx('reset-password')}>
+        <div className={cx('panel')}>{page}</div>
+      </div>
     </AccountLayout>
   );
 };

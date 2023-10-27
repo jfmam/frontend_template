@@ -1,9 +1,9 @@
 import Modal from 'react-modal';
+import Image from 'next/image';
 import cn from 'classnames/bind';
 import { differenceInDays } from 'date-fns';
 import { AchivementResponse } from '@/common';
 import styles from '@/styles/AchievementStatusDetail.module.scss';
-import { BadgeImage } from '@/components/atom';
 
 import { convertIsoDate, dueDay } from '../../utils/day';
 
@@ -21,7 +21,7 @@ export default function AchievementStatusDetail({ item, isOpen, onRequestClose }
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} shouldCloseOnEsc className={cx('container')}>
       <div>
-        <BadgeImage height={110} width={110} type={badge} />
+        <Image height={110} width={110} src={`${badge}.svg`} alt="" />
       </div>
       <div className={cx('info')}>
         <div className={cx('info-name')}>{name}</div>

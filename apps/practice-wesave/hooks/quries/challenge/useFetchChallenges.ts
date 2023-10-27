@@ -41,7 +41,8 @@ export function useFetchChallenges() {
         return { offset: lastPage.offset + 1 };
       },
       useErrorBoundary: true,
-      // suspense: true,
+      suspense: true,
+      staleTime: 10000,
     },
   );
 }

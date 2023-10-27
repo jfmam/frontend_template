@@ -36,16 +36,16 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? (page => page);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <div className={pretendard.className}>
+    <div className={pretendard.className}>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
           <NavigationModalContext>
             <NavigationModal />
             <Header />
           </NavigationModalContext>
           <main id="main">{getLayout(<Component {...pageProps} />)}</main>
-        </div>
-      </Hydrate>
-    </QueryClientProvider>
+        </Hydrate>
+      </QueryClientProvider>
+    </div>
   );
 }

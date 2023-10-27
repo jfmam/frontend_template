@@ -17,7 +17,7 @@ export default function AccountLayout({ backgroundColor, children, imageUrl }: A
       {children}
       <div className={cx('divide-line')}></div>
       <div className={cx('image-container')} style={{ backgroundColor }}>
-        <Image src={`${imageUrl}.svg`} fill alt="" className="image" loading="lazy" />
+        <Image src={`${imageUrl}.svg`} fill alt="" className="image" />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 @import './variables.module.scss';
 
 .badge {
+  position: relative;
   width: 6.875rem;
   height: 6.875rem;
   background-color: transparent;

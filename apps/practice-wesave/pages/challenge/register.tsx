@@ -1,7 +1,6 @@
 import { ReactElement, useState } from 'react';
 import cn from 'classnames/bind';
 import * as yup from 'yup';
-import { useMediaQuery } from 'react-responsive';
 import { useFormik } from 'formik';
 
 import { ChallengeLayout, NotificationLayout } from '@/components/template';
@@ -22,9 +21,6 @@ const registerSchema = yup.object().shape({
 export default function Register() {
   const [isSuccess, setIsSuccess] = useState(false);
   const { mutate, isLoading, isError } = useRegistChallenges();
-  const isDesktop = useMediaQuery({
-    query: '(min-width: 425px)',
-  });
   const formik = useFormik<InitialValuesType>({
     initialValues: {
       name: '',
@@ -48,7 +44,7 @@ export default function Register() {
 
   if (isSuccess) {
     return (
-      <NotificationLayout icon={{ src: '/complete.svg', width: isDesktop ? 95 : 70, height: isDesktop ? 95 : 70 }}>
+      <NotificationLayout icon={{ src: '/complete.svg' }}>
         <NotificationLayout.Description>
           새로운 챌린지를
           <br />

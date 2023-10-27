@@ -1,9 +1,8 @@
+import Image from 'next/image';
 import { MouseEvent } from 'react';
 import cn from 'classnames/bind';
 import styles from '@/styles/AchievementBadge.module.scss';
 import { BadgeType } from '@/common';
-
-import { BadgeImage } from '../image';
 
 export type BadgeLengthType = 'small';
 
@@ -13,19 +12,6 @@ interface BadgeProps {
   lengthType?: BadgeLengthType;
 }
 
-const imageSizeMap = {
-  large: 99,
-  small: 76.5,
-};
-
-const calcImageSize = (badgeLengthType?: BadgeLengthType) => {
-  if (badgeLengthType === undefined) {
-    return 99;
-  }
-
-  return imageSizeMap[badgeLengthType];
-};
-
 const cx = cn.bind(styles);
 
 export default function AchievementBadge({ type, onClick, lengthType }: BadgeProps) {
@@ -34,7 +20,7 @@ export default function AchievementBadge({ type, onClick, lengthType }: BadgePro
   };
   return (
     <button onClick={e => clickBtn(e)} className={cx('badge', { 'badge-small': lengthType === 'small' })}>
-      <BadgeImage width={calcImageSize(lengthType)} height={calcImageSize(lengthType)} type={type} />
+      <Image sizes="(max-width: 1024px) 76.5px, 99px " fill alt="badge" src={`/${type}.svg`} loading="eager" />;
     </button>
   );
 }

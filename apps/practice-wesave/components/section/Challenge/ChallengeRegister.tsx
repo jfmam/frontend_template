@@ -10,7 +10,7 @@ const cx = cn.bind(styles);
 
 export default function ChallengeRegister() {
   return (
-    <NotificationLayout icon={{ src: '/empty.svg', width: 95, height: 95 }}>
+    <NotificationLayout icon={{ src: '/empty.svg' }}>
       <NotificationLayout.Description>
         오늘은 챌린지가 없습니다
         <br />

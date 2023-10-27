@@ -18,6 +18,17 @@
   }
 }
 
+.image {
+  position: relative;
+  width: 456px;
+  height: 100%;
+  aspect-ratio: 1;
+
+  @media (max-width: 504px) {
+    width: 15.625rem;
+  }
+}
+
 .info {
   background-color: $bg20;
   border-radius: 27px;

@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import Link from 'next/link';
 import cn from 'classnames/bind';
 import { useRouter } from 'next/router';
-import { useMediaQuery } from 'react-responsive';
 import { AccountLayout, NotificationLayout } from '@/components/template';
 import { FieldErrorMessage } from '@/components/section';
 import { PrimaryBtn, SnsButton, Input } from '@/components/atom';
@@ -35,9 +34,6 @@ const signUpSchema = Yup.object().shape({
 export default function SignUp() {
   const { mutate, isError, isLoading, isSuccess } = useSignUp();
   const router = useRouter();
-  const isDesktop = useMediaQuery({
-    query: '(min-width: 425px)',
-  });
   const formik = useFormik<SignUpType>({
     initialValues: {
       name: '',
@@ -62,7 +58,7 @@ export default function SignUp() {
 
   if (isSuccess) {
     return (
-      <NotificationLayout icon={{ src: '/complete.svg', width: isDesktop ? 95 : 70, height: isDesktop ? 95 : 70 }}>
+      <NotificationLayout icon={{ src: '/complete.svg' }}>
         <NotificationLayout.Description>
           환영해요!
           <br />

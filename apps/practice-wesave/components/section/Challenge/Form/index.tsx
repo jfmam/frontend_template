@@ -135,14 +135,12 @@ export default function ChallengeCreateForm({ isLoading, isError, formik }: Chal
           </PrimaryBtn>
         </div>
       </form>
-      {isOpenModal && (
-        <BadgeModal
-          isOpen={isOpenModal}
-          onRequestClose={() => setIsOpenModal(false)}
-          oldSelectedBadge={values.badge}
-          onClickSelectBtn={(badge: BadgeType) => onClickBadge(badge)}
-        />
-      )}
+      <BadgeModal
+        isOpen={isOpenModal}
+        onRequestClose={() => setIsOpenModal(false)}
+        oldSelectedBadge={values.badge}
+        onClickSelectBtn={(badge: BadgeType) => onClickBadge(badge)}
+      />
       {isError && <Toaster position="top-center" />}
     </>
   );

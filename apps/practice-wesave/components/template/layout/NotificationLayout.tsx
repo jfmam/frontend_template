@@ -6,7 +6,7 @@ import styles from '@/styles/ChallengeGuideLayout.module.scss';
 const cx = cn.bind(styles);
 
 interface NotificationLayoutProps {
-  icon: { src: string; width: number; height: number };
+  icon: { src: string };
   children: ReactNode;
 }
 
@@ -14,7 +14,7 @@ export default function NotificationLayout({ icon, children }: NotificationLayou
   return (
     <div>
       <div>
-        <Image sizes="(max-width: 425px) 70px, 95px" width={icon.width} height={icon.height} alt="" src={icon.src} />
+        <Image sizes="(max-width: 425px) 70px, 95px" fill alt="" src={icon.src} />
       </div>
       {children}
     </div>

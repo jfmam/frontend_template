@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 import cn from 'classnames/bind';
 import { ReactElement, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useMediaQuery } from 'react-responsive';
 import styles from '@/styles/reset-password.module.scss';
 import { PrimaryBtn, Input } from '@/components/atom';
 import { FieldErrorMessage } from '@/components/section';
@@ -23,9 +22,6 @@ export default function ResetPassword() {
   const { mutate, isSuccess, isError } = useResetPassword();
   const router = useRouter();
   const [isSettled, setIsSettled] = useState(false);
-  const isDesktop = useMediaQuery({
-    query: '(min-width: 425px)',
-  });
   const formik = useFormik({
     initialValues: {
       password: '',
@@ -39,7 +35,7 @@ export default function ResetPassword() {
   });
 
   if (isSuccess) {
-    <NotificationLayout icon={{ src: '/complete.svg', width: isDesktop ? 95 : 70, height: isDesktop ? 95 : 70 }}>
+    <NotificationLayout icon={{ src: '/complete.svg' }}>
       <NotificationLayout.Description>
         비밀번호 재설정을
         <br />

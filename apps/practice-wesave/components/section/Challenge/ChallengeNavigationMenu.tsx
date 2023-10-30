@@ -6,8 +6,6 @@ import { useRouter } from 'next/router';
 
 const cx = cn.bind(styles);
 
-const challengeMenu = ['오늘의 챌린지', '달성 현황', '나의 성취', '챌린지 만들기'];
-
 const selectChallengeMenuMapLink: { [key: string]: string } = {
   '오늘의 챌린지': 'today-challenge',
   '달성 현황': 'achievement-status',
@@ -18,7 +16,7 @@ const selectChallengeMenuMapLink: { [key: string]: string } = {
 export default function ChallengeNavigationMenu() {
   const router = useRouter();
 
-  const menuItem = challengeMenu.map((v: string) => (
+  const menuItem = Object.keys(selectChallengeMenuMapLink).map((v: string) => (
     <li
       className={cx('navigation-item', { selected: selectChallengeMenuMapLink[v] === basename(router.asPath) })}
       key={v}

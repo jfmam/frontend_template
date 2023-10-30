@@ -1,10 +1,15 @@
-import { Fragment, Suspense, useState } from 'react';
+import { Fragment, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { AxiosError } from 'axios';
 import cn from 'classnames/bind';
 import { FetchNextPageOptions, InfiniteData, InfiniteQueryObserverResult } from 'react-query';
-import { AchievementList, ChallengeRegister, AchievementStatusDetail, InfiniteScroller } from '@/components/section';
+import { AchievementList, ChallengeRegister, InfiniteScroller } from '@/components/section';
 import styles from '@/styles/achievement-status.module.scss';
 import { PaginationResponse, AchivementResponse } from '@/common';
+
+const AchievementStatusDetail = dynamic(() => import('@/components/section/Achieve/AchievementStatusDetail'), {
+  ssr: false,
+});
 
 const cx = cn.bind(styles);
 
@@ -61,14 +66,12 @@ export default function AchievementContainer({
           ))}
         </AchievementList>
       </div>
-      {isOpenDetail && (
-        <Suspense fallback={<div>Loading...</div>}>
-          <AchievementStatusDetail
-            item={detailItem as AchivementResponse}
-            onRequestClose={closeDetail}
-            isOpen={isOpenDetail}
-          />
-        </Suspense>
+      {detailItem && (
+        <AchievementStatusDetail
+          item={detailItem as AchivementResponse}
+          onRequestClose={closeDetail}
+          isOpen={isOpenDetail}
+        />
       )}
     </InfiniteScroller>
   );

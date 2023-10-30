@@ -3,22 +3,18 @@ import Modal from 'react-modal';
 import cn from 'classnames/bind';
 import styles from '@/styles/modal.module.scss';
 
-import { useModalDispatch, useModalState } from './NavigationModalContext';
-
 Modal.setAppElement('#main');
 const modalStyles = cn.bind(styles);
 
-export default function MenuModal() {
-  const state = useModalState();
-  const dispatch = useModalDispatch();
+interface Props {
+  isOpen: boolean;
+  onCloseModal: () => void;
+}
 
-  const onCloseModal = () => {
-    dispatch(false);
-  };
-
+export default function MenuModal({ isOpen, onCloseModal }: Props) {
   return (
     <Modal
-      isOpen={state}
+      isOpen={isOpen}
       onRequestClose={onCloseModal}
       shouldCloseOnEsc
       overlayClassName={modalStyles('overlay')}

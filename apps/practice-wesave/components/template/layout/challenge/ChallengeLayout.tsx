@@ -1,7 +1,10 @@
 import { ReactNode } from 'react';
-import Slider from 'react-slick';
+// import Slider from 'react-slick';
+import dynamic from 'next/dynamic';
 
 import { ChallengeNavigationMenu } from '../../../section';
+
+const Slider = dynamic(() => import('react-slick'));
 
 interface ChallengeLayoutProps {
   children: ReactNode;

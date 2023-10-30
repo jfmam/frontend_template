@@ -21,7 +21,7 @@ export default function AchievementStatusDetail({ item, isOpen, onRequestClose }
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} shouldCloseOnEsc className={cx('container')}>
       <div>
-        <Image height={110} width={110} src={`${badge}.svg`} alt="" />
+        <Image height={110} width={110} src={`/${badge}.svg`} alt="" />
       </div>
       <div className={cx('info')}>
         <div className={cx('info-name')}>{name}</div>

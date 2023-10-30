@@ -1,4 +1,5 @@
-import { Fragment, useState, lazy } from 'react';
+import { Fragment, useState } from 'react';
+import dynamic from 'next/dynamic';
 import cn from 'classnames/bind';
 import { AxiosError } from 'axios';
 import { FetchNextPageOptions, InfiniteData, InfiniteQueryObserverResult } from 'react-query';
@@ -8,7 +9,7 @@ import styles from '@/styles/MyAchievement.module.scss';
 import { PaginationResponse, AchivementResponse } from '@/common';
 import useMediaQuery from '@/hooks/useMediaQuery';
 
-const MyAchievementDetail = lazy(() => import('@/components/section/Achieve/MyAchievementDetail'));
+const MyAchievementDetail = dynamic(() => import('@/components/section/Achieve/MyAchievementDetail'), { ssr: false });
 
 const cx = cn.bind(styles);
 
@@ -73,7 +74,7 @@ export default function MyAchievementContainer({
           </div>
         </div>
       </InfiniteScroller>
-      {isOpenDetail && (
+      {detailItem && (
         <MyAchievementDetail
           item={detailItem as AchivementResponse}
           onRequestClose={closeDetail}

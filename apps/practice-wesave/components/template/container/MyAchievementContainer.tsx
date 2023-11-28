@@ -47,7 +47,11 @@ export default function MyAchievementContainer({
   }
 
   if (data?.pages[0].items.length === 0 || !data?.pages[0].items) {
-    return <ChallengeRegister />;
+    return (
+      <div className={cx('myachievement')}>
+        <ChallengeRegister />
+      </div>
+    );
   }
 
   return (

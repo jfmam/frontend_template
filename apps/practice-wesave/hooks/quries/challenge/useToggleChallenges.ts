@@ -1,11 +1,15 @@
 import { useMutation } from 'react-query';
 import ChallengeAPI from '@/api/challenge';
 import { ChallengeResponse } from '@/common';
+import { getAccessToken } from '@/utils';
 
 export type ChallengeStatus = 'complete' | 'progress';
 
 export const toggleChellenges = async (challengeId: ChallengeResponse['id'], status: ChallengeStatus) => {
-  const result = await new ChallengeAPI().toggleChallenges(challengeId);
+  const token = getAccessToken();
+
+  if (!token) throw Error('token이 없습니다.');
+  const result = await new ChallengeAPI(token.value).toggleChallenges(challengeId);
 
   if (result.message === 'error' && status === 'complete') {
     throw new Error('챌린지 완료 등록에 실패 하였습니다.', { cause: result.status });

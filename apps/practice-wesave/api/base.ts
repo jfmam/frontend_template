@@ -19,6 +19,10 @@ class APIService {
       timeout: 5000,
     });
   }
+
+  setHeader({ header, value }: { header: string; value: string }) {
+    axios.defaults.headers.common[header] = value;
+  }
 }
 
 export const instance = container.resolve(APIService);

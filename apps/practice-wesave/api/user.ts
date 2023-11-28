@@ -6,23 +6,29 @@ import { instance } from './base';
 export default class UserAPI {
   service: AxiosInstance;
 
-  constructor() {
+  constructor(token?: Token) {
     this.service = instance.session;
+
+    if (token) instance.setHeader({ header: 'Authorization', value: `Bearer ${token}` });
   }
 
   async login(params: UserLoginType): Promise<Token> {
-    const result = await this.service.post<Token>('/login', params);
+    const result = await this.service.post<Token>('/users/login', params);
 
     if (result.status === 401) {
       throw new Error('잘못 된 아이디 또는 비밀번호 입니다.');
     }
 
-    this.service.defaults.headers.common['Authorization'] = `Bearer ${result.data.token}`;
+    instance.setHeader({ header: 'Authorization', value: `Bearer ${result.data.token}` });
     return { token: result.data.token };
   }
 
-  async creaetUser(params: SignUpType): Promise<{ message: string }> {
-    const result = await this.service.post('/user', params);
+  async creaetUser({ email, name, password }: SignUpType): Promise<{ message: string }> {
+    const result = await this.service.post('/users', {
+      email,
+      name,
+      password,
+    });
 
     if (result.status === 422) {
       throw new Error('이미 존재하는 유저입니다.');
@@ -42,7 +48,7 @@ export default class UserAPI {
   }
 
   async getUser(): Promise<UserResponse> {
-    const result = await this.service.get('/login');
+    const result = await this.service.get('/profile');
 
     if (result.status === 400) {
       throw new Error('유효하지 않은 토큰입니다.');

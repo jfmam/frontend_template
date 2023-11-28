@@ -6,12 +6,13 @@ import { instance } from './base';
 export default class ChallengeAPI {
   service: AxiosInstance;
 
-  constructor() {
+  constructor(token: string) {
     this.service = instance.session;
+    instance.setHeader({ header: 'Authorization', value: `Bearer ${token}` });
   }
 
   async getChallenges(options: Pagination): Promise<PaginationResponse<ChallengeResponse>> {
-    const result = await this.service.get<PaginationResponse<ChallengeResponse>>('/challenge', {
+    const result = await this.service.get<PaginationResponse<ChallengeResponse>>('/challenges', {
       params: options,
     });
 
@@ -19,7 +20,7 @@ export default class ChallengeAPI {
   }
 
   async createChallenges(challenge: Challenge): Promise<{ status: number; message: 'success' | 'error' }> {
-    const result = await this.service.post('/challenge', challenge);
+    const result = await this.service.post('/challenges', challenge);
 
     return result.status === 201 ? { status: 201, message: 'success' } : { status: result.status, message: 'error' };
   }
@@ -27,7 +28,7 @@ export default class ChallengeAPI {
   async toggleChallenges(
     challengeId: ChallengeResponse['id'],
   ): Promise<{ status: number; message: 'success' | 'error' }> {
-    const result = await this.service.post(`/challenge/${challengeId}`);
+    const result = await this.service.post(`/challenges/${challengeId}`);
 
     return result.status === 201 ? { status: 201, message: 'success' } : { status: result.status, message: 'error' };
   }

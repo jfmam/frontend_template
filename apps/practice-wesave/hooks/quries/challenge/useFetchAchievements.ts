@@ -2,12 +2,17 @@ import { useInfiniteQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import AchievementAPI from '@/api/achievement';
 import { PaginationResponse, AchivementResponse } from '@/common';
+import { getAccessToken } from '@/utils';
 
 const pageSize = 5;
 
 export const getAchivements = async (offset = 1): Promise<PaginationResponse<AchivementResponse>> => {
   try {
-    const achievements = await new AchievementAPI().getAchievements({
+    const token = getAccessToken();
+
+    if (!token) throw Error('token이 없습니다.');
+
+    const achievements = await new AchievementAPI(token.value).getAchievements({
       limit: pageSize,
       offset: offset,
     });

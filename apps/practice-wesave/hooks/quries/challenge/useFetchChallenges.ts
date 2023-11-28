@@ -2,12 +2,16 @@ import { AxiosError } from 'axios';
 import { useInfiniteQuery } from 'react-query';
 import ChallengeAPI from '@/api/challenge';
 import { ChallengeResponse, PaginationResponse } from '@/common';
+import { getAccessToken } from '@/utils';
 
 const pageSize = 5;
 
 export const getChellenges = async (offset = 1) => {
   try {
-    const challenges = await new ChallengeAPI().getChallenges({
+    const token = getAccessToken();
+
+    if (!token) throw Error('token이 없습니다.');
+    const challenges = await new ChallengeAPI(token.value).getChallenges({
       limit: pageSize,
       offset: offset,
     });

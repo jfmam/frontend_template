@@ -1,16 +1,16 @@
-import { ReactElement, useEffect } from 'react';
+import { ReactElement } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import cn from 'classnames/bind';
-import { useCookies } from 'react-cookie';
 import styles from '@/styles/signin.module.scss';
 import { AccountLayout } from '@/components/template';
 import { PrimaryBtn, SnsButton, Input } from '@/components/atom';
 import { Token, UserLoginType } from '@/common/user';
 import { useLogin } from '@/hooks/quries/user/useLogin';
 import { FieldErrorMessage } from '@/components/section';
+import { setAccessToken } from '@/utils';
 
 const signInSchema = Yup.object().shape({
   email: Yup.string().email('올바른 이메일을 입력해주세요.').required('이메일을 입력해주세요.'),
@@ -20,7 +20,6 @@ const signInSchema = Yup.object().shape({
 const cx = cn.bind(styles);
 
 export default function SignIn() {
-  const [cookie, setCookie] = useCookies(['token']);
   const { mutate, isError, isLoading } = useLogin();
   const router = useRouter();
   const formik = useFormik<UserLoginType>({
@@ -31,11 +30,7 @@ export default function SignIn() {
     onSubmit: (values, { resetForm }) => {
       mutate(values, {
         onSuccess: ({ token }: Token) => {
-          setCookie('token', token, {
-            path: '/',
-            httpOnly: process.env.NODE_ENV === 'production',
-            secure: process.env.NODE_ENV === 'production',
-          });
+          setAccessToken(token);
           router.push('/');
           resetForm();
         },
@@ -43,12 +38,6 @@ export default function SignIn() {
     },
     validationSchema: signInSchema,
   });
-
-  useEffect(() => {
-    if (cookie.token) {
-      router.push('/');
-    }
-  }, [router, cookie]);
 
   return (
     <div className={cx('signin')}>

@@ -7,6 +7,6 @@
   display: flex;
 
   @media (max-width: 425px) {
-    height: $content-height-mobile;
+    min-height: $content-height-mobile;
   }
 }

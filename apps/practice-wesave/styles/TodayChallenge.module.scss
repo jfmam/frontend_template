@@ -4,7 +4,7 @@
 .today-challenge {
   padding-top: 11.66vh;
   padding-left: 13.5%;
-  height: $content-height;
+  min-height: $content-height;
 
   @media (max-width: 768px) {
     margin: 0 24px;

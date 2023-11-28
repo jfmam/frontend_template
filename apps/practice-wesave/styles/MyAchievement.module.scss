@@ -2,6 +2,7 @@
 
 .myachievement {
   margin-top: 26.94vh;
+  min-height: $content-height;
 
   @media (max-width: 768px) {
     margin: 48px auto 0;

@@ -1,6 +1,9 @@
+@import './variables.module.scss';
+
 .achievement-status {
   margin: 0 14.7%;
   margin-top: 14.6875rem;
+  min-height: $content-height;
 
   @media (max-width: 1200px) {
     display: flex;

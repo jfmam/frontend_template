@@ -77,3 +77,9 @@ input:active {
 [class]:where(button, input, meter, progress, select, textarea) {
   appearance: none;
 }
+
+.rdrMonth {
+  @media (max-width: 425px) {
+    width: 24.667em !important;
+  }
+}

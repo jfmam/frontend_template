@@ -21,13 +21,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   if (req.method === 'GET') {
-    const secretKey = process.env.SECRET_KEY as string;
     if (!req.headers.authorization) {
       return res.status(400).json({ message: '유효하지 않은 토큰입니다.' });
     }
 
-    const token = jwt.verify(req.headers.authorization, secretKey);
-    console.log(token);
     if (mock.email === req.body.email && mock.paaword === req.body.password) {
       const secretKey = process.env.SECRET_KEY as string;
       const token = jwt.sign(req.body.email, secretKey);

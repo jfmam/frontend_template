@@ -13,11 +13,13 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
+type AppOwnProps = { redirectUrl?: string };
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
-};
+} & AppOwnProps;
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+export default function App(a: AppPropsWithLayout) {
+  const { Component, pageProps } = a;
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -30,7 +32,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         },
       }),
   );
-
   const getLayout = Component.getLayout ?? (page => page);
 
   return (

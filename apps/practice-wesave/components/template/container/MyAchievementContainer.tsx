@@ -1,36 +1,26 @@
 import { Fragment, useState } from 'react';
 import dynamic from 'next/dynamic';
 import cn from 'classnames/bind';
-import { AxiosError } from 'axios';
-import { FetchNextPageOptions, InfiniteData, InfiniteQueryObserverResult } from 'react-query';
 import { ChallengeRegister, InfiniteScroller } from '@/components/section';
 import { AchievementBadge } from '@/components/atom';
 import styles from '@/styles/MyAchievement.module.scss';
-import { PaginationResponse, AchivementResponse } from '@/common';
+import { AchivementResponse } from '@/common';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import { useFetchMyAchievements } from '@/hooks/quries/challenge/useFetchMyAchievement';
 
 const MyAchievementDetail = dynamic(() => import('@/components/section/Achieve/MyAchievementDetail'), { ssr: false });
 
 const cx = cn.bind(styles);
 
 interface MyAchievementContainerProps {
-  data: InfiniteData<PaginationResponse<AchivementResponse>> | undefined;
-  hasNextPage: boolean | undefined;
-  isFetchingNextPage: boolean;
-  fetchNextPage: (
-    options?: FetchNextPageOptions | undefined,
-  ) => Promise<InfiniteQueryObserverResult<PaginationResponse<AchivementResponse>, AxiosError<unknown, any>>>;
+  token: string;
 }
 
-export default function MyAchievementContainer({
-  data,
-  hasNextPage,
-  isFetchingNextPage,
-  fetchNextPage,
-}: MyAchievementContainerProps) {
+export default function MyAchievementContainer({ token }: MyAchievementContainerProps) {
   const isLarge = useMediaQuery('(min-width: 1024px)');
   const [isOpenDetail, setIsOpenDetail] = useState(false);
   const [detailItem, setDetailItem] = useState<AchivementResponse | null>(null);
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isError, error } = useFetchMyAchievements(token);
 
   const onClickListItem = (value: AchivementResponse) => {
     setIsOpenDetail(true);
@@ -42,8 +32,8 @@ export default function MyAchievementContainer({
     setDetailItem(null);
   };
 
-  if (data?.pages[0].error) {
-    throw new Error(data?.pages[0].error.message, { cause: { type: data?.pages[0].error.type } });
+  if (isError) {
+    throw error;
   }
 
   if (data?.pages[0].items.length === 0 || !data?.pages[0].items) {

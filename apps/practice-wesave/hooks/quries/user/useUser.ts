@@ -15,12 +15,15 @@ export function useResignUser() {
   });
 }
 
-export const getUser = async () => {
-  const result = await new UserAPI().getUser();
+export const getUser = async (token?: string) => {
+  const result = await new UserAPI(token).getUser();
 
   return result;
 };
 
 export function useFetchUser() {
-  return useQuery('fetch-user', () => getUser());
+  return useQuery('fetch-user', () => getUser(), {
+    retry: false,
+    useErrorBoundary: true,
+  });
 }

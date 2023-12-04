@@ -21542,6 +21542,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["next-cookies", [\
+        ["npm:2.0.3", {\
+          "packageLocation": "./.yarn/cache/next-cookies-npm-2.0.3-80c70f5e17-1478895017.zip/node_modules/next-cookies/",\
+          "packageDependencies": [\
+            ["next-cookies", "npm:2.0.3"],\
+            ["universal-cookie", "npm:4.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["nice-try", [\
         ["npm:1.0.5", {\
           "packageLocation": "./.yarn/cache/nice-try-npm-1.0.5-963856b16f-0b4af3b5bb.zip/node_modules/nice-try/",\
@@ -23195,6 +23205,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jsonwebtoken", "npm:9.0.1"],\
             ["msw", "virtual:59ea08c590b1d14efec692f6041a3a0db8adfc32c86d000597b9a5a929ff4014d6a0b812824b25ba1b6086b299b976200cd0e2d2a1e419e4d08a9aef74cd24ec#npm:1.2.3"],\
             ["next", "virtual:59ea08c590b1d14efec692f6041a3a0db8adfc32c86d000597b9a5a929ff4014d6a0b812824b25ba1b6086b299b976200cd0e2d2a1e419e4d08a9aef74cd24ec#npm:13.2.4"],\
+            ["next-cookies", "npm:2.0.3"],\
             ["react", "npm:18.2.0"],\
             ["react-cookie", "virtual:59ea08c590b1d14efec692f6041a3a0db8adfc32c86d000597b9a5a929ff4014d6a0b812824b25ba1b6086b299b976200cd0e2d2a1e419e4d08a9aef74cd24ec#npm:4.1.1"],\
             ["react-date-range", "virtual:59ea08c590b1d14efec692f6041a3a0db8adfc32c86d000597b9a5a929ff4014d6a0b812824b25ba1b6086b299b976200cd0e2d2a1e419e4d08a9aef74cd24ec#npm:1.4.0"],\

@@ -1,49 +1,37 @@
 import { useInfiniteQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import AchievementAPI from '@/api/achievement';
-import { PaginationResponse, AchivementResponse } from '@/common';
-import { getAccessToken } from '@/utils';
+import { PaginationResponse, AchivementResponse, UnknownError } from '@/common';
 
 const pageSize = 5;
 
-export const getAchivements = async (offset = 1): Promise<PaginationResponse<AchivementResponse>> => {
-  try {
-    const token = getAccessToken();
+export const getAchivements = async (token: string, offset = 1): Promise<PaginationResponse<AchivementResponse>> => {
+  const achievements = await new AchievementAPI(token).getAchievements({
+    limit: pageSize,
+    offset: offset,
+  });
 
-    if (!token) throw Error('token이 없습니다.');
+  throw new UnknownError();
 
-    const achievements = await new AchievementAPI(token.value).getAchievements({
-      limit: pageSize,
-      offset: offset,
-    });
-    const result: PaginationResponse<AchivementResponse> = {
-      items: achievements.items,
-      isLastPage: achievements.isLastPage,
-      limit: pageSize,
-      offset,
-    };
-    return result;
-  } catch (e: any) {
-    return {
-      items: [],
-      isLastPage: true,
-      limit: pageSize,
-      offset,
-      error: { message: e.message, type: e.type },
-    };
-  }
+  const result: PaginationResponse<AchivementResponse> = {
+    items: achievements.items,
+    isLastPage: achievements.isLastPage,
+    limit: pageSize,
+    offset,
+  };
+  return result;
 };
 
-export function useFetchAchievements() {
+export function useFetchAchievements(token: string) {
   return useInfiniteQuery<PaginationResponse<AchivementResponse>, AxiosError, PaginationResponse<AchivementResponse>>(
     'achievements',
-    ({ pageParam }) => getAchivements(pageParam?.offset),
+    ({ pageParam }) => getAchivements(token, pageParam?.offset),
     {
       getNextPageParam: lastPage => {
         if (lastPage.isLastPage) return undefined;
         return { offset: lastPage.offset + 1 };
       },
-      useErrorBoundary: true,
+      useErrorBoundary: false,
       suspense: true,
     },
   );

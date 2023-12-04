@@ -1,42 +1,31 @@
 import { Fragment, useMemo } from 'react';
 import cn from 'classnames/bind';
 import { format } from 'date-fns';
-import { AxiosError } from 'axios';
-import { FetchNextPageOptions, InfiniteData, InfiniteQueryObserverResult } from 'react-query';
 import { ChallengeRegister, ChallengeList, InfiniteScroller } from '@/components/section';
 import styles from '@/styles/TodayChallenge.module.scss';
-import { ChallengeResponse, PaginationResponse } from '@/common';
 import { useDateInfo } from '@/hooks/useTodayInfo';
 import { ChallengeStatus, useToggleChallenges } from '@/hooks/quries/challenge/useToggleChallenges';
+import { useFetchChallenges } from '@/hooks/quries/challenge/useFetchChallenges';
 
 const cx = cn.bind(styles);
 
 interface TodayChallengeContainerProps {
-  data: InfiniteData<PaginationResponse<ChallengeResponse>> | undefined;
-  hasNextPage: boolean | undefined;
-  isFetchingNextPage: boolean;
-  fetchNextPage: (
-    options?: FetchNextPageOptions | undefined,
-  ) => Promise<InfiniteQueryObserverResult<PaginationResponse<ChallengeResponse>, AxiosError<unknown, any>>>;
+  token: string;
 }
 
-export default function TodayChallengeContainer({
-  data,
-  hasNextPage,
-  isFetchingNextPage,
-  fetchNextPage,
-}: TodayChallengeContainerProps) {
+export default function TodayChallengeContainer({ token }: TodayChallengeContainerProps) {
   const { mutateAsync } = useToggleChallenges();
   const today = useMemo(() => new Date(), []);
   const formattedDate = useMemo(() => format(today, 'yyyy-mm-dd'), [today]);
   const { day, month, weekday } = useDateInfo(today);
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isError, error } = useFetchChallenges(token);
 
   const handleItem = (id: number) => (status: ChallengeStatus) => {
     mutateAsync({ id, status });
   };
 
-  if (data?.pages[0].error) {
-    throw new Error(data?.pages[0].error.message, { cause: { type: data?.pages[0].error.type } });
+  if (isError) {
+    throw error;
   }
 
   if (data?.pages[0].items.length === 0 || !data?.pages[0].items) {

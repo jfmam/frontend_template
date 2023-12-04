@@ -1,9 +1,7 @@
 import { ReactNode, Suspense } from 'react';
 
 interface AchievementFetcherProps {
-  isLoading: boolean;
   children: ReactNode;
-  data: any;
 }
 
 export default function AchievementFetcher({ children }: AchievementFetcherProps) {

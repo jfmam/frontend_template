@@ -24,6 +24,7 @@
     "jotai-tanstack-query": "^0.7.2",
     "jsonwebtoken": "^9.0.1",
     "next": "13.2.4",
+    "next-cookies": "^2.0.3",
     "react": "18.2.0",
     "react-cookie": "^4.1.1",
     "react-date-range": "^1.4.0",

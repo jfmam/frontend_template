@@ -1,7 +1,6 @@
 import { ReactNode, Suspense } from 'react';
 
 interface MyAchievementFetcherProps {
-  isLoading: boolean;
   children: ReactNode;
 }
 

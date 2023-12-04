@@ -14311,6 +14311,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"next-cookies@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "next-cookies@npm:2.0.3"
+  dependencies:
+    universal-cookie: ^4.0.2
+  checksum: 147889501751629dab6af690491ca50f94d1538d2cc9a440cf0e4fa0d99b5594a6014505875c11a7b2536c919e93a84d0a48588958757756eed3afdc7918c482
+  languageName: node
+  linkType: hard
+
 "next@npm:*":
   version: 13.4.10
   resolution: "next@npm:13.4.10"
@@ -15890,6 +15899,7 @@ __metadata:
     jsonwebtoken: ^9.0.1
     msw: ^1.2.3
     next: 13.2.4
+    next-cookies: ^2.0.3
     react: 18.2.0
     react-cookie: ^4.1.1
     react-date-range: ^1.4.0
@@ -19537,7 +19547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"universal-cookie@npm:^4.0.0":
+"universal-cookie@npm:^4.0.0, universal-cookie@npm:^4.0.2":
   version: 4.0.4
   resolution: "universal-cookie@npm:4.0.4"
   dependencies:

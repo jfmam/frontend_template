@@ -2,51 +2,36 @@ import { AxiosError } from 'axios';
 import { useInfiniteQuery } from 'react-query';
 import ChallengeAPI from '@/api/challenge';
 import { ChallengeResponse, PaginationResponse } from '@/common';
-import { getAccessToken } from '@/utils';
 
 const pageSize = 5;
 
-export const getChellenges = async (offset = 1) => {
-  try {
-    const token = getAccessToken();
+export const getChellenges = async (token: string, offset = 1) => {
+  const challenges = await new ChallengeAPI(token).getChallenges({
+    limit: pageSize,
+    offset: offset,
+  });
 
-    if (!token) throw Error('token이 없습니다.');
-    const challenges = await new ChallengeAPI(token.value).getChallenges({
-      limit: pageSize,
-      offset: offset,
-    });
+  const result: PaginationResponse<ChallengeResponse> = {
+    items: challenges.items,
+    isLastPage: challenges.isLastPage,
+    limit: pageSize,
+    offset,
+  };
 
-    const result: PaginationResponse<ChallengeResponse> = {
-      items: challenges.items,
-      isLastPage: challenges.isLastPage,
-      limit: pageSize,
-      offset,
-    };
-
-    return result;
-  } catch (e: any) {
-    return {
-      items: [],
-      isLastPage: true,
-      limit: pageSize,
-      offset,
-      error: { message: e.message, type: e.type },
-    };
-  }
+  return result;
 };
 
-export function useFetchChallenges() {
+export function useFetchChallenges(token: string) {
   return useInfiniteQuery<PaginationResponse<ChallengeResponse>, AxiosError, PaginationResponse<ChallengeResponse>>(
     'challenges',
-    ({ pageParam }) => getChellenges(pageParam?.offset),
+    ({ pageParam }) => getChellenges(token, pageParam?.offset),
     {
       getNextPageParam: lastPage => {
         if (lastPage.isLastPage) return undefined;
         return { offset: lastPage.offset + 1 };
       },
-      useErrorBoundary: true,
+      useErrorBoundary: false,
       suspense: true,
-      staleTime: 10000,
     },
   );
 }

@@ -6,7 +6,7 @@ import { instance } from './base';
 export default class UserAPI {
   service: AxiosInstance;
 
-  constructor(token?: Token) {
+  constructor(token?: string) {
     this.service = instance.session;
 
     if (token) instance.setHeader({ header: 'Authorization', value: `Bearer ${token}` });
@@ -38,7 +38,7 @@ export default class UserAPI {
   }
 
   async findUserByEmail(email: string): Promise<UserResponse> {
-    const result = await this.service.get('/user', { params: { email } });
+    const result = await this.service.get('/users', { params: { email } });
 
     if (result.status === 404) {
       throw new Error('존재하지 않는 유저입니다.');
@@ -48,15 +48,7 @@ export default class UserAPI {
   }
 
   async getUser(): Promise<UserResponse> {
-    const result = await this.service.get('/profile');
-
-    if (result.status === 400) {
-      throw new Error('유효하지 않은 토큰입니다.');
-    }
-
-    if (result.status === 404) {
-      throw new Error('존재하지 않는 유저입니다.');
-    }
+    const result = await this.service.get('users/profile');
 
     return result.data;
   }

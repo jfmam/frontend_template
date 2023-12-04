@@ -1,3 +1,5 @@
+import { Response } from './response';
+
 export type UserLoginType = {
   email: string;
   password: string;

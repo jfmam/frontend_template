@@ -1,24 +1,27 @@
 import { ReactElement } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
-import { getChellenges, useFetchChallenges } from '@/hooks/quries/challenge/useFetchChallenges';
+import cookies from 'next-cookies';
+
+import { getChellenges } from '@/hooks/quries/challenge/useFetchChallenges';
 import {
   ApiErrorBoundary,
   TodayChallengeFetcher,
   TodayChallengeContainer,
   ChallengeLayout,
 } from '@/components/template';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import withGetServerSideProps from '@/hooks/ssr/withGetServerSideProps';
+import { AuthError } from '@/common';
 
-export default function TodayChallenge() {
-  const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading } = useFetchChallenges();
+interface Props {
+  token: string;
+}
+
+export default function TodayChallenge({ token }: Props) {
   return (
-    <ApiErrorBoundary error={data?.pages[0].error}>
-      <TodayChallengeFetcher isLoading={isLoading}>
-        <TodayChallengeContainer
-          data={data}
-          fetchNextPage={fetchNextPage}
-          hasNextPage={hasNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-        />
+    <ApiErrorBoundary>
+      <TodayChallengeFetcher>
+        <TodayChallengeContainer token={token} />
       </TodayChallengeFetcher>
     </ApiErrorBoundary>
   );
@@ -28,14 +31,18 @@ TodayChallenge.getLayout = function getLayout(page: ReactElement) {
   return <ChallengeLayout>{page}</ChallengeLayout>;
 };
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = withGetServerSideProps(async (ctx: GetServerSidePropsContext) => {
   const queryClient = new QueryClient();
+  const { token } = cookies(ctx);
 
-  await queryClient.prefetchInfiniteQuery('challenges', () => getChellenges(), { retry: false });
+  if (!token) throw new AuthError();
+  const challenges = await getChellenges(token);
+  await queryClient.prefetchInfiniteQuery('challenges', () => challenges, { retry: false });
 
   return {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      token,
     },
   };
-}
+});

@@ -2,21 +2,22 @@ import { ReactElement } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
 
 import ChallengeLayout from '@/components/template/layout/challenge/ChallengeLayout';
-import { getMyAchivements, useFetchMyAchievements } from '@/hooks/quries/challenge/useFetchMyAchievement';
+import { getMyAchivements } from '@/hooks/quries/challenge/useFetchMyAchievement';
 import { ApiErrorBoundary, MyAchievementFetcher, MyAchievementContainer } from '@/components/template';
+import cookies from 'next-cookies';
+import { AuthError } from '@/common';
+import withGetServerSideProps from '@/hooks/ssr/withGetServerSideProps';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
-export default function MyAchievement() {
-  const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading } = useFetchMyAchievements();
+interface Props {
+  token: string;
+}
 
+export default function MyAchievement({ token }: Props) {
   return (
-    <ApiErrorBoundary error={data?.pages[0].error}>
-      <MyAchievementFetcher isLoading={isLoading}>
-        <MyAchievementContainer
-          data={data}
-          fetchNextPage={fetchNextPage}
-          hasNextPage={hasNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-        />
+    <ApiErrorBoundary>
+      <MyAchievementFetcher>
+        <MyAchievementContainer token={token} />
       </MyAchievementFetcher>
     </ApiErrorBoundary>
   );
@@ -26,14 +27,18 @@ MyAchievement.getLayout = function getLayout(page: ReactElement) {
   return <ChallengeLayout>{page}</ChallengeLayout>;
 };
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = withGetServerSideProps(async (ctx: GetServerSidePropsContext) => {
   const queryClient = new QueryClient();
+  const { token } = cookies(ctx);
 
-  await queryClient.prefetchInfiniteQuery('my-achievements', () => getMyAchivements(), { retry: false });
+  if (!token) throw new AuthError();
+  const myAchievements = getMyAchivements(token);
+  await queryClient.prefetchInfiniteQuery('my-achievements', () => myAchievements, { retry: false });
 
   return {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      token,
     },
   };
-}
+});

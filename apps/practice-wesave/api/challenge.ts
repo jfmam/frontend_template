@@ -6,8 +6,9 @@ import { instance } from './base';
 export default class ChallengeAPI {
   service: AxiosInstance;
 
-  constructor(token: string) {
+  constructor(token?: string) {
     this.service = instance.session;
+
     instance.setHeader({ header: 'Authorization', value: `Bearer ${token}` });
   }
 

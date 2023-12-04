@@ -1,7 +1,6 @@
 import { ReactNode, Suspense } from 'react';
 
 interface TodayChallengeFetcherProps {
-  isLoading: boolean;
   children: ReactNode;
 }
 

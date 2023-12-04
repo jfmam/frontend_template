@@ -31,7 +31,7 @@ export function useFetchAchievements(token: string) {
         if (lastPage.isLastPage) return undefined;
         return { offset: lastPage.offset + 1 };
       },
-      useErrorBoundary: false,
+      useErrorBoundary: true,
       suspense: true,
     },
   );

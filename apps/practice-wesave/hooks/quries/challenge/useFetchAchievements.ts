@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import AchievementAPI from '@/api/achievement';
-import { PaginationResponse, AchivementResponse, UnknownError } from '@/common';
+import { PaginationResponse, AchivementResponse } from '@/common';
 
 const pageSize = 5;
 
@@ -10,8 +10,6 @@ export const getAchivements = async (token: string, offset = 1): Promise<Paginat
     limit: pageSize,
     offset: offset,
   });
-
-  throw new UnknownError();
 
   const result: PaginationResponse<AchivementResponse> = {
     items: achievements.items,

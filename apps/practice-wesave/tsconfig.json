@@ -22,5 +22,5 @@
     "emitDecoratorMetadata": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "**/*.stories.tsx","**/*.test.*"]
+  "exclude": ["node_modules", "**/*.stories.tsx"]
 }

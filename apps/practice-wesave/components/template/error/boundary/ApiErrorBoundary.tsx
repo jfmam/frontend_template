@@ -1,13 +1,15 @@
 import React, { PropsWithChildren } from 'react';
 
 import { NetworkError, UnknownError } from '@/components/section';
+import { isInstanceOfAPIError } from '@/common';
 
 interface ApiErrorBoundaryProps {
-  error?: { message: string; type?: 'network' | 'auth' | 'unknown' };
+  error?: unknown;
 }
 
 type AuthErrorBoundaryState = {
   hasError: boolean;
+  error: unknown;
 };
 
 export default class ApiErrorBoundary extends React.Component<
@@ -16,11 +18,11 @@ export default class ApiErrorBoundary extends React.Component<
 > {
   constructor(props: ApiErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  static getDerivedStateFromError(error: unknown) {
+    return { hasError: true, error };
   }
 
   //   Todo:connect monitoring api
@@ -31,7 +33,7 @@ export default class ApiErrorBoundary extends React.Component<
       return this.props.children;
     }
 
-    if (this.props.error?.type === 'network') {
+    if (isInstanceOfAPIError(this.state.error) && this.state.error?.name === 'NetworkError') {
       return <NetworkError />;
     }
 

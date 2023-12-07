@@ -24,11 +24,10 @@ export class AuthError extends ApiError {
 export class NetworkError extends ApiError {
   name = 'NetworkError';
   message = '네트워크 사용이 불가합니다. 관리자에게 문의 부탁드립니다.';
-  redirectUrl = '/500';
   statusCode = 500;
 }
 
 export class UnknownError extends Error {
-  name = 'unknownError';
-  message = '네트워크 사용이 불가합니다. 관리자에게 문의 부탁드립니다.';
+  name = 'UnknownError';
+  message = '알 수 없는 오류가 발생하였습니다. 관리자에게 문의 부탁드립니다.';
 }

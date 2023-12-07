@@ -4,7 +4,7 @@ import { mock as challengeMocks } from '../challenge-list';
 import { AchievementMock as achievementMock, AchievementResponseMock as myAchievementMock } from '../achievement';
 
 export const handlers = [
-  rest.get('http://localhost:3000/api/challenge', (req, res, ctx) => {
+  rest.get('http://localhost:3000/api/challenges', (req, res, ctx) => {
     const offset = Number(req.url.searchParams.get('offset'));
     const limit = Number(req.url.searchParams.get('limit'));
 
@@ -27,7 +27,7 @@ export const handlers = [
     );
   }),
 
-  rest.get('http://localhost:3000/api/achievement', (req, res, ctx) => {
+  rest.get('http://localhost:3000/api/challenges/achievements', (req, res, ctx) => {
     const offset = Number(req.url.searchParams.get('offset'));
     const limit = Number(req.url.searchParams.get('limit'));
 
@@ -49,7 +49,7 @@ export const handlers = [
       }),
     );
   }),
-  rest.get('http://localhost:3000/api/my-achievement', (req, res, ctx) => {
+  rest.get('http://localhost:3000/api/challenges/my-achievements', (req, res, ctx) => {
     const offset = Number(req.url.searchParams.get('offset'));
     const limit = Number(req.url.searchParams.get('limit'));
 

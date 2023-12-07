@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { singleton, container } from 'tsyringe';
-import { AuthError, NotFoundError } from '@/common/error';
+import { AuthError, NetworkError, NotFoundError } from '@/common/error';
 
 export interface RequestConfig extends AxiosRequestConfig {
   suppressStatusCode?: number[];
@@ -15,6 +15,10 @@ function AxiosAuthInterceptor<T>(response: AxiosResponse<T>): AxiosResponse {
 
   if (status === 401) {
     throw new AuthError();
+  }
+
+  if (status === 500) {
+    throw new NetworkError();
   }
 
   return response;
@@ -33,7 +37,7 @@ class APIService {
         // 'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json;charset=UTF-8',
       },
-      validateStatus: status => status < 500,
+      validateStatus: status => status <= 500,
       timeout: 5000,
     });
 

@@ -1,32 +1,42 @@
 import { render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { server } from '@/mocks/msw/server';
-import { mockIntersectionObserver } from 'jsdom-testing-mocks';
-import { MyAchievementContainer } from '@/components/template';
+import AchievementContainer from '@/components/template/container/AchievementContainer';
 import { AchievementResponseMock } from '@/mocks/achievement';
+import { mockIntersectionObserver } from 'jsdom-testing-mocks';
+import { server } from '@/mocks/msw/server';
 import { rest } from 'msw';
-import MyAchievement from '@/pages/challenge/my-achievement';
+import AchievementStatus from '@/pages/challenge/achievement-status';
 
 mockIntersectionObserver();
-
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-describe('my achievement page 테스트', () => {
-  it('my achievement list가 있을 경우', async () => {
-    const queryClient = new QueryClient();
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(),
+}));
+
+describe('achievement page 테스트', () => {
+  it('achievement list가 있을 경우', async () => {
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false,
+        },
+      },
+    });
+
     render(
       <QueryClientProvider client={queryClient}>
-        <MyAchievementContainer token="token" />
+        <AchievementContainer token={'test'} />
       </QueryClientProvider>,
     );
 
-    const myAchievementItems = await screen.findAllByRole('button');
-    expect(myAchievementItems.length).toBe(AchievementResponseMock.length);
+    const achievementItems = await screen.findAllByRole('listitem');
+    expect(achievementItems.length).toBe(AchievementResponseMock.length);
   });
 
-  it('my achievement list가 없을 경우', async () => {
+  it('achievement list가 없을 경우', async () => {
     server.use(
       rest.get('*', (req, res, ctx) => {
         return res(
@@ -38,10 +48,17 @@ describe('my achievement page 테스트', () => {
         );
       }),
     );
-    const queryClient = new QueryClient();
+
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false,
+        },
+      },
+    });
     render(
       <QueryClientProvider client={queryClient}>
-        <MyAchievementContainer token="token" />
+        <AchievementContainer token={'test'} />
       </QueryClientProvider>,
     );
 
@@ -67,7 +84,7 @@ describe('my achievement page 테스트', () => {
     });
     render(
       <QueryClientProvider client={queryClient}>
-        <MyAchievement token="" />
+        <AchievementStatus token="" />
       </QueryClientProvider>,
     );
     const element = await screen.findByText(/네트워크 상태가 불안정합니다./);

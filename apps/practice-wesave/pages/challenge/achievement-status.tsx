@@ -9,7 +9,6 @@ import { AuthError } from '@/common';
 
 interface Props {
   token: string;
-  error: any;
 }
 
 export default function AchievementStatus({ token }: Props) {

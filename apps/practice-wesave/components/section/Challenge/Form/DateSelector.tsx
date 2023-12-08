@@ -81,7 +81,7 @@ export default function DateSelector({ actionDay, setFieldValue }: DateSelectorP
           placeholder="2023.11.15 ~ 2023.11.20"
           required
           onClick={() => setIsCalendarOpen(true)}
-          value={`${format(selectedRange.startDate, 'yy.MM.dd')} ~ ${format(selectedRange.endDate, 'yy.MM.dd')}`}
+          defaultValue={`${format(selectedRange.startDate, 'yy.MM.dd')} ~ ${format(selectedRange.endDate, 'yy.MM.dd')}`}
         />
         <div style={{ position: 'relative' }}>
           <div style={{ position: 'absolute', border: '1px solid black', margin: 10 }} ref={calendarRef}>

@@ -1,4 +1,5 @@
 import { ReactElement, useCallback, useEffect, useState } from 'react';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import cn from 'classnames/bind';
 import { toast, Toaster } from 'react-hot-toast';
 import ChallengeCreateForm from '@/components/section/Challenge/Form';
@@ -7,13 +8,20 @@ import { ChallengeLayout, NotificationLayout } from '@/components/template';
 import { useRegistChallenges } from '@/hooks/quries/challenge/useRegistChallenges';
 import styles from '@/styles/Register.module.scss';
 import { PrimaryBtn } from '@/components/atom';
-import { Challenge } from '@/common';
+import { AuthError, Challenge } from '@/common';
+import withGetServerSideProps from '@/hooks/ssr/withGetServerSideProps';
+import cookies from 'next-cookies';
+import { getUser } from '@/hooks/quries/user/useUser';
 
 const cx = cn.bind(styles);
 
-export default function Register() {
+interface Props {
+  token: string;
+}
+
+export default function Register({ token }: Props) {
   const [isSuccess, setIsSuccess] = useState(false);
-  const { mutate, isLoading, isError } = useRegistChallenges();
+  const { mutate, isLoading, isError } = useRegistChallenges(token);
   const onSubmit = useCallback(
     (challenge: Challenge) => {
       mutate(challenge, {
@@ -63,3 +71,17 @@ Register.getLayout = function getLayout(page: ReactElement) {
     </ChallengeLayout>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = withGetServerSideProps(async (ctx: GetServerSidePropsContext) => {
+  const { token } = cookies(ctx);
+
+  if (!token) throw new AuthError();
+
+  await getUser(token);
+
+  return {
+    props: {
+      token,
+    },
+  };
+});

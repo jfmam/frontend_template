@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = withGetServerSideProps(asy
   const { token } = cookies(ctx);
 
   if (!token) throw new AuthError();
-  const myAchievements = getMyAchivements(token);
+  const myAchievements = await getMyAchivements(token);
   await queryClient.prefetchInfiniteQuery('my-achievements', () => myAchievements, { retry: false });
 
   return {

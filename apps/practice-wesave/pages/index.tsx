@@ -21,7 +21,7 @@ const Home: NextPage = () => {
   return (
     <div className={cx('home')}>
       <div className={cx('image-container')}>
-        <Image src="/main.svg" width="840" height="420" alt="welcome wesaver" loading="eager" />
+        <Image src="/main.svg" fill alt="welcome wesaver" loading="eager" />
       </div>
       <div className={cx('button-container')}>
         <Link href={`/${route}`}>

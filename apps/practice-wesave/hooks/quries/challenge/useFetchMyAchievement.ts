@@ -16,6 +16,7 @@ export const getMyAchivements = async (token: string, offset = 1): Promise<Pagin
     isLastPage: myAchievements.isLastPage,
     limit: pageSize,
     offset,
+    lastKey: myAchievements.lastKey,
   };
 
   return result;

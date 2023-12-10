@@ -5,17 +5,19 @@ import { ChallengeResponse, PaginationResponse } from '@/common';
 
 const pageSize = 5;
 
-export const getChellenges = async (token: string, offset = 1) => {
+export const getChellenges = async (token: string, options?: { lastKey?: string; offset?: number }) => {
   const challenges = await new ChallengeAPI(token).getChallenges({
     limit: pageSize,
-    offset: offset,
+    offset: options?.offset || 1,
+    lastKey: options?.lastKey,
   });
 
   const result: PaginationResponse<ChallengeResponse> = {
     items: challenges.items,
     isLastPage: challenges.isLastPage,
     limit: pageSize,
-    offset,
+    offset: options?.offset || 1,
+    lastKey: challenges.lastKey,
   };
 
   return result;
@@ -24,11 +26,15 @@ export const getChellenges = async (token: string, offset = 1) => {
 export function useFetchChallenges(token: string) {
   return useInfiniteQuery<PaginationResponse<ChallengeResponse>, AxiosError, PaginationResponse<ChallengeResponse>>(
     'challenges',
-    ({ pageParam }) => getChellenges(token, pageParam?.offset),
+    ({ pageParam }) =>
+      getChellenges(token, {
+        offset: pageParam?.offset,
+        lastKey: pageParam?.lastKey,
+      }),
     {
       getNextPageParam: lastPage => {
-        if (lastPage.isLastPage) return undefined;
-        return { offset: lastPage.offset + 1 };
+        if (lastPage.items.length === 0) return undefined;
+        return { offset: lastPage.offset + 1, lastKey: lastPage.lastKey };
       },
       useErrorBoundary: true,
       suspense: true,

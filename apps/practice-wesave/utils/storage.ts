@@ -14,7 +14,6 @@ type CookieSetOptions = {
 };
 
 export const setAccessToken = (accessToken: string, options?: CookieSetOptions) => {
-  console.log(cookies.get('token'));
   if (cookies.get('token')) {
     cookies.remove('token');
   }

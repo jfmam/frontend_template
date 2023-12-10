@@ -21,16 +21,19 @@ interface Props {
 
 export default function Register({ token }: Props) {
   const [isSuccess, setIsSuccess] = useState(false);
-  const { mutate, isLoading, isError } = useRegistChallenges(token);
+  const { mutate, isLoading, isError, reset } = useRegistChallenges(token);
   const onSubmit = useCallback(
     (challenge: Challenge) => {
       mutate(challenge, {
         onSuccess: () => {
           setIsSuccess(true);
         },
+        onSettled: () => {
+          reset();
+        },
       });
     },
-    [mutate],
+    [mutate, reset],
   );
 
   useEffect(() => {

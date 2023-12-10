@@ -5,8 +5,8 @@ export interface Challenge {
   name: string;
   type: 'save' | 'spend';
   goal: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
   actionDay: string[];
   badge: BadgeType;
 }

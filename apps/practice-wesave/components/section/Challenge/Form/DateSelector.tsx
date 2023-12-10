@@ -56,9 +56,9 @@ export default function DateSelector({ actionDay, setFieldValue }: DateSelectorP
 
   const onChangeDate = (date: RangeKeyDict) => {
     if (!date.selection.startDate) return;
-    setFieldValue('startDate', format(date.selection.startDate, 'yy-MM-dd'));
+    setFieldValue('startDate', date.selection.startDate);
     if (!date.selection.endDate) return;
-    setFieldValue('endDate', format(date.selection.endDate, 'yy-MM-dd'));
+    setFieldValue('endDate', date.selection.endDate);
     setSelectedRange({
       startDate: date.selection.startDate,
       endDate: date.selection.endDate,

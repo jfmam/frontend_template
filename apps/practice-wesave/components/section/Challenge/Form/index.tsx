@@ -33,9 +33,9 @@ export default function ChallengeCreateForm({ isLoading, isError, callback }: Ch
       name: '',
       type: 'save',
       actionDay: [],
-      endDate: '',
+      endDate: new Date(),
       goal: '',
-      startDate: '',
+      startDate: new Date(),
       badge: 'pig',
     },
     onSubmit: (challenge: InitialValuesType, { resetForm }) => {

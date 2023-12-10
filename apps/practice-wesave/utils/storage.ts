@@ -14,7 +14,16 @@ type CookieSetOptions = {
 };
 
 export const setAccessToken = (accessToken: string, options?: CookieSetOptions) => {
-  return cookies.set('token', accessToken, options);
+  console.log(cookies.get('token'));
+  if (cookies.get('token')) {
+    cookies.remove('token');
+  }
+
+  return cookies.set('token', accessToken, {
+    ...options,
+    path: '/',
+    maxAge: 900,
+  });
 };
 
 export const getAccessToken = () => {

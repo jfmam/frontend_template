@@ -7,7 +7,7 @@ export interface Achievement {
   goal: string;
   actionDay: string[];
   badge: BadgeType;
-  completedRatio: number;
+  completeRatio: number;
   startDate: Date;
   endDate: Date;
 }

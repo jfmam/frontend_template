@@ -31,7 +31,7 @@ export function useFetchAchievements(token: string) {
     ({ pageParam }) => getAchivements(token, pageParam?.offset),
     {
       getNextPageParam: lastPage => {
-        if (lastPage.items.length === 0) return undefined;
+        if (!lastPage.lastKey) return undefined;
         return { offset: lastPage.offset + 1, lastKey: lastPage.lastKey };
       },
       useErrorBoundary: true,

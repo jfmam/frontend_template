@@ -22,7 +22,7 @@ interface AchievementItemProps {
 }
 
 function AchievementItem({ item, onClick }: AchievementItemProps) {
-  const { actionDay, completedRatio, goal, name, type } = item;
+  const { actionDay, completeRatio, goal, name, type } = item;
 
   const onClickBtn = () => {
     if (onClick) onClick();
@@ -30,11 +30,11 @@ function AchievementItem({ item, onClick }: AchievementItemProps) {
 
   return (
     <li className={cx('list-item')}>
-      <button className={cx('button', { 'button-complete': completedRatio === 100 })} onClick={() => onClickBtn()}>
+      <button className={cx('button', { 'button-complete': completeRatio === 100 })} onClick={() => onClickBtn()}>
         <ListItemLayout>
           <ListItemLayout.Name name={name} />
-          <ListItemLayout.Detail actionDay={actionDay} completedRatio={completedRatio} goal={goal} type={type} />
-          <ListItemLayout.ComplteRatio completedRatio={completedRatio} />
+          <ListItemLayout.Detail actionDay={actionDay} completedRatio={completeRatio} goal={goal} type={type} />
+          <ListItemLayout.ComplteRatio completedRatio={completeRatio} />
         </ListItemLayout>
       </button>
     </li>

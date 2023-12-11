@@ -44,13 +44,13 @@ export default function AchievementContainer({ token }: AchievementListProps) {
   }
 
   return (
-    <InfiniteScroller
-      fetchNextPage={() => fetchNextPage()}
-      hasNextPage={!!hasNextPage}
-      isFetchingNextPage={isFetchingNextPage}
-    >
-      <div className={cx('achievement-status')}>
-        <AchievementList>
+    <AchievementList>
+      <InfiniteScroller
+        fetchNextPage={() => fetchNextPage()}
+        hasNextPage={!!hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+      >
+        <div className={cx('achievement-status')}>
           {data?.pages.map(page => (
             <Fragment key={page.offset}>
               {page.items?.map(v => (
@@ -58,15 +58,15 @@ export default function AchievementContainer({ token }: AchievementListProps) {
               ))}
             </Fragment>
           ))}
-        </AchievementList>
-      </div>
-      {detailItem && (
-        <AchievementStatusDetail
-          item={detailItem as AchivementResponse}
-          onRequestClose={closeDetail}
-          isOpen={isOpenDetail}
-        />
-      )}
-    </InfiniteScroller>
+        </div>
+        {detailItem && (
+          <AchievementStatusDetail
+            item={detailItem as AchivementResponse}
+            onRequestClose={closeDetail}
+            isOpen={isOpenDetail}
+          />
+        )}
+      </InfiniteScroller>
+    </AchievementList>
   );
 }

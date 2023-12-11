@@ -16,7 +16,7 @@ interface AchievementStatusDetail {
 const cx = cn.bind(styles);
 
 export default function AchievementStatusDetail({ item, isOpen, onRequestClose }: AchievementStatusDetail) {
-  const { actionDay, badge, completedRatio, goal, name, startDate, endDate, type } = item;
+  const { actionDay, badge, completeRatio, goal, name, startDate, endDate, type } = item;
   const dDay = differenceInDays(new Date(endDate), new Date());
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} shouldCloseOnEsc className={cx('container')}>
@@ -35,7 +35,7 @@ export default function AchievementStatusDetail({ item, isOpen, onRequestClose }
           <div className={cx('d-day')}>{`D-${dDay}`}</div>
           <div className={cx('date')}>{`${convertIsoDate(startDate)} - ${convertIsoDate(endDate)}`}</div>
         </div>
-        <div className={cx('complete')}>{completedRatio}%</div>
+        <div className={cx('complete')}>{completeRatio}%</div>
       </div>
     </Modal>
   );

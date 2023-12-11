@@ -28,8 +28,11 @@ export default class ChallengeAPI {
 
   async toggleChallenges(
     challengeId: ChallengeResponse['id'],
+    status: boolean,
   ): Promise<{ status: number; message: 'success' | 'error' }> {
-    const result = await this.service.post(`/challenges/${challengeId}`);
+    const result = await this.service.patch(`/challenges/${challengeId}/toggle`, {
+      status,
+    });
 
     return result.status === 201 ? { status: 201, message: 'success' } : { status: result.status, message: 'error' };
   }

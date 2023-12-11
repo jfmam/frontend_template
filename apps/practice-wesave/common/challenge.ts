@@ -11,4 +11,5 @@ export interface Challenge {
   badge: BadgeType;
 }
 
-export type ChallengeResponse = Challenge & Response & { badge: string; type: string };
+export type ChallengeResponse = Challenge &
+  Response & { badge: string; type: string; todayCompleteStatus: boolean; totalDays: number; completeCount: number };

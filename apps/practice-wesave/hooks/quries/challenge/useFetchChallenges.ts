@@ -33,7 +33,7 @@ export function useFetchChallenges(token: string) {
       }),
     {
       getNextPageParam: lastPage => {
-        if (lastPage.items.length === 0) return undefined;
+        if (!lastPage.lastKey && lastPage.offset !== 1) return undefined;
         return { offset: lastPage.offset + 1, lastKey: lastPage.lastKey };
       },
       useErrorBoundary: true,

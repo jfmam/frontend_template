@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { ChallengeRegister, ChallengeList, InfiniteScroller } from '@/components/section';
 import styles from '@/styles/TodayChallenge.module.scss';
 import { useDateInfo } from '@/hooks/useTodayInfo';
-import { ChallengeStatus, useToggleChallenges } from '@/hooks/quries/challenge/useToggleChallenges';
+import { useToggleChallenges } from '@/hooks/quries/challenge/useToggleChallenges';
 import { useFetchChallenges } from '@/hooks/quries/challenge/useFetchChallenges';
 
 const cx = cn.bind(styles);
@@ -20,7 +20,7 @@ export default function TodayChallengeContainer({ token }: TodayChallengeContain
   const { day, month, weekday } = useDateInfo(today);
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isError, error } = useFetchChallenges(token);
 
-  const handleItem = (id: number) => (status: ChallengeStatus) => {
+  const handleItem = (id: number) => (status: boolean) => {
     mutateAsync({ id, status });
   };
 
@@ -54,7 +54,7 @@ export default function TodayChallengeContainer({ token }: TodayChallengeContain
             {data.pages.map(({ items, offset }) => (
               <Fragment key={offset}>
                 {items?.map(v => (
-                  <ChallengeList.Item onClick={() => handleItem(v.id)} item={v} key={v.id} />
+                  <ChallengeList.Item onClick={handleItem(v.id)} item={v} key={v.id} />
                 ))}
               </Fragment>
             ))}

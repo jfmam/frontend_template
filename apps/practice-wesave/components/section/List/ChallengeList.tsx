@@ -2,7 +2,6 @@ import { ReactNode, useState } from 'react';
 import cn from 'classnames/bind';
 import styles from '@/styles/ChallengeList.module.scss';
 import { ChallengeResponse } from '@/common';
-import { ChallengeStatus } from '@/hooks/quries/challenge/useToggleChallenges';
 import { CheckSelector } from '@/components/atom';
 
 const cx = cn.bind(styles);
@@ -17,16 +16,16 @@ function ChallengeList({ children }: ChallengeListProps) {
 
 interface ChallengeItemProps {
   item: ChallengeResponse;
-  onClick?: (status: ChallengeStatus) => void;
+  onClick?: (status: boolean) => void;
 }
 
 function ChallengeItem({ item, onClick }: ChallengeItemProps) {
-  const { goal, type, name } = item;
-  const [toggle, setToggle] = useState(false);
+  const { goal, type, name, todayCompleteStatus } = item;
+  const [toggle, setToggle] = useState(todayCompleteStatus);
 
   const onClickBtn = () => {
+    if (onClick) onClick(!toggle);
     setToggle(origin => !origin);
-    if (onClick) onClick(toggle ? 'complete' : 'progress');
   };
 
   return (

@@ -14,7 +14,7 @@ interface TodayChallengeContainerProps {
 }
 
 export default function TodayChallengeContainer({ token }: TodayChallengeContainerProps) {
-  const { mutateAsync } = useToggleChallenges();
+  const { mutateAsync, isError: isUpdateError, error: updateError } = useToggleChallenges();
   const today = useMemo(() => new Date(), []);
   const formattedDate = useMemo(() => format(today, 'yyyy-mm-dd'), [today]);
   const { day, month, weekday } = useDateInfo(today);
@@ -26,6 +26,10 @@ export default function TodayChallengeContainer({ token }: TodayChallengeContain
 
   if (isError) {
     throw error;
+  }
+
+  if (isUpdateError) {
+    throw updateError;
   }
 
   if (data?.pages[0].items.length === 0 || !data?.pages[0].items) {

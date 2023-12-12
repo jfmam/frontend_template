@@ -8,6 +8,11 @@ import { PrimaryBtn, Input } from '@/components/atom';
 import { FieldErrorMessage } from '@/components/section';
 import { AccountLayout, NotificationLayout } from '@/components/template';
 import { useResetPassword } from '@/hooks/quries/user/usePasswordManagement';
+import { getUser } from '@/hooks/quries/user/useUser';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import withGetServerSideProps from '@/hooks/ssr/withGetServerSideProps';
+import { AuthError, isInstanceOfAPIError } from '@/common';
+import { toast, Toaster } from 'react-hot-toast';
 
 const cx = cn.bind(styles);
 
@@ -19,17 +24,29 @@ const passwordSchema = Yup.object().shape({
 });
 
 export default function ResetPassword() {
-  const { mutate, isSuccess, isError } = useResetPassword();
   const router = useRouter();
-  const [isSettled, setIsSettled] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const { mutate, isError, isLoading } = useResetPassword();
+
   const formik = useFormik({
     initialValues: {
       password: '',
     },
     onSubmit: values => {
-      mutate(values.password, {
-        onSettled: () => setIsSettled(true),
-      });
+      mutate(
+        { password: values.password, token: router.query?.token },
+        {
+          onSuccess: () => {
+            setIsSuccess(true);
+          },
+          onError: error => {
+            if (isInstanceOfAPIError(error) && error.name === 'AuthError') {
+              return;
+            }
+            toast.error('지금은 패스워드를 업데이트 할 수 없습니다.');
+          },
+        },
+      );
     },
     validationSchema: passwordSchema,
   });
@@ -62,21 +79,20 @@ export default function ResetPassword() {
             onFocus={() => formik.setTouched({ password: true })}
             {...formik.getFieldProps}
             onChange={formik.handleChange}
-            onClick={() => setIsSettled(false)}
             name="password"
             type="password"
             placeholder="비밀번호"
           />
           {!formik.errors.password && !isError && <span className={cx('password-condition')}>8자 이상, 숫자 포함</span>}
           {formik.errors.password && <FieldErrorMessage message={formik.errors.password} />}
-          {!formik.errors.password && isSettled && isError && (
-            <FieldErrorMessage message="이전과 다른 비밀번호로 설정해주세요." />
-          )}
         </div>
         <div className={cx('submit-button-container')}>
-          <PrimaryBtn type="submit">확인</PrimaryBtn>
+          <PrimaryBtn type="submit" disabled={isLoading}>
+            확인
+          </PrimaryBtn>
         </div>
       </form>
+      <Toaster position="top-center" />
     </>
   );
 }
@@ -90,3 +106,16 @@ ResetPassword.getLayout = function getLayout(page: ReactElement) {
     </AccountLayout>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = withGetServerSideProps(async (ctx: GetServerSidePropsContext) => {
+  const token = ctx.query?.token;
+
+  if (!token || Array.isArray(token)) throw new AuthError();
+  const user = await getUser(token);
+
+  if (!user) throw new AuthError();
+
+  return {
+    props: {},
+  };
+});

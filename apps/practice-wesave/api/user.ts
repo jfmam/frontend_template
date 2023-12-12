@@ -54,10 +54,20 @@ export default class UserAPI {
   }
 
   async resetPassword(password: string): Promise<{ message: string }> {
-    const result = await this.service.post('/user/reset', { password });
+    const result = await this.service.patch('/users/reset-password', { password });
 
     if (result.status === 400) {
       throw new Error('이전과 같은 비밀번호 입니다.');
+    }
+
+    return { message: '비밀번호를 재설정 하였습니다.' };
+  }
+
+  async forgotPassword(email: string): Promise<{ message: string }> {
+    const result = await this.service.post('/users/forgot-password', { email });
+
+    if (result.status === 401) {
+      throw new AuthError();
     }
 
     return { message: '비밀번호를 재설정 하였습니다.' };

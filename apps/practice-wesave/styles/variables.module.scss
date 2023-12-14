@@ -39,3 +39,10 @@ $indication-yellow: #fce554;
 
 $content-height: calc(100vh - 4.5rem);
 $content-height-mobile: calc(100vh - 3.5rem);
+
+@mixin remove-scrollbar {
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

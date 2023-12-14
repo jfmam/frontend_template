@@ -53,7 +53,7 @@ export default function ChallengeCreateForm({ isLoading, isError, callback }: Ch
   }, [isError]);
 
   return (
-    <>
+    <div className={cx('register')}>
       <form onSubmit={formik.handleSubmit} className={cx('form')}>
         <NameInput handleChange={formik.handleChange} />
         <ChallengeTypeSelector
@@ -77,6 +77,6 @@ export default function ChallengeCreateForm({ isLoading, isError, callback }: Ch
           </PrimaryBtn>
         </div>
       </form>
-    </>
+    </div>
   );
 }

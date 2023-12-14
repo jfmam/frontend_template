@@ -44,18 +44,20 @@ export default function Register({ token }: Props) {
 
   if (isSuccess) {
     return (
-      <NotificationLayout icon={{ src: '/complete.svg' }}>
-        <NotificationLayout.Description>
-          새로운 챌린지를
-          <br />
-          만들었습니다!
-        </NotificationLayout.Description>
-        <NotificationLayout.Confirm>
-          <PrimaryBtn onClick={() => setIsSuccess(false)} className={cx('confirm-button')}>
-            챌린지 만들기
-          </PrimaryBtn>
-        </NotificationLayout.Confirm>
-      </NotificationLayout>
+      <div className={cx('notification')}>
+        <NotificationLayout icon={{ src: '/complete.svg' }}>
+          <NotificationLayout.Description>
+            새로운 챌린지를
+            <br />
+            만들었습니다!
+          </NotificationLayout.Description>
+          <NotificationLayout.Confirm>
+            <PrimaryBtn onClick={() => setIsSuccess(false)} className={cx('confirm-button')}>
+              챌린지 만들기
+            </PrimaryBtn>
+          </NotificationLayout.Confirm>
+        </NotificationLayout>
+      </div>
     );
   }
 
@@ -70,7 +72,7 @@ export default function Register({ token }: Props) {
 Register.getLayout = function getLayout(page: ReactElement) {
   return (
     <ChallengeLayout>
-      <div className={cx('register')}>{page}</div>
+      {page}
     </ChallengeLayout>
   );
 };

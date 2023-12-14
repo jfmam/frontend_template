@@ -1,11 +1,14 @@
 @import './variables.module.scss';
 
 .myachievement {
-  margin-top: 26.94vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 14.7%;
   min-height: $content-height;
 
   @media (max-width: 768px) {
-    margin: 48px auto 0;
+    margin: 0 auto;
   }
 
   @media (max-width: 768px) {

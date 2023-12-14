@@ -1,6 +1,20 @@
 @import './font.module.scss';
 @import './variables.module.scss';
 
+.container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+}
+
+.icon {
+  position: relative;
+  width: 95px;
+  height: 95px;
+}
+
 .description {
   font-size: $body1;
   margin-top: 2rem;

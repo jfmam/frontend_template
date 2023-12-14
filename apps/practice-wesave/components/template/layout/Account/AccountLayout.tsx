@@ -14,8 +14,7 @@ interface AccountLayoutProps {
 export default function AccountLayout({ backgroundColor, children, imageUrl }: AccountLayoutProps) {
   return (
     <div className={cx('layout')}>
-      {children}
-      <div className={cx('divide-line')}></div>
+      <div className={cx('input-container')}>{children}</div>
       <div className={cx('image-container')} style={{ backgroundColor }}>
         <Image src={`${imageUrl}.svg`} fill alt="" className="image" />
       </div>

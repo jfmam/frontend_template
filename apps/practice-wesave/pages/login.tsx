@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import cn from 'classnames/bind';
-import styles from '@/styles/signin.module.scss';
+import styles from '@/styles/login.module.scss';
 import { AccountLayout } from '@/components/template';
 import { PrimaryBtn, SnsButton, Input } from '@/components/atom';
 import { Token, UserLoginType } from '@/common/user';

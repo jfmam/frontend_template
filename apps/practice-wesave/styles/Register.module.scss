@@ -1,18 +1,11 @@
 @import './variables.module.scss';
 @import './font.module.scss';
 
-.register {
+.notification {
   display: flex;
-  margin-left: 14.17%;
-  margin-right: 24px;
   align-items: center;
   min-height: $content-height;
-
-  @media (max-width: 768px) {
-    align-items: flex-start;
-    justify-content: center;
-    margin-left: 24px;
-  }
+  margin-left: 14.7%;
 }
 
 .confirm-button {

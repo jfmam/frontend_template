@@ -12,8 +12,8 @@ interface NotificationLayoutProps {
 
 export default function NotificationLayout({ icon, children }: NotificationLayoutProps) {
   return (
-    <div>
-      <div style={{ position: 'relative', width: '95px', height: '95px' }}>
+    <div className={cx('container')}>
+      <div className={cx('icon')}>
         <Image sizes="(max-width: 425px) 70px, 95px" fill alt="" src={icon.src} />
       </div>
       {children}

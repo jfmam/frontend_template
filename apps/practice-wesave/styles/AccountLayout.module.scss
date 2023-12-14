@@ -2,33 +2,30 @@
 
 .layout {
   display: flex;
-  flex-direction: column;
   width: 100%;
   height: 100%;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
+  flex-wrap: wrap;
 }
 
-.divide-line {
-  width: 0;
-  height: 100%;
-  border-right: 1.5px solid $bg0;
+.input-container {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 325px;
+  padding: 13vh 0 19vh;
 
-  @media (max-width: 768px) {
-    display: none;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    padding: 104px 0 48px;
   }
 }
 
 .image-container {
-  width: 100%;
-  height: 49.7rem;
+  width: 40%;
   position: relative;
 
-  @media (min-width: 768px) {
-    display: block;
-    width: max(39.606vw, 76.044rem);
-    height: 100%;
+  @media screen and (max-width: 1024px) {
+    opacity: 0;
   }
 }

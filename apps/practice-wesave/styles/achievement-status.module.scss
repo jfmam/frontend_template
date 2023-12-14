@@ -2,7 +2,9 @@
 
 .achievement-status {
   margin: 0 14.7%;
-  margin-top: 14.6875rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: $content-height;
 
   @media (max-width: 1200px) {
@@ -13,6 +15,5 @@
 
   @media (max-width: 768px) {
     margin: 0 24px;
-    margin-top: 3rem;
   }
 }

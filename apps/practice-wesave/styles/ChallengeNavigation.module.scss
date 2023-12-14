@@ -2,6 +2,7 @@
 @import './font.module.scss';
 
 .challenge-naviation {
+  min-height: 755px;
   height: $content-height;
   display: flex;
   flex-direction: column;

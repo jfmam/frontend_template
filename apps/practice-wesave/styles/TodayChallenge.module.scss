@@ -2,13 +2,14 @@
 @import './font.module.scss';
 
 .today-challenge {
-  padding-top: 11.66vh;
-  padding-left: 13.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 14.7%;
   min-height: $content-height;
 
   @media (max-width: 768px) {
     margin: 0 24px;
-    margin-top: 3rem;
   }
 }
 
@@ -16,6 +17,7 @@
   margin-top: 64px;
   overflow-y: scroll;
   height: 45.92vh;
+  @include remove-scrollbar
 }
 
 .date {

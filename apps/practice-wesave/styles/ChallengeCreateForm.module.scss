@@ -1,6 +1,21 @@
 @import './font.module.scss';
 @import './variables.module.scss';
 
+.register {
+  margin-left: 14.17%;
+  margin-right: 24px;
+  height: 100% !important;
+  overflow-y: scroll;
+  @include remove-scrollbar;
+  min-height: $content-height;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 24px;
+  }
+}
+
 .label {
   display: inline-block;
   font-size: $body3;
@@ -9,8 +24,6 @@
 }
 
 .field {
-  // width: 23.5rem;
-
   &::placeholder {
     font-size: $body3;
   }
@@ -26,7 +39,6 @@
   gap: 24px;
   max-width: 24.875rem;
   margin-top: 15.55vh;
-  height: 100vh;
 
   @media (max-width: 768px) {
     margin-top: 3rem;

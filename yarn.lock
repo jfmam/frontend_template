@@ -15765,7 +15765,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-scss@npm:^4.0.6":
+"postcss-scss@npm:4.0.6, postcss-scss@npm:^4.0.6":
   version: 4.0.6
   resolution: "postcss-scss@npm:4.0.6"
   peerDependencies:
@@ -15900,6 +15900,8 @@ __metadata:
     msw: ^1.2.3
     next: 13.2.4
     next-cookies: ^2.0.3
+    node-sass: 6
+    postcss-scss: 4.0.6
     react: 18.2.0
     react-cookie: ^4.1.1
     react-date-range: ^1.4.0

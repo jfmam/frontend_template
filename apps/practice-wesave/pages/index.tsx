@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import cn from 'classnames/bind';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '@/styles/home.module.scss';
+import styles from '@/styles/Home.module.scss';
 import { PrimaryBtn } from '@/components/atom';
 import LocalStorage from '@/utils/storage';
 

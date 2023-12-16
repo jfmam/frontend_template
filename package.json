@@ -22,7 +22,8 @@
   },
   "scripts": {
     "wesave:dev": "yarn workspace practice-wesave dev",
-    "wesave:test": "yarn workspace practice-wesave test"
+    "wesave:test": "yarn workspace practice-wesave test",
+    "wesave:build": "yarn workspace practice-wesave build"
   },
   "workspaces": [
     "apps/*"

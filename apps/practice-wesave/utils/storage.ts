@@ -21,7 +21,7 @@ export const setAccessToken = (accessToken: string, options?: CookieSetOptions) 
   return cookies.set('token', accessToken, {
     ...options,
     path: '/',
-    maxAge: 900,
+    maxAge: 86400,
   });
 };
 

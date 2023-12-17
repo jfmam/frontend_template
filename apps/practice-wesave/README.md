@@ -13,7 +13,7 @@
 ## 개발스택
 - nextjs, typescript, scss
 - react-query
-- aws amplify
+- vercek
 - storybook
 - jest, react testing library
 

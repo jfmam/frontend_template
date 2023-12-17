@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import cn from 'classnames/bind';
 import styles from '@/styles/login.module.scss';
 import { AccountLayout } from '@/components/template';
-import { PrimaryBtn, SnsButton, Input } from '@/components/atom';
+import { PrimaryBtn, Input } from '@/components/atom';
 import { Token, UserLoginType } from '@/common/user';
 import { useLogin } from '@/hooks/quries/user/useLogin';
 import { FieldErrorMessage } from '@/components/section';
@@ -71,11 +71,11 @@ export default function SignIn() {
               회원가입
             </Link>
           </div>
-          <div className={cx('sns-button-container')}>
+          {/* <div className={cx('sns-button-container')}>
             <SnsButton sns="naver" onClick={() => {}} />
             <SnsButton sns="kakao" onClick={() => {}} />
             <SnsButton sns="google" onClick={() => {}} />
-          </div>
+          </div> */}
         </form>
       </div>
     </div>

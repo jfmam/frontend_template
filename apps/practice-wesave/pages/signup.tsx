@@ -6,7 +6,7 @@ import cn from 'classnames/bind';
 import { useRouter } from 'next/router';
 import { AccountLayout, NotificationLayout } from '@/components/template';
 import { FieldErrorMessage } from '@/components/section';
-import { PrimaryBtn, SnsButton, Input } from '@/components/atom';
+import { PrimaryBtn, Input } from '@/components/atom';
 import styles from '@/styles/signup.module.scss';
 import { useSignUp } from '@/hooks/quries/user/useSignUp';
 import { SignUpType } from '@/common';
@@ -147,11 +147,11 @@ export default function SignUp() {
               로그인
             </Link>
           </div>
-          <div className={cx('sns-button-container')}>
+          {/* <div className={cx('sns-button-container')}>
             <SnsButton sns="naver" onClick={() => {}} />
             <SnsButton sns="kakao" onClick={() => {}} />
             <SnsButton sns="google" onClick={() => {}} />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

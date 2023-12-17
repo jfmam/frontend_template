@@ -13,7 +13,7 @@
 ## 개발스택
 - nextjs, typescript, scss
 - react-query
-- vercek
+- vercel
 - storybook
 - jest, react testing library
 
@@ -28,3 +28,10 @@
 | 나의 성취 | 이승헌      | 완료                                                         |
 | 마이페이지 |  김승미     | 완료                                                         |
 
+![image](https://github.com/jfmam/frontend_template/assets/49827304/d3210956-8ed6-41ee-a809-dd088d9f76e8)
+![image](https://github.com/jfmam/frontend_template/assets/49827304/ec480526-aa17-4562-b3a3-28316af8767b)
+![image](https://github.com/jfmam/frontend_template/assets/49827304/d6f4d9d3-1d8a-4446-bf70-79a8bad55021)
+![image](https://github.com/jfmam/frontend_template/assets/49827304/301bdb0e-fa09-4ffe-b9b2-21d0a91e6460)
+![image](https://github.com/jfmam/frontend_template/assets/49827304/92dd99fc-178b-4176-8cc8-da1eaefbbd8e)
+![image](https://github.com/jfmam/frontend_template/assets/49827304/27e7e48e-6793-489b-b1ae-3df2342f1f4f)
+![image](https://github.com/jfmam/frontend_template/assets/49827304/977abaef-05b2-4d47-846e-63a58c2b3832)

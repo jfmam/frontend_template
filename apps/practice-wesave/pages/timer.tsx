@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import cn from 'classnames/bind';
 import Slider from 'react-slick';
 import styels from '@/styles/timer.module.scss';
 import { RangeBar } from '@/components/section';
 import { useDailyInfo, useMonthlyInfo, useTimer } from '@/hooks/timer';
+import { useRouter } from 'next/router';
 
 const cx = cn.bind(styels);
 
@@ -45,6 +46,7 @@ function TimerRangeBar() {
 
 export default function Timer() {
   const [barIndex, setBarIndex] = useState(0);
+  const router = useRouter();
   let sliderRef = useRef<{ slickGoTo: Function } | null>(null);
   const settings = {
     dots: false,
@@ -65,9 +67,14 @@ export default function Timer() {
     ],
   };
 
+  useLayoutEffect(() => {
+    if (!localStorage.getItem('income')) {
+      router.push('/salary');
+    }
+  }, [router]);
+
   return (
     <>
-      {/* {!isMobile && ( */}
       <div className={cx('button-container')}>
         <button
           className={cx('button', { 'button-active': barIndex === 0 })}
@@ -88,7 +95,6 @@ export default function Timer() {
           타이머
         </button>
       </div>
-      {/* )} */}
       <Slider ref={slider => (sliderRef.current = slider)} {...settings}>
         <MonthlyRangeBar />
         <DailyRangeBar />

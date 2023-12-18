@@ -96,7 +96,7 @@ export function useMonthlyInfo() {
     const value = LocalStorage.getItem('income');
 
     if (!value) {
-      throw new Error('소득정보가 존재하지 않습니다.');
+      return;
     }
 
     const { income, workday, payday } = JSON.parse(value);
@@ -127,7 +127,7 @@ export function useDailyInfo() {
     const value = LocalStorage.getItem('income');
 
     if (!value) {
-      throw new Error('소득정보가 존재하지 않습니다.');
+      return;
     }
 
     const { income, workday, quitTime, startTime, payday } = JSON.parse(value);
@@ -158,7 +158,7 @@ export function useTimer() {
     const value = LocalStorage.getItem('income');
 
     if (!value) {
-      throw new Error('소득정보가 존재하지 않습니다.');
+      return;
     }
 
     const { quitTime, startTime, workday }: Income = JSON.parse(value);

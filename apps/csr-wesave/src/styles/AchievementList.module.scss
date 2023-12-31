@@ -1,0 +1,52 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+@import './List.module.scss';
+
+.list {
+  max-height: 496px;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media (max-width: 425px) {
+    max-height: 648px;
+    padding: 0 1.5rem;
+  }
+}
+
+.list-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
+}
+
+.button {
+  @include listitem-default;
+
+  width: 28.5rem;
+  border-radius: 27px;
+  padding: 24px 32px 22px;
+  text-align: left;
+
+  @media (max-width: 1200px) {
+    width: 23rem;
+  }
+
+  @media (max-width: 996px) {
+    width: 21rem;
+  }
+
+  @media (max-width: 504px) {
+    width: 20.4375rem;
+  }
+
+  &-complete {
+    @include listitem-selected;
+  }
+}

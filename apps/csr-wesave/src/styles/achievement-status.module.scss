@@ -1,0 +1,19 @@
+@import './variables.module.scss';
+
+.achievement-status {
+  margin: 0 14.7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: $content-height;
+
+  @media (max-width: 1200px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    margin: 0 24px;
+  }
+}

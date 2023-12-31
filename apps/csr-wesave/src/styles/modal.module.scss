@@ -1,0 +1,44 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.modal {
+  inset: 0;
+  margin-right: -50%;
+  margin-top: 72px;
+  width: 100%;
+  height: $content-height;
+  background-color: $bg100;
+  overflow: hidden;
+  padding: 0;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 54px;
+    height: $content-height-mobile;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+}
+
+.navigation-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 7px;
+  padding: 0 36px;
+  margin-top: -27px;
+}
+
+.navigation-item {
+  color: $bg0;
+  font-size: calc(((100vw - 425px) / 100) * 7.5 + 36px);
+
+  &:hover {
+    color: $secondary-green;
+  }
+}

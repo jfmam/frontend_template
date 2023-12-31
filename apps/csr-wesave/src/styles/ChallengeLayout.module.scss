@@ -1,0 +1,12 @@
+@import './font.module.scss';
+@import './variables.module.scss';
+
+.challenge-layout {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+
+  @media (max-width: 425px) {
+    min-height: $content-height-mobile;
+  }
+}

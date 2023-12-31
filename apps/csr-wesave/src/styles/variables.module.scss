@@ -1,0 +1,48 @@
+$bg100: #080808;
+$bg80: #333;
+$bg60: #777;
+$bg50: #c3c3c3;
+$bg40: #e4e4e4;
+$bg20: #f3f3f3;
+$bg0: #fff;
+
+$primary-blue: #3281f7;
+$primary-blue20: #63b1ff;
+$primary-blue40: #44a0ff;
+$primary-blue60: #2e8fff;
+$primary-blue100: #336ee3;
+$primary-purple: #837bf6;
+$primary-purple20: #ebe9fe;
+$primary-purple40: #cbc6fb;
+$primary-purple60: #a8a1f8;
+$primary-purple100: #695af2;
+$primary-orange: #f7a832;
+$primary-orange20: #fbe542;
+$primary-orange40: #fdd741;
+$primary-orange60: #fac039;
+$primary-orange100: #f18125;
+
+$secondary-red: #f73281;
+$secondary-red20: #fbbad3;
+$secondary-red40: #fa8db6;
+$secondary-red60: #f95c99;
+$secondary-red100: #f60069;
+$secondary-green: #bcfb4f;
+$secondary-green20: #e8fec5;
+$secondary-green40: #d8fe9d;
+$secondary-green60: #c8fd73;
+$secondary-green100: #a7e616;
+
+$indication-green: #479a50;
+$indication-red: #e44e59;
+$indication-yellow: #fce554;
+
+$content-height: calc(100vh - 4.5rem);
+$content-height-mobile: calc(100vh - 3.5rem);
+
+@mixin remove-scrollbar {
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,0 +1,153 @@
+@import './font.module.scss';
+
+.income {
+  font-size: $heading2;
+  font-weight: 400;
+  line-height: 1.6;
+
+  @media (max-width: 1920px) {
+    font-size: $heading3;
+  }
+
+  @media (max-width: 1440px) {
+    font-size: $heading4;
+  }
+
+  @media (max-width: 850px) {
+    font-size: $heading5;
+  }
+
+  @media (max-width: 768px) {
+    font-size: $body1;
+  }
+
+  @media (max-width: 522px) {
+    font-size: $body2;
+  }
+}
+
+.input {
+  font-size: $heading2;
+  font-weight: 400;
+  height: fit-content;
+
+  &:not(:focus) {
+    border: none;
+  }
+
+  @media (max-width: 1920px) {
+    font-size: $heading3;
+  }
+
+  @media (max-width: 1440px) {
+    font-size: $heading4;
+  }
+
+  @media (max-width: 850px) {
+    font-size: $heading5;
+  }
+
+  @media (max-width: 768px) {
+    font-size: $body1;
+  }
+
+  @media (max-width: 522px) {
+    font-size: $body2;
+  }
+}
+
+.input-number {
+  max-width: 6.5rem;
+
+  @media (max-width: 1920px) {
+    max-width: 5rem;
+  }
+
+  @media (max-width: 1440px) {
+    max-width: 4.5rem;
+  }
+
+  @media (max-width: 850px) {
+    max-width: 3.5rem;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 2.5rem;
+  }
+
+  @media (max-width: 425px) {
+    max-width: 2rem;
+  }
+}
+
+.input-salary {
+  max-width: 33rem;
+
+  @media (max-width: 1920px) {
+    max-width: 22.5rem;
+  }
+
+  @media (max-width: 1440px) {
+    max-width: 20.5rem;
+  }
+
+  @media (max-width: 850px) {
+    max-width: 15.5rem;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 11.5rem;
+  }
+
+  @media (max-width: 522px) {
+    max-width: 8rem;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8.3125rem;
+
+  @media (max-width: 768px) {
+    padding-top: 7.5rem;
+  }
+}
+
+.won-logo {
+  display: inline-block;
+  position: relative;
+  width: 136px;
+  height: 80px;
+
+  @media (max-width: 768px) {
+    width: 42px;
+    height: 24.71px;
+  }
+}
+
+.arrow-logo {
+  display: inline-block;
+  position: relative;
+  width: 187px;
+  height: 60px;
+
+  @media (max-width: 768px) {
+    width: 59px;
+    height: 18.93px;
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+}
+
+.payday-container {
+  padding-right: 3.5625rem;
+
+  @media (max-width) {
+    padding-right: 1rem;
+  }
+}

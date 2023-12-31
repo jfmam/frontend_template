@@ -1,0 +1,36 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.name {
+  font-size: $body2;
+}
+
+.details {
+  font-size: $callout;
+  color: $bg60;
+  width: 75%;
+  display: inline-block;
+
+  @media (max-width: 504px) {
+    width: 100%;
+  }
+
+  &-completed {
+    color: $bg0;
+  }
+
+  &-goal {
+    margin-right: 0.5rem;
+  }
+}
+
+.percent {
+  width: 25%;
+  font-size: $body2;
+  text-align: right;
+  display: inline-block;
+
+  @media (max-width: 504px) {
+    width: 100%;
+  }
+}

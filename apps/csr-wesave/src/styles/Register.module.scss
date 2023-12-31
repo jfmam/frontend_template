@@ -1,0 +1,15 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.notification {
+  display: flex;
+  align-items: center;
+  min-height: $content-height;
+  margin-left: 14.7%;
+}
+
+.confirm-button {
+  width: 20.4375rem;
+  height: 4.625rem;
+  font-size: $body3;
+}

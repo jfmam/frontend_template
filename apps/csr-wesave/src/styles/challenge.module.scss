@@ -1,0 +1,16 @@
+@import './font.module.scss';
+@import './variables.module.scss';
+
+.description {
+  font-size: $body1;
+}
+
+.confirm-container {
+  margin-top: 48px;
+}
+
+.register-button {
+  width: 20.4375rem;
+  height: 4.625rem;
+  font-size: $body3;
+}

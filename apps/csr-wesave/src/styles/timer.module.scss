@@ -1,0 +1,21 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.button-container {
+  @media (min-width: 425px) {
+    display: none;
+  }
+}
+
+.button {
+  border: 1.5px solid $bg100;
+  border-top: 0;
+  width: 25vw;
+  font-size: $body3;
+  height: 3.5625rem;
+}
+
+.button-active {
+  width: 50vw;
+  border-bottom: 0;
+}

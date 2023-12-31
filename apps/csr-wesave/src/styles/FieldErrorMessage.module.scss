@@ -1,0 +1,8 @@
+@import './font.module.scss';
+@import './variables.module.scss';
+
+.message {
+  font-size: $callout-small;
+  color: $indication-red;
+  margin: 4px 0;
+}

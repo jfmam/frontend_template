@@ -1,0 +1,18 @@
+@import './variables.module.scss';
+
+.badge {
+  position: relative;
+  width: 6.875rem;
+  height: 6.875rem;
+  background-color: transparent;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: $bg40;
+  }
+
+  &-small {
+    width: 5.3125rem;
+    height: 5.3125rem;
+  }
+}

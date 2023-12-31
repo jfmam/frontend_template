@@ -1,0 +1,16 @@
+@import './variables.module.scss';
+
+.checkmark {
+  display: inline-block;
+  transform: rotate(45deg);
+  height: 35.69px;
+  width: 21.9px;
+  border-bottom: 1.5px solid $bg50;
+  border-right: 1.5px solid $bg50;
+  margin-bottom: 15px;
+
+  &--selected {
+    border-bottom: 1.5px solid $bg0;
+    border-right: 1.5px solid $bg0;
+  }
+}

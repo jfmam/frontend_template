@@ -1,0 +1,26 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+@import './List.module.scss';
+
+.list-item {
+  @include listitem-default;
+
+  width: 28.5rem;
+  height: 6.625rem;
+  border-radius: 27px;
+  padding: 24px 32px 22px;
+
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
+}
+
+.name {
+  font-size: $body2;
+  color: $bg100;
+}
+
+.goal {
+  font-size: $callout;
+  color: $bg60;
+}

@@ -1,3 +1,8 @@
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'reflect-metadata';
+import '@/styles/globals.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

@@ -1,0 +1,109 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.primary {
+  background-color: $primary-blue;
+  width: 16.5rem;
+  height: 4.625rem;
+  border-radius: 40.5px;
+  border: none;
+  color: $bg0;
+  font-size: $body3;
+
+  &:hover {
+    background-color: $primary-blue20;
+  }
+}
+
+.disabled {
+  background-color: $bg40;
+}
+
+.text {
+  color: $bg60;
+  width: auto;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+}
+
+.selector {
+  background-color: $bg20;
+  border-radius: 25px;
+  width: auto;
+  height: 2.25rem;
+  border: none;
+
+  &:hover {
+    background-color: $bg40;
+  }
+
+  &--selected {
+    background-color: $primary-purple40;
+  }
+}
+
+.tab-selector {
+  color: $bg40;
+  border: none;
+  background-color: transparent;
+  font-size: $body3;
+  display: inline-flex;
+  align-items: center;
+
+  &--selected {
+    color: $bg100;
+  }
+
+  &-circle {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    background-color: $bg40;
+    display: inline-block;
+    margin-left: 2px;
+
+    &--selected {
+      background-color: $primary-purple100;
+    }
+  }
+}
+
+.check-selector {
+  width: 4.5625rem;
+  height: 4.5625rem;
+  background-color: $bg0;
+  border-radius: 50%;
+  border: 1.5px solid $bg50;
+
+  &:hover {
+    background: $bg40;
+  }
+
+  &--selected {
+    background-color: $primary-blue40;
+
+    &:hover {
+      background-color: $primary-blue100;
+    }
+  }
+}
+
+.menu {
+  position: relative;
+  width: 48px;
+  height: 46px;
+  background-color: none;
+  border: none;
+
+  @media (max-width: 425px) {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.sns {
+  background-color: transparent;
+  width: 4rem;
+  height: 4rem;
+}

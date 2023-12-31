@@ -1,0 +1,54 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.container {
+  width: 28.5rem;
+  padding: 24px 32px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $bg0;
+  overflow: hidden;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (max-width: 504px) {
+    width: 20.375rem;
+  }
+}
+
+.info {
+  padding: 16px 0;
+
+  &-name {
+    font-size: $body2;
+  }
+
+  &-goal {
+    font-size: $callout;
+    color: $bg60;
+  }
+}
+
+.date-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1.5px solid $bg40;
+}
+
+.d-day {
+  font-size: $body2;
+}
+
+.date {
+  font-size: $callout;
+  color: $bg60;
+}
+
+.complete {
+  font-size: $body1;
+}

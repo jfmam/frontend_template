@@ -1,0 +1,32 @@
+@import './variables.module.scss';
+
+.input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1.5px solid $bg100;
+  width: 100%;
+
+  &:focus {
+    border-bottom-color: $primary-blue20;
+
+    &:invalid {
+      border-bottom-color: $indication-red;
+    }
+  }
+
+  &::placeholder {
+    color: $bg40;
+  }
+}
+
+.error {
+  &:focus {
+    border-bottom-color: $indication-red !important;
+  }
+}
+
+.default {
+  height: 2.25rem;
+  font-size: 1.5rem;
+}

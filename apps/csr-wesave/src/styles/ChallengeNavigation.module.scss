@@ -1,0 +1,67 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.challenge-naviation {
+  min-height: 755px;
+  height: $content-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 425px) {
+    height: $content-height-mobile;
+  }
+}
+
+.navigation-item {
+  width: fit-content;
+  height: 5.25rem;
+
+  @media (max-width: 425px) {
+    height: 4.375rem;
+  }
+
+  @media (min-width: 1024px) {
+    &:nth-child(1) {
+      margin-right: min(48px, 10.6%);
+    }
+
+    &:nth-child(3) {
+      margin-right: min(64px, 20.7%);
+    }
+
+    &:nth-child(4) {
+      margin-left: min(128px, 14.15%);
+    }
+  }
+}
+
+.today-challenge {
+  background-color: $primary-blue40;
+}
+
+.achievement-status {
+  background-color: $primary-orange20;
+}
+
+.my-achievement {
+  background-color: $secondary-green60;
+}
+
+.register {
+  background-color: $primary-purple40;
+}
+
+.link {
+  font-size: $heading4;
+  color: $bg100;
+
+  @media (max-width: 425px) {
+    font-size: $heading5;
+  }
+}
+
+.selected {
+  border-bottom: 4px solid $bg100;
+}

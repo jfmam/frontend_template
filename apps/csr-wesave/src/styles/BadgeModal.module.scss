@@ -1,0 +1,45 @@
+@import './variables.module.scss';
+@import './font.module.scss';
+
+.badge-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 642px;
+  height: 732px;
+  background-color: $bg0;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    width: min(642px, 95%);
+  }
+
+  @media (max-width: 425px) {
+    height: 425px;
+  }
+}
+
+.badge-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
+
+  @media (max-width: 425px) {
+    gap: 16px;
+  }
+}
+
+.button-container {
+  margin-top: 32px;
+}

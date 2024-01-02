@@ -4,6 +4,7 @@ import styels from '@/styles/timer.module.scss';
 import { RangeBar } from '@/components/section';
 import { useDailyInfo, useMonthlyInfo, useTimer } from '@/hooks/timer';
 import { useNavigate } from 'react-router-dom';
+import Slider from 'react-slick';
 
 const cx = cn.bind(styels);
 
@@ -94,9 +95,11 @@ export default function Timer() {
           타이머
         </button>
       </div>
-      <MonthlyRangeBar />
-      <DailyRangeBar />
-      <TimerRangeBar />
+      <Slider ref={slider => (sliderRef.current = slider)} {...settings}>
+        <MonthlyRangeBar />
+        <DailyRangeBar />
+        <TimerRangeBar />
+      </Slider>
     </>
   );
 }

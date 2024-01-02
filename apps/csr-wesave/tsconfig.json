@@ -18,9 +18,10 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "baseUrl": "."
+    "baseUrl": ".",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "**/*.stories.tsx", "pages/api/**/*", "mocks/**/*"],
-  "experimentalDecorators": true
 }

@@ -1,6 +1,6 @@
+import '@/styles/globals.scss';
 import React, { Suspense, lazy, useState } from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
-import './App.css';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { Header } from './components/section';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -30,24 +30,6 @@ const MyAchievement = lazy(() => import('./pages/challenge/my-achievement'));
 const Register = lazy(() => import('./pages/challenge/register'));
 const Home = lazy(() => import('./pages'));
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Home />}>
-      <Route path="forgot-password" element={<ForgotPassword />} />
-      <Route path="login" element={<SignIn />} />
-      <Route path="reset-password" element={<ResetPassword />} />
-      <Route path="salary" element={<Salary />} />
-      <Route path="signup" element={<SignUp />} />
-      <Route path="timer" element={<Timer />} />
-      <Route path="mypage" element={<MyPage />} />
-      <Route path="challenge/today-challenge" element={<TodayChallenge />} />
-      <Route path="challenge/achievement-status" element={<AchievementStatus />} />
-      <Route path="challenge/my-achievement" element={<MyAchievement />} />
-      <Route path="challenge/register" element={<Register />} />
-    </Route>,
-  ),
-);
-
 function App() {
   const [queryClient] = useState(
     () =>
@@ -62,16 +44,29 @@ function App() {
       }),
   );
   return (
-    <div>
+    <BrowserRouter>
       <Header />
       <QueryClientProvider client={queryClient}>
         <main id="main">
           <Suspense>
-            <RouterProvider router={router} />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="forgot-password" element={<ForgotPassword />} />
+              <Route path="login" element={<SignIn />} />
+              <Route path="reset-password" element={<ResetPassword />} />
+              <Route path="salary" element={<Salary />} />
+              <Route path="signup" element={<SignUp />} />
+              <Route path="timer" element={<Timer />} />
+              <Route path="mypage" element={<MyPage />} />
+              <Route path="challenge/today-challenge" element={<TodayChallenge />} />
+              <Route path="challenge/achievement-status" element={<AchievementStatus />} />
+              <Route path="challenge/my-achievement" element={<MyAchievement />} />
+              <Route path="challenge/register" element={<Register />} />
+            </Routes>
           </Suspense>
         </main>
       </QueryClientProvider>
-    </div>
+    </BrowserRouter>
   );
 }
 

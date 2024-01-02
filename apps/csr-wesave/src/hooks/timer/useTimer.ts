@@ -198,7 +198,7 @@ export function useTimer() {
         percentage: +percentage.toFixed(0),
       });
     }, timer);
-    setTimer(1000);
+
     return () => clearInterval(interval);
   }, [timer]);
 

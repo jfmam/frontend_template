@@ -23,13 +23,14 @@ function AxiosAuthInterceptor<T>(response: AxiosResponse<T>): AxiosResponse {
 
   return response;
 }
+
 @singleton()
 class APIService {
   public session: AxiosInstance;
 
   constructor() {
-    const protocol = process.env.NEXT_PUBLIC_API_PROTOCOL;
-    const host = process.env.NEXT_PUBLIC_API_DOMAIN;
+    const protocol = process.env.REACT_APP_API_PROTOCOL;
+    const host = process.env.REACT_APP_API_DOMAIN;
 
     this.session = axios.create({
       baseURL: `${protocol}://${host}/api`,

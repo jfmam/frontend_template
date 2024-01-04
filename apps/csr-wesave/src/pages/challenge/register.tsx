@@ -37,7 +37,7 @@ export default function Register() {
 
   if (isSuccess) {
     return (
-      <ChallengeLayout>
+      <>
         <div className={cx('notification')}>
           <NotificationLayout icon={{ src: '/complete.svg' }}>
             <NotificationLayout.Description>
@@ -52,14 +52,14 @@ export default function Register() {
             </NotificationLayout.Confirm>
           </NotificationLayout>
         </div>
-      </ChallengeLayout>
+      </>
     );
   }
 
   return (
-    <ChallengeLayout>
+    <>
       <ChallengeCreateForm callback={onSubmit} isError={isError} isLoading={isLoading} />
       {isError && <Toaster position="top-center" />}
-    </ChallengeLayout>
+    </>
   );
 }

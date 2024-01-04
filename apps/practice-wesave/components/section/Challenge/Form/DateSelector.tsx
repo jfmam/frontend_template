@@ -83,24 +83,22 @@ export default function DateSelector({ actionDay, setFieldValue }: DateSelectorP
           onClick={() => setIsCalendarOpen(true)}
           defaultValue={`${format(selectedRange.startDate, 'yy.MM.dd')} ~ ${format(selectedRange.endDate, 'yy.MM.dd')}`}
         />
-        <div style={{ position: 'relative' }}>
-          <div style={{ position: 'absolute', border: '1px solid black', margin: 10 }} ref={calendarRef}>
-            {isCalendarOpen && (
-              <>
-                <button onClick={() => setIsCalendarOpen(false)}>닫기</button>
-                <div>
-                  <DateRange
-                    minDate={today}
-                    maxDate={maxDate}
-                    ranges={[selectedRange]}
-                    onChange={onChangeDate}
-                    showDateDisplay={false}
-                  />
-                </div>
-              </>
-            )}
+        {isCalendarOpen && (
+          <div style={{ position: 'relative' }}>
+            <div style={{ position: 'absolute', border: '1px solid black', margin: 10 }} ref={calendarRef}>
+              <button onClick={() => setIsCalendarOpen(false)}>닫기</button>
+              <div>
+                <DateRange
+                  minDate={today}
+                  maxDate={maxDate}
+                  ranges={[selectedRange]}
+                  onChange={onChangeDate}
+                  showDateDisplay={false}
+                />
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className={cx('days-container')}>
         {days.map(day => (

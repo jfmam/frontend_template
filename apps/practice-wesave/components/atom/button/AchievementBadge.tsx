@@ -20,7 +20,7 @@ export default function AchievementBadge({ type, onClick, lengthType }: BadgePro
   };
   return (
     <button onClick={e => clickBtn(e)} className={cx('badge', { 'badge-small': lengthType === 'small' })}>
-      <Image sizes="(max-width: 1024px) 76.5px, 99px " fill alt="badge" src={`/${type}.svg`} loading="eager" />;
+      <Image sizes="(max-width: 1024px) 76.5px, 99px " fill alt="badge" src={`/${type}.svg`} loading="eager" />
     </button>
   );
 }

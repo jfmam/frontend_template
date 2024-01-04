@@ -1,5 +1,6 @@
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const CracoCSSModules = require('craco-css-modules');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   plugins: [
@@ -13,6 +14,9 @@ module.exports = {
     },
     {
         plugin: CracoCSSModules
+    },
+    {
+        plugin: new Dotenv()
     }
   ],
   style: {

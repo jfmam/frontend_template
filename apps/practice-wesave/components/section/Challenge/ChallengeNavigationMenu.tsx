@@ -21,7 +21,7 @@ export default function ChallengeNavigationMenu() {
       className={cx('navigation-item', { selected: selectChallengeMenuMapLink[v] === basename(router.asPath) })}
       key={v}
     >
-      <Link className={cx('link')} key={v} href={`${selectChallengeMenuMapLink[v]}`}>
+      <Link prefetch={false} className={cx('link')} key={v} href={`${selectChallengeMenuMapLink[v]}`}>
         {v}
       </Link>
     </li>

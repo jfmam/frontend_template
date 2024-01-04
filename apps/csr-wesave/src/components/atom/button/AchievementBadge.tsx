@@ -27,7 +27,6 @@ export default function AchievementBadge({ type, onClick, lengthType }: BadgePro
         src={`/${type}.svg`}
         loading="eager"
       />
-      ;
     </button>
-  );
+);
 }

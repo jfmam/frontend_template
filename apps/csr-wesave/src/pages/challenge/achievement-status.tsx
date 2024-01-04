@@ -1,4 +1,4 @@
-import { ApiErrorBoundary, AchievementFetcher, AchievementContainer, ChallengeLayout } from '@/components/template';
+import { ApiErrorBoundary, AchievementFetcher, AchievementContainer } from '@/components/template';
 import { getAccessToken } from '@/utils';
 
 export default function AchievementStatus() {
@@ -6,9 +6,7 @@ export default function AchievementStatus() {
   return (
     <ApiErrorBoundary>
       <AchievementFetcher>
-        <ChallengeLayout>
-          <AchievementContainer token={token} />
-        </ChallengeLayout>
+        <AchievementContainer token={token} />
       </AchievementFetcher>
     </ApiErrorBoundary>
   );

@@ -73,7 +73,7 @@ export default function ForgotPassword() {
             </PrimaryBtn>
           </div>
           <div className={cx('auth-button-container')}>
-            <Link className={cx('anchor')} to="/login">
+            <Link className={cx('anchor')} to="/account/login">
               로그인
             </Link>
           </div>

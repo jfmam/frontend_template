@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from 'react-query';
 import UserAPI from '@/api/user';
+import { getAccessToken } from '@/utils';
 
 export type ChallengeStatus = 'complete' | 'progress';
 
@@ -16,7 +17,8 @@ export function useResignUser() {
 }
 
 export const getUser = async (token?: string) => {
-  const result = await new UserAPI(token).getUser();
+  const access = getAccessToken();
+  const result = await new UserAPI(token || access).getUser();
 
   return result;
 };

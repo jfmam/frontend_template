@@ -11,13 +11,11 @@ export default function TodayChallenge() {
   const token = getAccessToken();
 
   return (
-    <ChallengeLayout>
-      <ApiErrorBoundary>
-        <TodayChallengeFetcher>
-          <TodayChallengeContainer token={token} />
-        </TodayChallengeFetcher>
-      </ApiErrorBoundary>
-    </ChallengeLayout>
+    <ApiErrorBoundary>
+      <TodayChallengeFetcher>
+        <TodayChallengeContainer token={token} />
+      </TodayChallengeFetcher>
+    </ApiErrorBoundary>
   );
 }
 

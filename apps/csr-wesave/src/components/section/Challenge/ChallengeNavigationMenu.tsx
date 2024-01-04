@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from '@/styles/ChallengeNavigation.module.scss';
 import cn from 'classnames/bind';
 
@@ -13,12 +13,12 @@ const selectChallengeMenuMapLink: { [key: string]: string } = {
 
 export default function ChallengeNavigationMenu() {
   const router = useLocation();
-  const baseName = router.pathname.split('/')[2]
+  const baseName = router.pathname.split('/')[2];
   const menuItem = Object.keys(selectChallengeMenuMapLink).map((v: string) => (
     <li className={cx('navigation-item', { selected: selectChallengeMenuMapLink[v] === baseName })} key={v}>
-      <Link className={cx('link')} key={v} to={`${selectChallengeMenuMapLink[v]}`}>
+      <NavLink  className={cx('link')} key={v} to={`/challenge/${selectChallengeMenuMapLink[v]}`}>
         {v}
-      </Link>
+      </NavLink>
     </li>
   ));
 

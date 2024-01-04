@@ -1,21 +1,11 @@
 import '@/styles/globals.scss';
 import React, { Suspense, lazy, useState } from 'react';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { Header } from './components/section';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
-// import ForgotPassword from './pages/forgot-password';
-// import SignIn from './pages/login';
-// import ResetPassword from './pages/reset-password';
-// import Salary from './pages/salary';
-// import SignUp from './pages/signup';
-// import Timer from './pages/timer';
-// import MyPage from './pages/mypage';
-// import TodayChallenge from './pages/challenge/today-challenge';
-// import AchievementStatus from './pages/challenge/achievement-status';
-// import MyAchievement from './pages/challenge/my-achievement';
-// import Register from './pages/challenge/register';
-// import Home from './pages';
+import AuthentiacationLayout from './components/template/layout/Auth';
+import { ChallengeLayout } from './components/template';
+import { getAccessToken } from './utils';
 
 const ForgotPassword = lazy(() => import('./pages/forgot-password'));
 const SignIn = lazy(() => import('./pages/login'));
@@ -29,6 +19,45 @@ const AchievementStatus = lazy(() => import('./pages/challenge/achievement-statu
 const MyAchievement = lazy(() => import('./pages/challenge/my-achievement'));
 const Register = lazy(() => import('./pages/challenge/register'));
 const Home = lazy(() => import('./pages'));
+
+const ChallengeRoutes = () => {
+  const token = getAccessToken();
+
+  return (
+    <Routes>
+      {!token ? (
+        <Route path="*" element={<Navigate to="/login" />}></Route>
+      ) : (
+        <>
+          <Route path="/" element={<Navigate to="/challenge/today-challenge" />} />
+          <Route path="today-challenge" element={<TodayChallenge />} />
+          <Route path="achievement-status" element={<AchievementStatus />} />
+          <Route path="my-achievement" element={<MyAchievement />} />
+          <Route path="register" element={<Register />} />
+        </>
+      )}
+    </Routes>
+  );
+};
+
+const UserRoutes = () => {
+  const token = getAccessToken();
+
+  return (
+    <Routes>
+      {token ? (
+        <Route path="*" element={<Navigate to="/" />}></Route>
+      ) : (
+        <>
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="login" element={<SignIn />} />
+          <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="signup" element={<SignUp />} />
+        </>
+      )}
+    </Routes>
+  );
+};
 
 function App() {
   const [queryClient] = useState(
@@ -51,17 +80,36 @@ function App() {
           <Suspense>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="forgot-password" element={<ForgotPassword />} />
-              <Route path="login" element={<SignIn />} />
-              <Route path="reset-password" element={<ResetPassword />} />
               <Route path="salary" element={<Salary />} />
-              <Route path="signup" element={<SignUp />} />
               <Route path="timer" element={<Timer />} />
-              <Route path="mypage" element={<MyPage />} />
-              <Route path="challenge/today-challenge" element={<TodayChallenge />} />
-              <Route path="challenge/achievement-status" element={<AchievementStatus />} />
-              <Route path="challenge/my-achievement" element={<MyAchievement />} />
-              <Route path="challenge/register" element={<Register />} />
+              <Route
+                path="mypage"
+                element={
+                  <AuthentiacationLayout>
+                    <MyPage />
+                  </AuthentiacationLayout>
+                }
+              />
+              <Route
+                path="challenge/*"
+                element={
+                  <>
+                    <ChallengeLayout>
+                      <ChallengeRoutes />
+                    </ChallengeLayout>
+                  </>
+                }
+              />
+              <Route
+                path="account/*"
+                element={
+                  <>
+                    <>
+                      <UserRoutes />
+                    </>
+                  </>
+                }
+              />
             </Routes>
           </Suspense>
         </main>

@@ -62,11 +62,11 @@ export default function SignIn() {
             </PrimaryBtn>
           </div>
           <div className={cx('auth-button-container')} style={{ marginBottom: '4.8rem' }}>
-            <Link className={cx('anchor')} to="/forgot-password">
+            <Link className={cx('anchor')} to="/account/forgot-password">
               비밀번호 찾기
             </Link>
             <span className={cx('button-divider')}>|</span>
-            <Link className={cx('anchor')} to="/signup">
+            <Link className={cx('anchor')} to="/account/signup">
               회원가입
             </Link>
           </div>

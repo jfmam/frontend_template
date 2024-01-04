@@ -157,10 +157,3 @@ export default function SignUp() {
   );
 }
 
-SignUp.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <AccountLayout backgroundColor="#3281F7" imageUrl="signup">
-      {page}
-    </AccountLayout>
-  );
-};

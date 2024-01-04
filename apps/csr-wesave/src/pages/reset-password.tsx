@@ -25,14 +25,14 @@ export default function ResetPassword() {
   const [searchParams] = useSearchParams();
   const [isSuccess, setIsSuccess] = useState(false);
   const { mutate, isError, isLoading } = useResetPassword();
-  const a = searchParams.get('token')
+  const a = searchParams.get('token');
   const formik = useFormik({
     initialValues: {
       password: '',
     },
     onSubmit: values => {
       mutate(
-        { password: values.password, token: searchParams.get('token') as any},
+        { password: values.password, token: searchParams.get('token') as any },
         {
           onSuccess: () => {
             setIsSuccess(true);
@@ -65,38 +65,36 @@ export default function ResetPassword() {
   }
 
   return (
-    <AccountLayout backgroundColor="#a8a1f8" imageUrl="password-reset">
-      <div className={cx('reset-password')}>
-        <div className={cx('panel')}>
-          <div className={cx('welcome-text')}>
-            <p>새로운 비밀번호를</p>
-            <p>입력해 주세요</p>
-          </div>
-          <form onSubmit={formik.handleSubmit} className={cx('form')}>
-            <div className={cx('input-container')}>
-              <Input
-                isError={formik.errors.password !== undefined}
-                onFocus={() => formik.setTouched({ password: true })}
-                {...formik.getFieldProps}
-                onChange={formik.handleChange}
-                name="password"
-                type="password"
-                placeholder="비밀번호"
-              />
-              {!formik.errors.password && !isError && (
-                <span className={cx('password-condition')}>8자 이상, 숫자 포함</span>
-              )}
-              {formik.errors.password && <FieldErrorMessage message={formik.errors.password} />}
-            </div>
-            <div className={cx('submit-button-container')}>
-              <PrimaryBtn type="submit" disabled={isLoading}>
-                확인
-              </PrimaryBtn>
-            </div>
-          </form>
-          <Toaster position="top-center" />
+    <div className={cx('reset-password')}>
+      <div className={cx('panel')}>
+        <div className={cx('welcome-text')}>
+          <p>새로운 비밀번호를</p>
+          <p>입력해 주세요</p>
         </div>
+        <form onSubmit={formik.handleSubmit} className={cx('form')}>
+          <div className={cx('input-container')}>
+            <Input
+              isError={formik.errors.password !== undefined}
+              onFocus={() => formik.setTouched({ password: true })}
+              {...formik.getFieldProps}
+              onChange={formik.handleChange}
+              name="password"
+              type="password"
+              placeholder="비밀번호"
+            />
+            {!formik.errors.password && !isError && (
+              <span className={cx('password-condition')}>8자 이상, 숫자 포함</span>
+            )}
+            {formik.errors.password && <FieldErrorMessage message={formik.errors.password} />}
+          </div>
+          <div className={cx('submit-button-container')}>
+            <PrimaryBtn type="submit" disabled={isLoading}>
+              확인
+            </PrimaryBtn>
+          </div>
+        </form>
+        <Toaster position="top-center" />
       </div>
-    </AccountLayout>
+    </div>
   );
 }

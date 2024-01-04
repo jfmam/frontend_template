@@ -83,10 +83,3 @@ export default function ForgotPassword() {
   );
 }
 
-ForgotPassword.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <AccountLayout backgroundColor="#a8a1f8" imageUrl="password-reset">
-      {page}
-    </AccountLayout>
-  );
-};

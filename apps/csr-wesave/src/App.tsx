@@ -3,8 +3,7 @@ import React, { Suspense, lazy, useState } from 'react';
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { Header } from './components/section';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import AuthentiacationLayout from './components/template/layout/Auth';
-import { ChallengeLayout } from './components/template';
+import { AccountLayout, ChallengeLayout } from './components/template';
 import { getAccessToken } from './utils';
 
 const ForgotPassword = lazy(() => import('./pages/forgot-password'));
@@ -26,7 +25,7 @@ const ChallengeRoutes = () => {
   return (
     <Routes>
       {!token ? (
-        <Route path="*" element={<Navigate to="/login" />}></Route>
+        <Route path="*" element={<Navigate to="/account/login" />}></Route>
       ) : (
         <>
           <Route path="/" element={<Navigate to="/challenge/today-challenge" />} />
@@ -49,11 +48,53 @@ const UserRoutes = () => {
         <Route path="*" element={<Navigate to="/" />}></Route>
       ) : (
         <>
-          <Route path="forgot-password" element={<ForgotPassword />} />
-          <Route path="login" element={<SignIn />} />
-          <Route path="reset-password" element={<ResetPassword />} />
-          <Route path="signup" element={<SignUp />} />
+          <Route
+            path="forgot-password"
+            element={
+              <AccountLayout backgroundColor="#a8a1f8" imageUrl="password-reset">
+                <ForgotPassword />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <AccountLayout backgroundColor="#080808" imageUrl="login">
+                <SignIn />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="reset-password"
+            element={
+              <AccountLayout backgroundColor="#a8a1f8" imageUrl="password-reset">
+                <ResetPassword />
+              </AccountLayout>
+            }
+          />
+          <Route
+            path="signup"
+            element={
+              <AccountLayout backgroundColor="#3281F7" imageUrl="signup">
+                <SignUp />
+              </AccountLayout>
+            }
+          />
         </>
+      )}
+    </Routes>
+  );
+};
+
+const PrivateRoutes = () => {
+  const token = getAccessToken();
+
+  return (
+    <Routes>
+      {token ? (
+        <Route path="/" element={<MyPage />} />
+        ) : (
+        <Route path="/" element={<Navigate to="/account/login" />} />
       )}
     </Routes>
   );
@@ -83,33 +124,15 @@ function App() {
               <Route path="salary" element={<Salary />} />
               <Route path="timer" element={<Timer />} />
               <Route
-                path="mypage"
-                element={
-                  <AuthentiacationLayout>
-                    <MyPage />
-                  </AuthentiacationLayout>
-                }
-              />
-              <Route
                 path="challenge/*"
                 element={
-                  <>
-                    <ChallengeLayout>
-                      <ChallengeRoutes />
-                    </ChallengeLayout>
-                  </>
+                  <ChallengeLayout>
+                    <ChallengeRoutes />
+                  </ChallengeLayout>
                 }
               />
-              <Route
-                path="account/*"
-                element={
-                  <>
-                    <>
-                      <UserRoutes />
-                    </>
-                  </>
-                }
-              />
+              <Route path="account/*" element={<UserRoutes />} />
+              <Route path="mypage" element={<PrivateRoutes />} />
             </Routes>
           </Suspense>
         </main>

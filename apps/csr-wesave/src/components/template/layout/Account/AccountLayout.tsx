@@ -15,7 +15,7 @@ export default function AccountLayout({ backgroundColor, children, imageUrl }: A
     <div className={cx('layout')}>
       <div className={cx('input-container')}>{children}</div>
       <div className={cx('image-container')} style={{ backgroundColor }}>
-        <img width="100%" height="100%" src={`${imageUrl}.svg`} alt="" className="image" />
+        <img width="100%" height="100%" src={`/${imageUrl}.svg`} alt="" className="image" />
       </div>
     </div>
   );

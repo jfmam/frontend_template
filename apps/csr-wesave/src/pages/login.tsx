@@ -80,11 +80,3 @@ export default function SignIn() {
     </div>
   );
 }
-
-SignIn.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <AccountLayout backgroundColor="#080808" imageUrl="login">
-      {page}
-    </AccountLayout>
-  );
-};

@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import UserAPI from '@/api/user';
-import { UserLoginType } from '@/common';
+import { UserLoginType, OAuthLoginType } from '@/common';
 import { setAccessToken } from '@/utils';
 
 export type ChallengeStatus = 'complete' | 'progress';
@@ -11,6 +11,14 @@ export const login = async (params: UserLoginType) => {
 
   return result;
 };
+
+export const OAuthLogin = async (params: OAuthLoginType, code: string) => {
+  const result = await new UserAPI().oAuthLogin(params, code);
+  console.log(result);
+
+  return result;
+};
+
 
 export function useLogin() {
   return useMutation({

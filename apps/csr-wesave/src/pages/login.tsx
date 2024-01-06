@@ -4,12 +4,12 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import cn from 'classnames/bind';
 import styles from '@/styles/login.module.scss';
-import { AccountLayout } from '@/components/template';
 import { PrimaryBtn, Input } from '@/components/atom';
 import { Token, UserLoginType } from '@/common/user';
 import { useLogin } from '@/hooks/quries/user/useLogin';
 import { FieldErrorMessage } from '@/components/section';
 import { setAccessToken } from '@/utils';
+import SNSLoginButtons from '@/components/section/SNSLoginButtons';
 
 const signInSchema = Yup.object().shape({
   email: Yup.string().email('올바른 이메일을 입력해주세요.').required('이메일을 입력해주세요.'),
@@ -70,11 +70,10 @@ export default function SignIn() {
               회원가입
             </Link>
           </div>
-          {/* <div className={cx('sns-button-container')}>
-            <SnsButton sns="naver" onClick={() => {}} />
-            <SnsButton sns="kakao" onClick={() => {}} />
-            <SnsButton sns="google" onClick={() => {}} />
-          </div> */}
+          <SNSLoginButtons />
+          <div className={cx('sns-button-container')}>
+          
+          </div>
         </form>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { AuthError, SignUpType, Token, UserLoginType, UserResponse } from '@/common';
+import { AuthError, OAuthLoginType, SignUpType, Token, UserLoginType, UserResponse } from '@/common';
 
 import { instance } from './base';
 
@@ -15,6 +15,17 @@ export default class UserAPI {
   async login(params: UserLoginType): Promise<Token> {
     const result = await this.service.post<Token>('/users/login', params);
 
+    if (result.status === 401 || !result.data.token) {
+      throw new AuthError();
+    }
+
+    instance.setHeader({ header: 'Authorization', value: `Bearer ${result.data.token}` });
+    return { token: result.data.token };
+  }
+
+  async oAuthLogin(params: OAuthLoginType, code: string): Promise<Token> {
+    const result = await this.service.post<Token>(`/users/${params}`);
+    console.log(result);
     if (result.status === 401 || !result.data.token) {
       throw new AuthError();
     }

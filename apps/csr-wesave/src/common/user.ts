@@ -23,3 +23,5 @@ export interface User {
 }
 
 export type UserResponse = User & Response;
+
+export type OAuthLoginType = 'kakao' | 'naver' | 'google'; 

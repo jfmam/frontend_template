@@ -5,6 +5,7 @@ import { Header } from './components/section';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { AccountLayout, ChallengeLayout } from './components/template';
 import { getAccessToken } from './utils';
+import KakaoCallback from './pages/oauth/KakaoCallback';
 
 const ForgotPassword = lazy(() => import('./pages/forgot-password'));
 const SignIn = lazy(() => import('./pages/login'));
@@ -99,6 +100,14 @@ const PrivateRoutes = () => {
     </Routes>
   );
 };
+
+const OAuthRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/oauth/kakao" element={<KakaoCallback />} />
+    </Routes>
+  )
+}
 
 function App() {
   const [queryClient] = useState(

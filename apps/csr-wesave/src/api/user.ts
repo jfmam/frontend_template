@@ -23,9 +23,11 @@ export default class UserAPI {
     return { token: result.data.token };
   }
 
-  async oAuthLogin(params: OAuthLoginType, code: string): Promise<Token> {
-    const result = await this.service.post<Token>(`/users/${params}`);
-    console.log(result);
+  async kakaoLogin(code: string) {
+    const result = await this.service.post<any>(`/users/kakao`, {
+      code,
+    });
+
     if (result.status === 401 || !result.data.token) {
       throw new AuthError();
     }

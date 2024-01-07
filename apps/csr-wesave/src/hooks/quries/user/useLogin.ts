@@ -12,9 +12,9 @@ export const login = async (params: UserLoginType) => {
   return result;
 };
 
-export const OAuthLogin = async (params: OAuthLoginType, code: string) => {
-  const result = await new UserAPI().oAuthLogin(params, code);
-  console.log(result);
+export const kakaoLogin = async (code: string) => {
+  const result = await new UserAPI().kakaoLogin(code);
+  setAccessToken(result.token);
 
   return result;
 };

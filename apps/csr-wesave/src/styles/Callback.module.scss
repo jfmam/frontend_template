@@ -1,0 +1,8 @@
+@import './font.module.scss';
+@import './variables.module.scss';
+
+.login-callback {
+  width: 100vw;
+  height: $content-height;
+  font-size: $heading3;
+}

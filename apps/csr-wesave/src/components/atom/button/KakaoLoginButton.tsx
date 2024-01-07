@@ -1,34 +1,10 @@
-import { useEffect, useRef } from 'react';
-import cn from 'classnames';
-import styles from '@/styles/button.module.scss';
-
-const cx = cn.bind(styles);
-
 export default function KakaoLoginButton() {
-  const kakao = useRef<any>();
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js';
-    script.integrity = 'sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8';
-    script.crossOrigin = 'anonymous';
-    document.body.appendChild(script);
-    script.onload = () => {
-      kakao.current = (window as any).Kakao;
-      if (kakao.current) {
-        kakao.current.init(process.env.REACT_APP_KAKAO_KEY);
-      }
-    };
-  }, []);
-
-  const onClick = () => {
-    kakao.current.Auth.authorize({
-      redirectUri: `${process.env.REDIRECT_URI}/kakao`,
-    });
-  };
 
   return (
-    <button className={cx('sns')} onClick={onClick}>
-      <img width={64} height={64} src={`/kakao.svg`} alt={`kakao login button`}></img>
-    </button>
+    <a
+      href={`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URI}`}
+    >
+        <img width={64} height={64} src={`/kakao.svg`} alt={`kakao login button`}></img>
+    </a>
   );
 }

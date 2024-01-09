@@ -7,6 +7,7 @@ import { AccountLayout, ChallengeLayout } from './components/template';
 import { getAccessToken } from './utils';
 
 const KakaoCallback = lazy(() => import('./pages/oauth/KakaoCallback'));
+const NaverCallback = lazy(() => import('./pages/oauth/NaverCallback'));
 const ForgotPassword = lazy(() => import('./pages/forgot-password'));
 const SignIn = lazy(() => import('./pages/login'));
 const ResetPassword = lazy(() => import('./pages/reset-password'));
@@ -105,8 +106,9 @@ const OAuthRoutes = () => {
   return (
     <Routes>
       <Route path="kakao" element={<KakaoCallback />} />
+      <Route path="naver" element={<NaverCallback />} />
     </Routes>
-  )
+  );
 }
 
 function App() {

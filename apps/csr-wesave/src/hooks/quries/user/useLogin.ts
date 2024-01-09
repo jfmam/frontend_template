@@ -19,6 +19,13 @@ export const kakaoLogin = async (code: string) => {
   return result;
 };
 
+export const NaverLogin = async (code: string) => {
+  const result = await new UserAPI().kakaoLogin(code);
+  setAccessToken(result.token);
+
+  return result;
+};
+
 
 export function useLogin() {
   return useMutation({

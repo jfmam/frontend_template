@@ -36,6 +36,19 @@ export default class UserAPI {
     return { token: result.data.token };
   }
 
+  async NaverLogin(code: string) {
+    const result = await this.service.post<any>(`/users/naver`, {
+      code,
+    });
+
+    if (result.status === 401 || !result.data.token) {
+      throw new AuthError();
+    }
+
+    instance.setHeader({ header: 'Authorization', value: `Bearer ${result.data.token}` });
+    return { token: result.data.token };
+  }
+
   async creaetUser({ email, name, password }: SignUpType): Promise<{ message: string }> {
     const result = await this.service.post('/users', {
       email,

@@ -1,0 +1,14 @@
+myNextApplication:
+  component: '@sls-next/serverless-component@latest'
+  inputs:
+    runtime:
+      defaultLambda: "nodejs16.x"
+      apiLambda: "nodejs16.x"
+      imageLambda: "nodejs16.x"
+    name:
+      defaultLambda: DefaultLambda #Default Lambda의 이름 설정
+      imageLambda: ImageLambda # Image Lambda의 이름 설정
+    bucketRegion: 'ap-northeast-2' # S3 Bucket 지역 설정
+    bucketName: 'wesave_bucket'
+    cloudfront:
+      comment: 'nextjs deploy' # CloudFront 설명 설정

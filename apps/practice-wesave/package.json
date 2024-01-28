@@ -12,7 +12,7 @@
     "test": "jest --watch --passWithNoTests",
     "test:ci": "jest --ci --passWithNoTests",
     "test:coverage": "jest --coverage",
-    "deploy": "serverless"
+    "deploy": "serverless deploy --aws-profile hun"
   },
   "dependencies": {
     "@next/env": "^13.4.12",

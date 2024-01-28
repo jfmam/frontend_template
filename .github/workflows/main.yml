@@ -1,4 +1,4 @@
-name: WESAVE
+name: WESAVE SSR DEPLOY
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          yarn
+          yarn workspace practice-wesave install
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -25,4 +25,4 @@ jobs:
 
       - name: Deploy Next.js app
         run: |
-          yarn deploy
+          yarn run wesave:deploy

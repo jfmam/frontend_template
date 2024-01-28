@@ -1,6 +1,6 @@
 {
   "name": "frontend_template",
-  "packageManager": "yarn@3.4.1",
+  "packageManager": "yarn@4.0.2",
   "devDependencies": {
     "@commitlint/config-conventional": "^17.4.4",
     "@types/eslint": "^8",

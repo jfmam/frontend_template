@@ -253,6 +253,15 @@ const RAW_RUNTIME_STATE =
           ["@cdklabs/tskb", "npm:0.0.3"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:0.0.45", {\
+        "packageLocation": "./.yarn/cache/@aws-cdk-aws-service-spec-npm-0.0.45-5e0fc41887-9108927bf2.zip/node_modules/@aws-cdk/aws-service-spec/",\
+        "packageDependencies": [\
+          ["@aws-cdk/aws-service-spec", "npm:0.0.45"],\
+          ["@aws-cdk/service-spec-types", "npm:0.0.45"],\
+          ["@cdklabs/tskb", "npm:0.0.3"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["@aws-cdk/cloud-assembly-schema", [\
@@ -260,6 +269,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@aws-cdk-cloud-assembly-schema-npm-2.110.1-d60caff7d4-775132a94c.zip/node_modules/@aws-cdk/cloud-assembly-schema/",\
         "packageDependencies": [\
           ["@aws-cdk/cloud-assembly-schema", "npm:2.110.1"],\
+          ["jsonschema", "npm:1.4.1"],\
+          ["semver", "npm:7.5.4"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:2.124.0", {\
+        "packageLocation": "./.yarn/cache/@aws-cdk-cloud-assembly-schema-npm-2.124.0-e916546ba8-09ff758ffb.zip/node_modules/@aws-cdk/cloud-assembly-schema/",\
+        "packageDependencies": [\
+          ["@aws-cdk/cloud-assembly-schema", "npm:2.124.0"],\
           ["jsonschema", "npm:1.4.1"],\
           ["semver", "npm:7.5.4"]\
         ],\
@@ -280,6 +298,20 @@ const RAW_RUNTIME_STATE =
           ["table", "npm:6.8.1"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:2.124.0", {\
+        "packageLocation": "./.yarn/cache/@aws-cdk-cloudformation-diff-npm-2.124.0-ff6ef3e37f-70fb444735.zip/node_modules/@aws-cdk/cloudformation-diff/",\
+        "packageDependencies": [\
+          ["@aws-cdk/cloudformation-diff", "npm:2.124.0"],\
+          ["@aws-cdk/aws-service-spec", "npm:0.0.45"],\
+          ["@aws-cdk/service-spec-types", "npm:0.0.45"],\
+          ["chalk", "npm:4.1.2"],\
+          ["diff", "npm:5.1.0"],\
+          ["fast-deep-equal", "npm:3.1.3"],\
+          ["string-width", "npm:4.2.3"],\
+          ["table", "npm:6.8.1"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["@aws-cdk/cx-api", [\
@@ -287,6 +319,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@aws-cdk-cx-api-npm-2.110.1-af2abc4cca-9ade1bbc0f.zip/node_modules/@aws-cdk/cx-api/",\
         "packageDependencies": [\
           ["@aws-cdk/cx-api", "npm:2.110.1"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["npm:2.124.0", {\
+        "packageLocation": "./.yarn/cache/@aws-cdk-cx-api-npm-2.124.0-a07aa88896-a307ed5507.zip/node_modules/@aws-cdk/cx-api/",\
+        "packageDependencies": [\
+          ["@aws-cdk/cx-api", "npm:2.124.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
@@ -303,6 +342,20 @@ const RAW_RUNTIME_STATE =
           "@types/aws-cdk__cloud-assembly-schema"\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["virtual:9daa3c3094054bb2c6343b648d5f80880a7896fcd826b230f11c3b7b9f5d3c3528a0f9ab55ea4ea0963b104007e18c816661271b73d3f9258d2d862d411702f1#npm:2.124.0", {\
+        "packageLocation": "./.yarn/__virtual__/@aws-cdk-cx-api-virtual-6c4b4bf588/0/cache/@aws-cdk-cx-api-npm-2.124.0-a07aa88896-a307ed5507.zip/node_modules/@aws-cdk/cx-api/",\
+        "packageDependencies": [\
+          ["@aws-cdk/cx-api", "virtual:9daa3c3094054bb2c6343b648d5f80880a7896fcd826b230f11c3b7b9f5d3c3528a0f9ab55ea4ea0963b104007e18c816661271b73d3f9258d2d862d411702f1#npm:2.124.0"],\
+          ["@aws-cdk/cloud-assembly-schema", "npm:2.124.0"],\
+          ["@types/aws-cdk__cloud-assembly-schema", null],\
+          ["semver", "npm:7.5.4"]\
+        ],\
+        "packagePeers": [\
+          "@aws-cdk/cloud-assembly-schema",\
+          "@types/aws-cdk__cloud-assembly-schema"\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["@aws-cdk/service-spec-types", [\
@@ -310,6 +363,14 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@aws-cdk-service-spec-types-npm-0.0.29-5b74fdce9c-1430381b80.zip/node_modules/@aws-cdk/service-spec-types/",\
         "packageDependencies": [\
           ["@aws-cdk/service-spec-types", "npm:0.0.29"],\
+          ["@cdklabs/tskb", "npm:0.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:0.0.45", {\
+        "packageLocation": "./.yarn/cache/@aws-cdk-service-spec-types-npm-0.0.45-d6157bea17-8fa521ec43.zip/node_modules/@aws-cdk/service-spec-types/",\
+        "packageDependencies": [\
+          ["@aws-cdk/service-spec-types", "npm:0.0.45"],\
           ["@cdklabs/tskb", "npm:0.0.3"]\
         ],\
         "linkType": "HARD"\
@@ -16871,6 +16932,20 @@ const RAW_RUNTIME_STATE =
           ["cdk-assets", "npm:2.110.1"],\
           ["@aws-cdk/cloud-assembly-schema", "npm:2.110.1"],\
           ["@aws-cdk/cx-api", "virtual:048a493ea074e9d1d71643fd603b8caaeabbf85314f733cb86c064ccc0d6006cdfee18ed3eb6e0fe2e51e54b778aa59cda9daaf4539f5febdae67a3305b6ef99#npm:2.110.1"],\
+          ["archiver", "npm:5.3.2"],\
+          ["aws-sdk", "npm:2.1545.0"],\
+          ["glob", "npm:7.2.3"],\
+          ["mime", "npm:2.6.0"],\
+          ["yargs", "npm:16.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:2.124.0", {\
+        "packageLocation": "./.yarn/cache/cdk-assets-npm-2.124.0-9daa3c3094-1bd7f5cf64.zip/node_modules/cdk-assets/",\
+        "packageDependencies": [\
+          ["cdk-assets", "npm:2.124.0"],\
+          ["@aws-cdk/cloud-assembly-schema", "npm:2.124.0"],\
+          ["@aws-cdk/cx-api", "virtual:9daa3c3094054bb2c6343b648d5f80880a7896fcd826b230f11c3b7b9f5d3c3528a0f9ab55ea4ea0963b104007e18c816661271b73d3f9258d2d862d411702f1#npm:2.124.0"],\
           ["archiver", "npm:5.3.2"],\
           ["aws-sdk", "npm:2.1545.0"],\
           ["glob", "npm:7.2.3"],\
@@ -34935,14 +35010,12 @@ const RAW_RUNTIME_STATE =
           ["@aws-sdk/middleware-signing", "npm:3.496.0"],\
           ["@aws-sdk/signature-v4-crt", "npm:3.499.0"],\
           ["@aws-sdk/smithy-client", "npm:3.374.0"],\
-          ["@aws-sdk/types", null],\
           ["@babel/core", "npm:7.23.9"],\
           ["@babel/generator", "npm:7.23.6"],\
           ["@babel/plugin-syntax-typescript", "virtual:9b57e3b4d0d180c131c64b743fc6fe6f195eb7d921b496809050f8ac3b5cc97829cb64bb4f384b2940376c002449e8e95b0b202147dcc06ddb04e7120644268e#npm:7.23.3"],\
           ["@sls-next/lambda-at-edge", null],\
           ["@smithy/signature-v4", "npm:2.1.1"],\
           ["@trpc/server", "npm:9.16.0"],\
-          ["@types/aws-sdk__types", null],\
           ["@types/sls-next__lambda-at-edge", null],\
           ["adm-zip", "npm:0.5.10"],\
           ["aws-cdk-lib", "virtual:59ea08c590b1d14efec692f6041a3a0db8adfc32c86d000597b9a5a929ff4014d6a0b812824b25ba1b6086b299b976200cd0e2d2a1e419e4d08a9aef74cd24ec#npm:2.110.1"],\
@@ -34977,7 +35050,7 @@ const RAW_RUNTIME_STATE =
           ["ora", "npm:6.3.1"],\
           ["react", "npm:18.2.0"],\
           ["remeda", "npm:1.38.0"],\
-          ["sst-aws-cdk", "virtual:23f4fecbef358489feb9db3d91da8efd28fded99c3cd64334c89d82d223449b07bcc0a7792a8c867ac15843c59f4213345ea900d9204d582112d0baa642142cd#npm:2.110.1-1"],\
+          ["sst-aws-cdk", "npm:2.110.1-1"],\
           ["tree-kill", "npm:1.2.2"],\
           ["undici", "npm:5.28.2"],\
           ["uuid", "npm:9.0.1"],\
@@ -34986,9 +35059,7 @@ const RAW_RUNTIME_STATE =
           ["zod", "npm:3.22.4"]\
         ],\
         "packagePeers": [\
-          "@aws-sdk/types",\
           "@sls-next/lambda-at-edge",\
-          "@types/aws-sdk__types",\
           "@types/sls-next__lambda-at-edge"\
         ],\
         "linkType": "HARD"\
@@ -34996,40 +35067,20 @@ const RAW_RUNTIME_STATE =
     ]],\
     ["sst-aws-cdk", [\
       ["npm:2.110.1-1", {\
-        "packageLocation": "./.yarn/unplugged/sst-aws-cdk-virtual-daf7034c8c/node_modules/sst-aws-cdk/",\
+        "packageLocation": "./.yarn/unplugged/sst-aws-cdk-npm-2.110.1-1-4b43be6194/node_modules/sst-aws-cdk/",\
         "packageDependencies": [\
-          ["sst-aws-cdk", "npm:2.110.1-1"]\
-        ],\
-        "linkType": "SOFT"\
-      }],\
-      ["virtual:23f4fecbef358489feb9db3d91da8efd28fded99c3cd64334c89d82d223449b07bcc0a7792a8c867ac15843c59f4213345ea900d9204d582112d0baa642142cd#npm:2.110.1-1", {\
-        "packageLocation": "./.yarn/unplugged/sst-aws-cdk-virtual-daf7034c8c/node_modules/sst-aws-cdk/",\
-        "packageDependencies": [\
-          ["sst-aws-cdk", "virtual:23f4fecbef358489feb9db3d91da8efd28fded99c3cd64334c89d82d223449b07bcc0a7792a8c867ac15843c59f4213345ea900d9204d582112d0baa642142cd#npm:2.110.1-1"],\
-          ["@aws-cdk/cloud-assembly-schema", "npm:2.110.1"],\
-          ["@aws-cdk/cloudformation-diff", "npm:2.110.1"],\
-          ["@aws-cdk/cx-api", "virtual:048a493ea074e9d1d71643fd603b8caaeabbf85314f733cb86c064ccc0d6006cdfee18ed3eb6e0fe2e51e54b778aa59cda9daaf4539f5febdae67a3305b6ef99#npm:2.110.1"],\
-          ["@types/aws-cdk__cloud-assembly-schema", null],\
-          ["@types/aws-cdk__cloudformation-diff", null],\
-          ["@types/aws-cdk__cx-api", null],\
-          ["@types/aws-sdk", null],\
+          ["sst-aws-cdk", "npm:2.110.1-1"],\
+          ["@aws-cdk/cloud-assembly-schema", "npm:2.124.0"],\
+          ["@aws-cdk/cloudformation-diff", "npm:2.124.0"],\
+          ["@aws-cdk/cx-api", "virtual:9daa3c3094054bb2c6343b648d5f80880a7896fcd826b230f11c3b7b9f5d3c3528a0f9ab55ea4ea0963b104007e18c816661271b73d3f9258d2d862d411702f1#npm:2.124.0"],\
           ["archiver", "npm:5.3.2"],\
           ["aws-sdk", "npm:2.1545.0"],\
+          ["cdk-assets", "npm:2.124.0"],\
           ["chalk", "npm:4.1.2"],\
           ["fs-extra", "npm:9.1.0"],\
           ["fsevents", "patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"],\
           ["promptly", "npm:3.2.0"],\
           ["yaml", "npm:1.10.2"]\
-        ],\
-        "packagePeers": [\
-          "@aws-cdk/cloud-assembly-schema",\
-          "@aws-cdk/cloudformation-diff",\
-          "@aws-cdk/cx-api",\
-          "@types/aws-cdk__cloud-assembly-schema",\
-          "@types/aws-cdk__cloudformation-diff",\
-          "@types/aws-cdk__cx-api",\
-          "@types/aws-sdk",\
-          "aws-sdk"\
         ],\
         "linkType": "HARD"\
       }]\

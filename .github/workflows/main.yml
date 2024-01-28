@@ -1,30 +1,25 @@
-name: WESAVE SSR DEPLOY
+name: SST workflow
+on: push
 
-on:
-  push:
-    branches: [main]
+# Concurrency group name ensures concurrent workflow runs wait for any in-progress job to finish
+concurrency:
+  group: merge-${{ github.ref }}
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
 jobs:
-  build:
+  DeployApp:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source code.
-        uses: actions/checkout@master
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          ref: main
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 16
-      - name: Install Dependencies
-        run: |
-          yarn workspace practice-wesave install
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: arn:aws:iam::????????:role/hun
           aws-region: ap-northeast-2
-
-      - name: Deploy Next.js app
+      - name: Deploy app
         run: |
-          yarn run wesave:deploy
+          yarn && yarn run wesave:deploy

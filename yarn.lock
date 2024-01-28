@@ -122,6 +122,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@aws-cdk/aws-service-spec@npm:^0.0.45":
+  version: 0.0.45
+  resolution: "@aws-cdk/aws-service-spec@npm:0.0.45"
+  dependencies:
+    "@aws-cdk/service-spec-types": "npm:^0.0.45"
+    "@cdklabs/tskb": "npm:^0.0.3"
+  checksum: 9108927bf2bca83c0041f0d9dc876123c61ad3ec6ca232c507b529e5230fee94d37e570a86c8326aa98b760b7e0671690f9d0f44fac15c4ceedc66fa3d47ec7b
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/cloud-assembly-schema@npm:*, @aws-cdk/cloud-assembly-schema@npm:2.124.0":
+  version: 2.124.0
+  resolution: "@aws-cdk/cloud-assembly-schema@npm:2.124.0"
+  dependencies:
+    jsonschema: "npm:^1.4.1"
+    semver: "npm:^7.5.4"
+  checksum: 09ff758ffbe36f85f372e1e4a6d247cba13e72d0a0aa3f2ff7a25612541b06d6da90b271b7ecbbad779f2efdd20834f778a456557af119f1395a95830beb0463
+  languageName: node
+  linkType: hard
+
 "@aws-cdk/cloud-assembly-schema@npm:2.110.1":
   version: 2.110.1
   resolution: "@aws-cdk/cloud-assembly-schema@npm:2.110.1"
@@ -129,6 +149,21 @@ __metadata:
     jsonschema: "npm:^1.4.1"
     semver: "npm:^7.5.4"
   checksum: 775132a94c9dd554159fcfc3316cb303ac47ae5d465842758a1d5c6816b4e8bd911ab1f6261335cf0d862e77783fbc1586320521d13bac4153d1f5dd60db7c8f
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/cloudformation-diff@npm:*":
+  version: 2.124.0
+  resolution: "@aws-cdk/cloudformation-diff@npm:2.124.0"
+  dependencies:
+    "@aws-cdk/aws-service-spec": "npm:^0.0.45"
+    "@aws-cdk/service-spec-types": "npm:^0.0.45"
+    chalk: "npm:^4"
+    diff: "npm:^5.1.0"
+    fast-deep-equal: "npm:^3.1.3"
+    string-width: "npm:^4.2.3"
+    table: "npm:^6.8.1"
+  checksum: 70fb44473531978ef018828c14db57c57dbcc2ab8e6c9c14f4d635ee511438c8a8a3f8eb6abb2b0e682d924c7d53e76140fc001fd5ea177c506f8ae16cd06f7e
   languageName: node
   linkType: hard
 
@@ -144,6 +179,17 @@ __metadata:
     string-width: "npm:^4.2.3"
     table: "npm:^6.8.1"
   checksum: a5d23594b8f2a87aceb9c7ce5bfc74e44439d35050fe08b4f75b0eaecee3898af793a9471226594f2bc89dde094ebb4f8465b4202a20a77974d6d14b321cf0e3
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/cx-api@npm:*, @aws-cdk/cx-api@npm:2.124.0":
+  version: 2.124.0
+  resolution: "@aws-cdk/cx-api@npm:2.124.0"
+  dependencies:
+    semver: "npm:^7.5.4"
+  peerDependencies:
+    "@aws-cdk/cloud-assembly-schema": 2.124.0
+  checksum: a307ed55079a7efcca400f62b47f12f2c55d0e156a52e239b3ba597d5e34ced1cde8d8ad3a536e4c47e7c13d2081fa51005bee56d60fab03634ec051e072b459
   languageName: node
   linkType: hard
 
@@ -164,6 +210,15 @@ __metadata:
   dependencies:
     "@cdklabs/tskb": "npm:^0.0.3"
   checksum: 1430381b80101076d581fc20360b5a33056a71c085d04db191098590021d8f47f12a642dd17193554bf200416b7293f5ba7329154a1121affe6b7db582b909f8
+  languageName: node
+  linkType: hard
+
+"@aws-cdk/service-spec-types@npm:^0.0.45":
+  version: 0.0.45
+  resolution: "@aws-cdk/service-spec-types@npm:0.0.45"
+  dependencies:
+    "@cdklabs/tskb": "npm:^0.0.3"
+  checksum: 8fa521ec433094aa35313d881e5b5c6ec329d612ed0e5b38213250865e6f407c4f4cae83abfcd91a5e2601fa679fe7cfaa863015fe778f24fcbc34b70b45398e
   languageName: node
   linkType: hard
 
@@ -9969,7 +10024,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-sdk@npm:^2.1492.0, aws-sdk@npm:^2.1501.0":
+"aws-sdk@npm:*, aws-sdk@npm:^2.1492.0, aws-sdk@npm:^2.1501.0, aws-sdk@npm:^2.1542.0":
   version: 2.1545.0
   resolution: "aws-sdk@npm:2.1545.0"
   dependencies:
@@ -11087,6 +11142,24 @@ __metadata:
   version: 1.1.0
   resolution: "ccount@npm:1.1.0"
   checksum: b335a79d0aa4308919cf7507babcfa04ac63d389ebed49dbf26990d4607c8a4713cde93cc83e707d84571ddfe1e7615dad248be9bc422ae4c188210f71b08b78
+  languageName: node
+  linkType: hard
+
+"cdk-assets@npm:*":
+  version: 2.124.0
+  resolution: "cdk-assets@npm:2.124.0"
+  dependencies:
+    "@aws-cdk/cloud-assembly-schema": "npm:2.124.0"
+    "@aws-cdk/cx-api": "npm:2.124.0"
+    archiver: "npm:^5.3.2"
+    aws-sdk: "npm:^2.1542.0"
+    glob: "npm:^7.2.3"
+    mime: "npm:^2.6.0"
+    yargs: "npm:^16.2.0"
+  bin:
+    cdk-assets: bin/cdk-assets
+    docker-credential-cdk-assets: bin/docker-credential-cdk-assets
+  checksum: 1bd7f5cf64cf54f26392bd296419d17fcb3eb5a91830d68bceb1f9cc9e01fb215ff654acf4804582fb45c3c17a09b8e60d88f3fd706520074dc0cba295d8983a
   languageName: node
   linkType: hard
 

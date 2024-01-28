@@ -18,8 +18,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::????????:role/hun
-          aws-region: ap-northeast-2
+          role-to-assume:  ${{ secrets.AWS_ARN }}
+          aws-region:  ${{ secrets.AWS_REGION }}
       - name: Deploy app
         run: |
           yarn && yarn run wesave:deploy

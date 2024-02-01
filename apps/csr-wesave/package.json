@@ -50,7 +50,8 @@
     "build": "echo 'Build started at: $(date)';craco build && echo 'Build completed at: $(date)'",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "node ./server/server.js"
+    "serve": "node ./server/server.js",
+    "deploy": "aws s3 sync ./build s3://wesave.com --profile=hun"
   },
   "browserslist": {
     "production": [

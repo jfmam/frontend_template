@@ -23,7 +23,12 @@
     "wesave:dev": "yarn workspace practice-wesave dev",
     "wesave:test": "yarn workspace practice-wesave test",
     "wesave:build": "yarn workspace practice-wesave build",
-    "wesave:deploy": "yarn workspace practice-wesave deploy"
+    "wesave:deploy": "yarn workspace practice-wesave deploy",
+    "wesave:start":"yarn workspace practice-wesave start",
+    "csr-wesave:dev": "yarn workspace csr-wesave dev",
+    "csr-wesave:test": "yarn workspace csr-wesave test",
+    "csr-wesave:build": "yarn workspace csr-wesave build",
+    "csr-wesave:deploy": "yarn workspace csr-wesave deploy"
   },
   "workspaces": [
     "apps/*"

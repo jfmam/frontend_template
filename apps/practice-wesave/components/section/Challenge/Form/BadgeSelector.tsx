@@ -50,7 +50,7 @@ export default function BadgeSelector({ setFieldValue, badge }: BadgeSelectorPro
         {badgeList.slice(0, 3).map(b => (
           <Badge onClick={() => onClickBadge(b)} isSelected={badge === b} type={b} key={b} />
         ))}
-        <button onClick={() => setIsOpenModal(true)} className={badgeCx('badge')}>
+        <button type='button' onClick={() => setIsOpenModal(true)} className={badgeCx('badge')}>
           더 보기
         </button>
       </div>

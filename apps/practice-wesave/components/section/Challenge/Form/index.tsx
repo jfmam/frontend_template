@@ -4,10 +4,11 @@ import { useFormik } from 'formik';
 import 'date-fns';
 import cn from 'classnames/bind';
 import * as yup from 'yup';
+import { getDay } from 'date-fns';
 import { PrimaryBtn } from '@/components/atom';
 import styles from '@/styles/ChallengeCreateForm.module.scss';
 
-import { InitialValuesType } from './constants';
+import { days, InitialValuesType } from './constants';
 import NameInput from './NameInput';
 import ChallengeTypeSelector from './ChallengeTypeSelector';
 import DateSelector from './DateSelector';
@@ -32,7 +33,7 @@ export default function ChallengeCreateForm({ isLoading, isError, callback }: Ch
     initialValues: {
       name: '',
       type: 'save',
-      actionDay: [],
+      actionDay: [days[(getDay(new Date()) - 1) % 7]],
       endDate: new Date(),
       goal: '',
       startDate: new Date(),
@@ -45,7 +46,7 @@ export default function ChallengeCreateForm({ isLoading, isError, callback }: Ch
 
     validationSchema: registerSchema,
   });
-
+  console.log(formik.values)
   useEffect(() => {
     if (isError) {
       toast.error('챌린지 생성에 실패하였습니다.');

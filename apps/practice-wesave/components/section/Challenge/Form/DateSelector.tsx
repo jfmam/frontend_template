@@ -57,6 +57,7 @@ export default function DateSelector({ actionDay, setFieldValue }: DateSelectorP
   const onChangeDate = (date: RangeKeyDict) => {
     if (!date.selection.startDate) return;
     setFieldValue('startDate', date.selection.startDate);
+    setFieldValue('actionDay', [days[(getDay(date.selection.startDate) - 1) % 7]]);
     if (!date.selection.endDate) return;
     setFieldValue('endDate', date.selection.endDate);
     setSelectedRange({
@@ -94,6 +95,7 @@ export default function DateSelector({ actionDay, setFieldValue }: DateSelectorP
           placeholder="2023.11.15 ~ 2023.11.20"
           required
           onClick={() => setIsCalendarOpen(true)}
+          onChange={() => setFieldValue('actionDay', [getDay(selectedRange.startDate)])}
           value={`${format(selectedRange.startDate, 'yy.MM.dd')} ~ ${format(selectedRange.endDate, 'yy.MM.dd')}`}
           defaultValue={`${format(selectedRange.startDate, 'yy.MM.dd')} ~ ${format(selectedRange.endDate, 'yy.MM.dd')}`}
         />

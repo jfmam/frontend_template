@@ -73,10 +73,8 @@ export default class UserAPI {
     return { message: '비밀번호를 재설정 하였습니다.' };
   }
 
-  async deleteUser(userId: number): Promise<{ message: string }> {
-    const result = await this.service.delete('/user', {
-      params: { id: userId },
-    });
+  async deleteUser(): Promise<{ message: string }> {
+    const result = await this.service.delete('/users');
 
     if (result.status === 404) {
       throw new Error('존재하지 않는 유저입니다.');

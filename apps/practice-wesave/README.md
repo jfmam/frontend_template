@@ -1,6 +1,8 @@
 # WE SAVE
 ![image](https://user-images.githubusercontent.com/49827304/222907052-905b2290-7070-4ebf-8752-51b749bf4673.png)
-[시연 영상](https://www.youtube.com/watch?v=nm0aW9da-cI)
+
+## 영상
+[시연 영상](https://www.youtube.com/watch?v=W0FWYyVTzHs)
 
 ## 서비스 소개
 위세이브는 사회초년생과 직장인을 위한 금융 리추얼 애플리케이션입니다. 많은 파이낸셜 애플리케이션들이 소비 점검에 초점을 맞추어 콘텐츠를 제공합니다. 자연스럽게 자기점검에서 끝나고 동기부여와 같이 개선에 대한 솔루션은 부족하다는 문제점이 있었습니다.

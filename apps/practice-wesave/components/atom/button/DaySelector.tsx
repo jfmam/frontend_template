@@ -7,9 +7,10 @@ const cx = cn.bind(styles);
 interface DaySelectorProps {
   day: string;
   onClick?: () => void;
+  isSelected?: boolean;
 }
 
-export default function DaySelector({ day, onClick }: DaySelectorProps) {
+export default function DaySelector({ day, onClick, isSelected }: DaySelectorProps) {
   const [selected, setSelected] = useState(false);
 
   const clickBtn = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
@@ -19,7 +20,7 @@ export default function DaySelector({ day, onClick }: DaySelectorProps) {
   };
 
   return (
-    <button onClick={clickBtn} className={cx('day-btn', { selected: selected })}>
+    <button onClick={clickBtn} className={cx('day-btn', { selected: selected || isSelected })}>
       {day}
     </button>
   );

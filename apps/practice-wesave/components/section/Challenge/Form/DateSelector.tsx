@@ -1,7 +1,7 @@
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
-import { addYears, format } from 'date-fns';
+import { addYears, format, getDay } from 'date-fns';
 import { FormikHelpers } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { DateRange, RangeKeyDict } from 'react-date-range';
@@ -69,6 +69,19 @@ export default function DateSelector({ actionDay, setFieldValue }: DateSelectorP
   const today = new Date();
   const maxDate = addYears(today, 1);
 
+  const daySelector = (startDate: Date) => {
+    return days.map((day, idx) => (
+      <DaySelector
+        onClick={() => {
+          if (getDay(startDate) !== (idx + 1) % 7) onClickDaySelector(day);
+        }}
+        key={day}
+        isSelected={getDay(startDate) === (idx + 1) % 7}
+        day={day}
+      />
+    ));
+  };
+
   return (
     <div>
       <label htmlFor="deadline" className={cx('label')}>
@@ -81,12 +94,12 @@ export default function DateSelector({ actionDay, setFieldValue }: DateSelectorP
           placeholder="2023.11.15 ~ 2023.11.20"
           required
           onClick={() => setIsCalendarOpen(true)}
+          value={`${format(selectedRange.startDate, 'yy.MM.dd')} ~ ${format(selectedRange.endDate, 'yy.MM.dd')}`}
           defaultValue={`${format(selectedRange.startDate, 'yy.MM.dd')} ~ ${format(selectedRange.endDate, 'yy.MM.dd')}`}
         />
         {isCalendarOpen && (
           <div style={{ position: 'relative' }}>
             <div style={{ position: 'absolute', border: '1px solid black', margin: 10 }} ref={calendarRef}>
-              <button onClick={() => setIsCalendarOpen(false)}>닫기</button>
               <div>
                 <DateRange
                   minDate={today}
@@ -100,17 +113,7 @@ export default function DateSelector({ actionDay, setFieldValue }: DateSelectorP
           </div>
         )}
       </div>
-      <div className={cx('days-container')}>
-        {days.map(day => (
-          <DaySelector
-            onClick={() => {
-              onClickDaySelector(day);
-            }}
-            key={day}
-            day={day}
-          />
-        ))}
-      </div>
+      <div className={cx('days-container')}>{daySelector(selectedRange.startDate)}</div>
     </div>
   );
 }

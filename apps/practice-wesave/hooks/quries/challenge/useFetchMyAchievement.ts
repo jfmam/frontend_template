@@ -38,6 +38,8 @@ export function useFetchMyAchievements(token: string) {
         if (!lastPage.lastKey) return undefined;
         return { offset: lastPage.offset + 1, lastKey: lastPage.lastKey };
       },
+      staleTime: Infinity,
+      cacheTime: Infinity,
       useErrorBoundary: true,
       suspense: true,
     },

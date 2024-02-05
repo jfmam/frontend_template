@@ -6,20 +6,35 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { AccountLayout, ChallengeLayout } from './components/template';
 import { getAccessToken } from './utils';
 
-const KakaoCallback = lazy(() => import('./pages/oauth/KakaoCallback'));
-const NaverCallback = lazy(() => import('./pages/oauth/NaverCallback'));
-const ForgotPassword = lazy(() => import('./pages/forgot-password'));
-const SignIn = lazy(() => import('./pages/login'));
-const ResetPassword = lazy(() => import('./pages/reset-password'));
-const Salary = lazy(() => import('./pages/salary'));
-const SignUp = lazy(() => import('./pages/signup'));
-const Timer = lazy(() => import('./pages/timer'));
-const MyPage = lazy(() => import('./pages/mypage'));
-const TodayChallenge = lazy(() => import('./pages/challenge/today-challenge'));
-const AchievementStatus = lazy(() => import('./pages/challenge/achievement-status'));
-const MyAchievement = lazy(() => import('./pages/challenge/my-achievement'));
-const Register = lazy(() => import('./pages/challenge/register'));
-const Home = lazy(() => import('./pages'));
+import KakaoCallback from './pages/oauth/KakaoCallback';
+import NaverCallback from './pages/oauth/NaverCallback';
+ import ForgotPassword from './pages/forgot-password';
+import SignIn  from './pages/login';
+import  ResetPassword from './pages/reset-password';
+import Salary from './pages/salary';
+import SignUp from  './pages/signup';
+import Timer from './pages/timer';
+import  MyPage from './pages/mypage';
+import TodayChallenge from './pages/challenge/today-challenge';
+import AchievementStatus from './pages/challenge/achievement-status';
+import MyAchievement from './pages/challenge/my-achievement';
+import Register from './pages/challenge/register';
+import Home from './pages';
+
+// const KakaoCallback = lazy(() => import('./pages/oauth/KakaoCallback'));
+// const NaverCallback = lazy(() => import('./pages/oauth/NaverCallback'));
+// const ForgotPassword = lazy(() => import('./pages/forgot-password'));
+// const SignIn = lazy(() => import('./pages/login'));
+// const ResetPassword = lazy(() => import('./pages/reset-password'));
+// const Salary = lazy(() => import('./pages/salary'));
+// const SignUp = lazy(() => import('./pages/signup'));
+// const Timer = lazy(() => import('./pages/timer'));
+// const MyPage = lazy(() => import('./pages/mypage'));
+// const TodayChallenge = lazy(() => import('./pages/challenge/today-challenge'));
+// const AchievementStatus = lazy(() => import('./pages/challenge/achievement-status'));
+// const MyAchievement = lazy(() => import('./pages/challenge/my-achievement'));
+// const Register = lazy(() => import('./pages/challenge/register'));
+// const Home = lazy(() => import('./pages'));
 
 const ChallengeRoutes = () => {
   const token = getAccessToken();
@@ -93,11 +108,7 @@ const PrivateRoutes = () => {
 
   return (
     <Routes>
-      {token ? (
-        <Route path="/" element={<MyPage />} />
-        ) : (
-        <Route path="/" element={<Navigate to="/account/login" />} />
-      )}
+      {token ? <Route path="/" element={<MyPage />} /> : <Route path="/" element={<Navigate to="/account/login" />} />}
     </Routes>
   );
 };
@@ -109,7 +120,7 @@ const OAuthRoutes = () => {
       <Route path="naver" element={<NaverCallback />} />
     </Routes>
   );
-}
+};
 
 function App() {
   const [queryClient] = useState(

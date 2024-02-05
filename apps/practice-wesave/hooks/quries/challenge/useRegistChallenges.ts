@@ -1,6 +1,6 @@
 import ChallengeAPI from '@/api/challenge';
 import { Challenge } from '@/common';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 export const registChellenges = async (challenge: Challenge, token: string) => {
   if (!token) throw Error('token이 없습니다.');
@@ -15,7 +15,17 @@ export const registChellenges = async (challenge: Challenge, token: string) => {
 };
 
 export function useRegistChallenges(token: string) {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (challenge: Challenge) => registChellenges(challenge, token),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['achievements'],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['challenges'],
+      });
+    },
   });
 }

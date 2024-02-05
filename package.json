@@ -24,7 +24,7 @@
     "wesave:test": "yarn workspace practice-wesave test",
     "wesave:build": "yarn workspace practice-wesave build",
     "wesave:deploy": "yarn workspace practice-wesave deploy",
-    "wesave:start":"yarn workspace practice-wesave start",
+    "wesave:start": "yarn workspace practice-wesave start",
     "csr-wesave:dev": "yarn workspace csr-wesave dev",
     "csr-wesave:test": "yarn workspace csr-wesave test",
     "csr-wesave:build": "yarn workspace csr-wesave build",

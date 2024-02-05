@@ -6,6 +6,7 @@ import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
 import { ReactElement, ReactNode, useState } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { Header } from '@/components/section';
 import { pretendard } from '@/config/fonts';
 
@@ -35,13 +36,16 @@ export default function App(a: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? (page => page);
 
   return (
-    <div className={pretendard.className}>
-      <Header />
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <main id="main">{getLayout(<Component {...pageProps} />)}</main>
-        </Hydrate>
-      </QueryClientProvider>
-    </div>
+    <>
+      <div className={pretendard.className}>
+        <Header />
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <main id="main">{getLayout(<Component {...pageProps} />)}</main>
+          </Hydrate>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </div>
+    </>
   );
 }

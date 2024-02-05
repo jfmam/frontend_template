@@ -2,6 +2,7 @@ import { useInfiniteQuery } from 'react-query';
 import { AxiosError } from 'axios';
 import AchievementAPI from '@/api/achievement';
 import { PaginationResponse, AchivementResponse } from '@/common';
+import { calcRemainingTimeUntilTomorrow } from '@/utils/date';
 
 const pageSize = 5;
 
@@ -36,6 +37,8 @@ export function useFetchAchievements(token: string) {
       },
       useErrorBoundary: true,
       suspense: true,
+      cacheTime: calcRemainingTimeUntilTomorrow(new Date()),
+      staleTime: calcRemainingTimeUntilTomorrow(new Date()),
     },
   );
 }

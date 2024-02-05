@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import { useInfiniteQuery } from 'react-query';
 import ChallengeAPI from '@/api/challenge';
 import { ChallengeResponse, PaginationResponse } from '@/common';
+import { calcRemainingTimeUntilTomorrow } from '@/utils/date';
 
 const pageSize = 5;
 
@@ -38,6 +39,8 @@ export function useFetchChallenges(token: string) {
       },
       useErrorBoundary: true,
       suspense: true,
+      cacheTime: calcRemainingTimeUntilTomorrow(new Date()),
+      staleTime: calcRemainingTimeUntilTomorrow(new Date()),
     },
   );
 }

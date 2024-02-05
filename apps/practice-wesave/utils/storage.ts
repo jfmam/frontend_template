@@ -29,6 +29,10 @@ export const getAccessToken = () => {
   return cookies.get('token');
 };
 
+export const removeAccessToken = () => {
+  return cookies.remove('token');
+};
+
 export const setRefreshToken = (refreshToken: string, options?: CookieSetOptions) => {
   return cookies.set('refreshToken', refreshToken, options);
 };

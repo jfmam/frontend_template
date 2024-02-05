@@ -3,15 +3,15 @@ import cn from 'classnames/bind';
 import resignStyles from '@/styles/resign.module.scss';
 import { PrimaryBtn } from '@/components/atom';
 import { useResignUser } from '@/hooks/quries/user/useUser';
+import { removeAccessToken } from '@/utils';
 
 const resignCx = cn.bind(resignStyles);
 
 interface ResignProps {
-  userId: number;
   onChangeMyPageUI: () => void;
 }
 
-export default function Resign({ onChangeMyPageUI, userId }: ResignProps) {
+export default function Resign({ onChangeMyPageUI }: ResignProps) {
   const { mutate } = useResignUser();
   const router = useRouter();
   return (
@@ -30,8 +30,11 @@ export default function Resign({ onChangeMyPageUI, userId }: ResignProps) {
           <PrimaryBtn
             className={resignCx('button', 'button-cancel')}
             onClick={() => {
-              mutate(userId, {
-                onSuccess: () => router.push('/login'),
+              mutate(undefined, {
+                onSuccess: () => {
+                  removeAccessToken();
+                  router.push('/login');
+                },
               });
             }}
           >

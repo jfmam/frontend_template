@@ -1,17 +1,20 @@
 import { useMutation, useQuery } from 'react-query';
 import UserAPI from '@/api/user';
+import { getAccessToken } from '@/utils';
 
 export type ChallengeStatus = 'complete' | 'progress';
 
-export const deleteUser = async (userId: number) => {
-  const result = await new UserAPI().deleteUser(userId);
+export const deleteUser = async () => {
+  const token = getAccessToken();
+
+  const result = await new UserAPI(token).deleteUser();
 
   return result;
 };
 
 export function useResignUser() {
   return useMutation({
-    mutationFn: (userId: number) => deleteUser(userId),
+    mutationFn: () => deleteUser(),
   });
 }
 

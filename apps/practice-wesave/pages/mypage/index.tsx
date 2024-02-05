@@ -13,7 +13,6 @@ const myPageCx = cn.bind(mypageStyles);
 
 const Resign = lazy(() => import('@/components/template/user/Resign'));
 
-// 추후 로그인 검사 기능을 만들고 조금 더 수정이 필요함
 export default function MyPage({ user }: any) {
   const [isResignUIVisible, setIsResignUIVisible] = useState(false);
 
@@ -21,7 +20,7 @@ export default function MyPage({ user }: any) {
     <>
       {isResignUIVisible ? (
         <Suspense fallback={<div>Loading...</div>}>
-          <Resign userId={user.id} onChangeMyPageUI={() => setIsResignUIVisible(false)} />
+          <Resign onChangeMyPageUI={() => setIsResignUIVisible(false)} />
         </Suspense>
       ) : (
         <div className={myPageCx('mypage')}>
@@ -59,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = withGetServerSideProps(asy
   if (!token) throw new AuthError();
 
   const user = await getUser(token);
-  console.log(user);
+
   return {
     props: {
       user,

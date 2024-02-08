@@ -151,7 +151,6 @@ export function useDailyInfo() {
 }
 
 export function useTimer() {
-  const [timer, setTimer] = useState(0);
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0, percentage: 100 });
 
   useEffect(() => {
@@ -162,7 +161,7 @@ export function useTimer() {
     }
 
     const { quitTime, startTime, workday }: Income = JSON.parse(value);
-    const interval = setInterval(() => {
+    const calculateRemainingTime = () => {
       const current = new Date();
       const currentHour: number = current.getHours();
 
@@ -175,6 +174,7 @@ export function useTimer() {
         setTimeLeft({ hours: 0, minutes: 0, seconds: 0, percentage: 0 });
         return;
       }
+
       const remainingTime = set(new Date(), {
         hours: quitTime,
         minutes: 0,
@@ -197,10 +197,17 @@ export function useTimer() {
         seconds: remainingSeconds,
         percentage: +percentage.toFixed(0),
       });
-    }, timer);
-    setTimer(1000);
+    };
+
+    calculateRemainingTime();
+
+
+    const interval = setInterval(() => {
+      calculateRemainingTime();
+    }, 1000);
+
     return () => clearInterval(interval);
-  }, [timer]);
+  }, []);
 
   return timeLeft;
 }

@@ -1,0 +1,15 @@
+{
+  "name": "bundler",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "typecheck": "node ../../.yarn/sdks/typescript/lib/tsc.js --noEmit",
+    "build:ts": "node ../../.yarn/sdks/typescript/lib/tsc.js",
+    "test": "npm run build:ts && node --test \"dist-ts/test/**/*.test.js\"",
+    "mini-webpack:build": "npm run build:ts && node dist-ts/src/mini-webpack/build.js examples/basic-app/src/main.js examples/basic-app/dist/bundle.js",
+    "mini-webpack:dev": "npm run build:ts && node dist-ts/src/mini-webpack/dev-server.js",
+    "mini-vite:build": "npm run build:ts && node dist-ts/src/mini-vite/build.js",
+    "mini-vite:dev": "npm run build:ts && node dist-ts/src/mini-vite/dev-server.js"
+  }
+}

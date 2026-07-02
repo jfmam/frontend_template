@@ -1,0 +1,18 @@
+name: Outpu information
+on: workflow_dispatch
+
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Github Context
+        run: echo "${{ toJson(github) }}" #githib actions functions expression
+        # github
+        # 워크플로우가 실행되는 상황에 대한 정보가 들어있는 컨텍스트 객체
+        # 예: 리포 이름, 브랜치, 이벤트 타입, PR 번호 등
+        # toJson(github)
+        # 이 객체를 JSON 문자열로 변환하는 GitHub Actions 내장 함수, echo와 사용해서 Console.log같은 역할
+        # echo "${{ ... }}"
+        # 변환된 JSON을 셸에서 출력 → Actions 로그에 전체 내용을 확인 가능
+
+

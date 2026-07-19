@@ -19,12 +19,21 @@ declare module "node:assert/strict" {
 }
 
 declare module "node:fs" {
+  type FSWatcher = {
+    close(): void;
+  };
+
   const fs: {
     existsSync(path: string): boolean;
     mkdirSync(path: string, options?: { recursive?: boolean }): void;
     mkdtempSync(prefix: string): string;
     readFileSync(path: string, encoding: "utf8"): string;
     writeFileSync(path: string, data: string): void;
+    watch(
+      filename: string,
+      options: { recursive?: boolean },
+      listener: (eventType: string, filename: string | null) => void,
+    ): FSWatcher;
   };
   export default fs;
 }
@@ -32,11 +41,13 @@ declare module "node:fs" {
 declare module "node:http" {
   export type IncomingMessage = {
     url?: string;
+    on(event: "close", listener: () => void): void;
   };
 
   export type ServerResponse = {
     statusCode: number;
     setHeader(name: string, value: string): void;
+    write(body: string): void;
     end(body?: string): void;
   };
 
@@ -59,6 +70,7 @@ declare module "node:os" {
 declare module "node:path" {
   const path: {
     dirname(filePath: string): string;
+    isAbsolute(filePath: string): boolean;
     join(...paths: string[]): string;
     relative(from: string, to: string): string;
     resolve(...paths: string[]): string;

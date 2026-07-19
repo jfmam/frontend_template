@@ -22,6 +22,12 @@ describe("mini-vite transform", () => {
     assert.equal(result.url, "/src/main.js");
     assert.match(result.code, /from "\/src\/message\.js"/);
     assert.match(result.code, /from "\/src\/utils\/format\.js"/);
+    assert.deepEqual(result.importedUrls, [
+      "/src/message.js",
+      "/src/utils/format.js",
+    ]);
+    assert.match(result.code, /from "\/@mini-vite\/client"/);
+    assert.deepEqual(result.acceptedHmrDeps, ["/src/message.js"]);
   });
 
   it("한 번 transform한 module은 메모리 cache에서 재사용한다", () => {
@@ -34,5 +40,6 @@ describe("mini-vite transform", () => {
     assert.equal(firstResult.fromCache, false);
     assert.equal(secondResult.fromCache, true);
     assert.equal(secondResult.code, firstResult.code);
+    assert.deepEqual(secondResult.importedUrls, firstResult.importedUrls);
   });
 });

@@ -22,6 +22,8 @@ describe("mini-vite production build", () => {
     });
 
     assert.equal(result.moduleCount, 3);
+    assert.equal(result.dependencyCount, 2);
+    assert.deepEqual(result.circularComponents, []);
     assert.equal(fs.existsSync(path.join(outDir, "index.html")), true);
     assert.equal(fs.existsSync(path.join(outDir, "assets/index.js")), true);
 
@@ -41,5 +43,26 @@ describe("mini-vite production build", () => {
     });
 
     assert.equal(app.textContent, "Mini Webpack says: hello bundler");
+  });
+
+  it("서로 다시 도달할 수 있는 module들을 하나의 circular SCC로 찾는다", () => {
+    const circularAppRoot = path.resolve(bundlerRoot, "examples/circular-app");
+    const outDir = fs.mkdtempSync(path.join(os.tmpdir(), "mini-vite-scc-"));
+
+    const result = build({
+      appRoot: circularAppRoot,
+      entryFilePath: path.resolve(circularAppRoot, "src/main.js"),
+      outDir,
+    });
+
+    assert.equal(result.moduleCount, 3);
+    assert.equal(result.dependencyCount, 3);
+    assert.deepEqual(result.circularComponents, [
+      {
+        moduleIds: ["src/a.js", "src/b.js"],
+        cyclic: true,
+        internalEdgeCount: 2,
+      },
+    ]);
   });
 });

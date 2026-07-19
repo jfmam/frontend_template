@@ -28,7 +28,10 @@
     "csr-wesave:dev": "yarn workspace csr-wesave dev",
     "csr-wesave:test": "yarn workspace csr-wesave test",
     "csr-wesave:build": "yarn workspace csr-wesave build",
-    "csr-wesave:deploy": "yarn workspace csr-wesave deploy"
+    "csr-wesave:deploy": "yarn workspace csr-wesave deploy",
+    "image-editor:dev": "yarn workspace image-editor dev",
+    "image-editor:test": "yarn workspace image-editor test",
+    "image-editor:build": "yarn workspace image-editor build"
   },
   "workspaces": [
     "apps/*"

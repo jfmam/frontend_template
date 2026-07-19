@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
-import { createBundle } from "./bundle.js";
+import { createBundler } from "./bundle.js";
 import { createGraph } from "./graph.js";
 
 type BuildOptions = {
@@ -24,7 +24,7 @@ export function build({
 }: BuildOptions): BuildResult {
   const entryId = toModuleId(path.resolve(entryFilePath), rootDir);
   const graph = createGraph(entryFilePath, { rootDir });
-  const bundle = createBundle(graph, { entryId });
+  const bundle = createBundler(graph, { entryId });
 
   fs.mkdirSync(path.dirname(outputFilePath), { recursive: true });
   fs.writeFileSync(outputFilePath, bundle);

@@ -1,3 +1,6 @@
 dist-ts/
+dist-ts-rsbuild/
+dist-ts-vite/
 examples/basic-app/dist/
 examples/basic-app/vite-dist/
+examples/circular-app/vite-dist/

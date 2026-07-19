@@ -25,6 +25,13 @@
    - `/bundle.js` 요청이 들어오면 entry부터 dependency graph를 만들고 bundle 문자열을 메모리에서 응답합니다.
    - 실제 webpack-dev-server도 파일로 매번 쓰기보다 메모리 기반 compilation 결과를 서빙하는 방식에 가깝습니다.
 
+5. HMR
+   - source의 `import.meta.hot`을 bundle runtime의 `__bundle_hot__` API로 바꿉니다.
+   - 파일이 바뀌면 server는 전체 graph를 다시 만들어 변경 module의 factory만 담은 hot-update script를 만듭니다.
+   - browser runtime은 기존 `modules` table에서 해당 factory를 교체하고, 해당 module의 `cache`만 제거합니다.
+   - importer가 `accept("./message.js", callback)`을 등록했다면 새 exports를 callback에 전달합니다.
+   - accept boundary가 없으면 `location.reload()`로 fallback합니다.
+
 ## 아직 구현하지 않은 것
 
 - bare package import 처리
@@ -33,9 +40,27 @@
 - code splitting
 - source map
 - loader/plugin system
-- HMR
+- 여러 단계 HMR propagation
+- dispose callback, state 보존, 오류 overlay
 
 이 제한은 의도적입니다. 처음에는 “module graph와 runtime”만 선명하게 보는 것이 목표입니다.
+
+## Vite HMR과 비교
+
+```txt
+Mini Vite
+  -> browser가 /src/message.js?t=...를 ESM으로 다시 요청
+  -> accept callback에 새 ESM namespace 전달
+
+Mini Webpack
+  -> server가 hot-update script를 생성
+  -> runtime의 modules[moduleId] factory를 교체
+  -> cache[moduleId]만 비움
+  -> __bundle_require__(moduleId)로 새 exports를 만들고 callback 호출
+```
+
+둘 다 accept boundary를 찾지 못하면 full reload로 fallback한다는 점은 같습니다.
+차이는 Vite가 native ESM module URL을 다시 요청하는 반면, Webpack은 자체 runtime의 factory와 cache를 갱신한다는 점입니다.
 
 ## 실행 방식
 

@@ -1,1 +1,1 @@
-{"root":["./src/App.tsx","./src/main.tsx","./src/editor/fabricFilters.ts","./src/editor/filterState.ts","./src/test/fabricFilters.test.ts","./src/test/filterState.test.ts"],"errors":true,"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/editor/fabricfilters.ts","./src/editor/filterstate.ts","./src/test/fabricfilters.test.ts","./src/test/filterstate.test.ts"],"version":"5.9.3"}

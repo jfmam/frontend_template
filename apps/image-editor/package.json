@@ -6,16 +6,18 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
+    "typecheck": "tsc -b",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {
     "fabric": "^7.4.0",
-    "lucide-react": "^1.24.0",
+    "lucide-react": "1.24.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
   "devDependencies": {
+    "@types/node": "^22.12.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",

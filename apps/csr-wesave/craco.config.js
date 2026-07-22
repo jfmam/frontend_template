@@ -3,6 +3,13 @@ const CracoCSSModules = require('craco-css-modules');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
+  jest: {
+    configure: {
+      moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/src/$1',
+      },
+    },
+  },
   plugins: [
     {
       plugin: {

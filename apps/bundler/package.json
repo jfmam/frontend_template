@@ -4,14 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "typecheck": "node ../../.yarn/sdks/typescript/lib/tsc.js --noEmit",
-    "build:ts": "node ../../.yarn/sdks/typescript/lib/tsc.js",
-    "test": "npm run build:ts && node --test \"dist-ts/test/**/*.test.js\"",
-    "mini-webpack:build": "npm run build:ts && node dist-ts/src/mini-webpack/build.js examples/basic-app/src/main.js examples/basic-app/dist/bundle.js",
-    "mini-webpack:dev": "npm run build:ts && node dist-ts/src/mini-webpack/dev-server.js",
-    "mini-vite:build": "npm run build:ts && node dist-ts/src/mini-vite/build.js",
-    "mini-vite:build:circular": "node ../../.yarn/sdks/typescript/lib/tsc.js --target ES2022 --module NodeNext --moduleResolution NodeNext --strict --skipLibCheck --rootDir . --outDir dist-ts-vite src/types/node-shim.d.ts src/mini-webpack/graph.ts src/mini-vite/scc.ts src/mini-vite/build.ts && node dist-ts-vite/src/mini-vite/build.js examples/circular-app/src/main.js examples/circular-app/vite-dist examples/circular-app",
-    "mini-vite:dev": "npm run build:ts && node dist-ts/src/mini-vite/dev-server.js",
-    "mini-rsbuild:dev": "node ../../.yarn/sdks/typescript/lib/tsc.js --target ES2022 --module NodeNext --moduleResolution NodeNext --strict --skipLibCheck --rootDir . --outDir dist-ts-rsbuild src/types/node-shim.d.ts src/mini-webpack/graph.ts src/mini-webpack/bundle.ts src/mini-rsbuild/compiler.ts src/mini-rsbuild/dev-server.ts && node dist-ts-rsbuild/src/mini-rsbuild/dev-server.js"
+    "build": "pnpm run build:ts",
+    "typecheck": "tsc --noEmit",
+    "build:ts": "tsc",
+    "test": "pnpm run build:ts && node --test \"dist-ts/test/**/*.test.js\"",
+    "mini-webpack:build": "pnpm run build:ts && node dist-ts/src/mini-webpack/build.js examples/basic-app/src/main.js examples/basic-app/dist/bundle.js",
+    "mini-webpack:dev": "pnpm run build:ts && node dist-ts/src/mini-webpack/dev-server.js",
+    "mini-vite:build": "pnpm run build:ts && node dist-ts/src/mini-vite/build.js",
+    "mini-vite:build:circular": "tsc --target ES2022 --module NodeNext --moduleResolution NodeNext --strict --skipLibCheck --rootDir . --outDir dist-ts-vite src/types/node-shim.d.ts src/mini-webpack/graph.ts src/mini-vite/scc.ts src/mini-vite/build.ts && node dist-ts-vite/src/mini-vite/build.js examples/circular-app/src/main.js examples/circular-app/vite-dist examples/circular-app",
+    "mini-vite:dev": "pnpm run build:ts && node dist-ts/src/mini-vite/dev-server.js",
+    "mini-rsbuild:dev": "tsc --target ES2022 --module NodeNext --moduleResolution NodeNext --strict --skipLibCheck --rootDir . --outDir dist-ts-rsbuild src/types/node-shim.d.ts src/mini-webpack/graph.ts src/mini-webpack/bundle.ts src/mini-rsbuild/compiler.ts src/mini-rsbuild/dev-server.ts && node dist-ts-rsbuild/src/mini-rsbuild/dev-server.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }

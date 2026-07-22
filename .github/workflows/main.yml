@@ -17,6 +17,15 @@ jobs:
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -24,5 +33,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Deploy app
-        run: |
-          yarn && yarn run wesave:deploy
+        run: pnpm wesave:deploy

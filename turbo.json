@@ -1,0 +1,49 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "ui": "stream",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "build/**",
+        "dist/**",
+        "dist-ts/**"
+      ],
+      "env": ["ANALYZE", "NEXT_PUBLIC_*", "REACT_APP_*", "VITE_*"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true,
+      "interactive": true
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": []
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "outputs": []
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "start": {
+      "cache": false,
+      "persistent": true
+    },
+    "build-storybook": {
+      "outputs": ["storybook-static/**"]
+    },
+    "deploy": {
+      "dependsOn": ["build"],
+      "cache": false
+    }
+  }
+}

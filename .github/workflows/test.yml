@@ -20,24 +20,33 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
         # 자동화 테스트 목적
-      - name: Install dependencies
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+      - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '22'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: yarn install --immutable
-      - name: Test coverage
-        run: yarn test
+        run: pnpm install --frozen-lockfile
+      - name: Test
+        run: pnpm test
   deploy:
-    needs: test # test job이 성공해야 deploy job이 실행된다 -> sequential, needs 키워드는 이전 job의 결과를 다음 job에 전달할 수 있다. Needs가 여러개면 [lint, test] 배열로 표시
     runs-on: ubuntu-latest # 매우중요: 각각의 jobs는 실행기(runner)를 갖는다
     needs: test
     steps:
       - name: Get code
         uses: actions/checkout@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --frozen-lockfile
       - name: Build project
-        run: yarn wesave:build
+        run: pnpm wesave:build
       - name: Deploy project
-        run: yarn wesave:deploy
+        run: pnpm wesave:deploy

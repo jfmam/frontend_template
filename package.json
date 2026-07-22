@@ -1,7 +1,12 @@
 {
-  "name": "frontend_template",
-  "packageManager": "yarn@4.0.2",
+  "name": "frontend-template",
+  "private": true,
+  "packageManager": "pnpm@11.10.0",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
     "@types/eslint": "^8",
     "@types/prettier": "^2",
@@ -17,25 +22,32 @@
     "stylelint-order": "^6.0.3",
     "stylelint-prettier": "^3.0.0",
     "stylelint-scss": "^4.5.0",
-    "typescript": "^4.9.5"
+    "turbo": "2.10.4",
+    "typescript": "^5.9.3"
   },
   "scripts": {
-    "wesave:dev": "yarn workspace practice-wesave dev",
-    "wesave:test": "yarn workspace practice-wesave test",
-    "wesave:build": "yarn workspace practice-wesave build",
-    "wesave:deploy": "yarn workspace practice-wesave deploy",
-    "wesave:start": "yarn workspace practice-wesave start",
-    "csr-wesave:dev": "yarn workspace csr-wesave dev",
-    "csr-wesave:test": "yarn workspace csr-wesave test",
-    "csr-wesave:build": "yarn workspace csr-wesave build",
-    "csr-wesave:deploy": "yarn workspace csr-wesave deploy",
-    "image-editor:dev": "yarn workspace image-editor dev",
-    "image-editor:test": "yarn workspace image-editor test",
-    "image-editor:build": "yarn workspace image-editor build"
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "prepare": "husky install",
+    "wesave:dev": "pnpm --filter practice-wesave dev",
+    "wesave:test": "pnpm --filter practice-wesave test",
+    "wesave:build": "pnpm --filter practice-wesave build",
+    "wesave:deploy": "pnpm --filter practice-wesave deploy",
+    "wesave:start": "pnpm --filter practice-wesave start",
+    "csr-wesave:dev": "pnpm --filter csr-wesave start",
+    "csr-wesave:test": "pnpm --filter csr-wesave test",
+    "csr-wesave:build": "pnpm --filter csr-wesave build",
+    "csr-wesave:deploy": "pnpm --filter csr-wesave deploy",
+    "image-editor:dev": "pnpm --filter image-editor dev",
+    "image-editor:test": "pnpm --filter image-editor test",
+    "image-editor:build": "pnpm --filter image-editor build",
+    "mfe:dev": "turbo run start --filter='mfe-*'",
+    "mfe:build": "turbo run build --filter='mfe-*'"
   },
-  "workspaces": [
-    "apps/*"
-  ],
   "lint-staged": {
     "**/*.{tsx,ts}": [
       "eslint --fix",

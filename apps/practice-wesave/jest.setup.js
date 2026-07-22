@@ -7,6 +7,10 @@ import '@testing-library/jest-dom/extend-expect'
 import 'reflect-metadata';
 import { loadEnvConfig } from '@next/env';
 
+loadEnvConfig(process.cwd(), true);
+process.env.NEXT_PUBLIC_API_PROTOCOL ??= 'http';
+process.env.NEXT_PUBLIC_API_DOMAIN ??= 'localhost:3000';
+
 window.matchMedia = jest.fn().mockImplementation(query => {
   return {
     matches: false,
@@ -16,8 +20,3 @@ window.matchMedia = jest.fn().mockImplementation(query => {
     removeListener: jest.fn(),
   };
 });
-
-export default async () => {
-  const projectDir = process.cwd();
-  loadEnvConfig(`${projectDir}/.env.test`);
-};

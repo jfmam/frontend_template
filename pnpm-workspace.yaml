@@ -1,0 +1,41 @@
+packages:
+  - "apps/*"
+  - "apps/mfe-practice/*"
+
+confirmModulesPurge: false
+
+overrides:
+  "@types/react-date-range@1>@types/react": 18.0.28
+  "@types/react-dom@18>@types/react": 18.0.28
+  "@types/react-modal@3>@types/react": 18.0.28
+  "@types/react-slick@0>@types/react": 18.0.28
+
+allowBuilds:
+  '@parcel/watcher': true
+  aws-crt: true
+  aws-sdk: false
+  canvas: true
+  core-js: false
+  core-js-pure: false
+  esbuild: true
+  fsevents: false
+  msw: true
+  unrs-resolver: true
+
+packageExtensions:
+  "lucide-react@1.24.0":
+    peerDependencies:
+      "@types/react": "*"
+  "@storybook/addon-docs@*":
+    dependencies:
+      "@babel/core": "*"
+  "eslint-config-next@*":
+    dependencies:
+      next: "*"
+  "sst-aws-cdk@*":
+    dependencies:
+      "@aws-cdk/cx-api": "*"
+      aws-sdk: "*"
+      "@aws-cdk/cloudformation-diff": "*"
+      cdk-assets: "*"
+      "@aws-cdk/cloud-assembly-schema": "*"

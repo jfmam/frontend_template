@@ -4,7 +4,10 @@
 
 ## 시작하기
 
+필요 환경은 Node.js 22와 pnpm 11.10입니다. nvm을 사용하면 저장소 루트에서 `nvm use`로 버전을 맞출 수 있습니다.
+
 ```bash
+nvm use
 corepack enable
 pnpm install
 pnpm build
